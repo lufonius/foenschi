@@ -118,5 +118,8 @@
       }
     }
   },
-  "defaultProject": "foenschi"
+  "defaultProject": "foenschi",
+  "cli": {
+    "defaultCollection": "@ngrx/schematics"
+  }
 }
