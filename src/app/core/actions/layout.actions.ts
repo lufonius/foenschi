@@ -1,11 +1,19 @@
 import { Action } from '@ngrx/store';
 
 export enum LayoutActionTypes {
-  LoadLayouts = '[Layout] Load Layouts'
+  changeNavVisibility = '[Layout] ChangeNavVisibilityAction',
+  toggleNavVisibility = '[Layout] toggleNavVisibilityAction'
+
 }
 
-export class Layout implements Action {
-  readonly type = LayoutActionTypes.LoadLayouts;
+export class ChangeNavVisibilityAction implements Action {
+  readonly type = LayoutActionTypes.changeNavVisibility;
+
+  constructor(public visible: boolean) {}
 }
 
-//export type LayoutActions = LoadLayouts;
+export class ToggleNavVisibilityAction implements Action {
+  readonly type = LayoutActionTypes.toggleNavVisibility;
+}
+
+export type LayoutActions = ChangeNavVisibilityAction | ToggleNavVisibilityAction;

@@ -1,0 +1,25 @@
+.lf-entry {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+}
+
+.lf-entry-image-background {
+  width: 100%;
+  height: 100vh;
+
+  background-image: url('front-image-temp.JPG');
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.lf-entry-image-overlay {
+  width: 100%;
+  height: 100vh;
+
+  position: absolute;
+  background-color: rgba(120, 120, 120, 0.35);
+}
+
+
