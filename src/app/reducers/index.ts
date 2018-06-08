@@ -27,3 +27,33 @@ export const getNavVisibilityState = createSelector(
   getLayoutState,
   fromLayout.getNavVisibleState
 );
+
+export const getIsMobileMediaQueryState = createSelector(
+  getLayoutState,
+  fromLayout.getIsMobileMediaQueryState
+);
+
+export const getAboutMeSectionPositionState = createSelector(
+  getLayoutState,
+  fromLayout.getAboutMeSectionPositionState
+);
+
+export const getProjectsSectionPositionState = createSelector(
+  getLayoutState,
+  fromLayout.getProjectsSectionPositionState
+);
+
+export const getContactSectionPositionState = createSelector(
+  getLayoutState,
+  fromLayout.getContactSectionPositionState
+);
+
+export const getNavbarHeightState = createSelector(
+  getLayoutState,
+  fromLayout.getNavbarHeightState
+);
+
+export const getFrontPageScrollYOffsetState = createSelector(
+  getLayoutState,
+  fromLayout.getFrontPageScrollYOffsetState
+);

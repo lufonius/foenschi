@@ -21,7 +21,7 @@ import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
 import { PortfolioModule } from './portfolio/portfolio.module';
 import { EffectsModule } from "@ngrx/effects";
-import { MaterialSharedModule } from "./shared";
+import { SharedModule } from "./shared";
 
 @NgModule({
   declarations: [
@@ -47,7 +47,7 @@ import { MaterialSharedModule } from "./shared";
     }),
     !environment.production ? StoreDevtoolsModule.instrument() : [],
     CoreModule,
-    MaterialSharedModule,
+    SharedModule,
     PortfolioModule
   ],
   providers: [  ],

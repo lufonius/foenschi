@@ -1,6 +1,9 @@
+@import '../../../../variables';
+
 .lf-section-layout {
   width: 100%;
-  height: 100vh;
+  min-height: 100vh;
+  position: relative;
 }
 
 .lf-section-header-space {
@@ -8,6 +11,49 @@
   height: 100px;
 }
 
+.lf-section-content-container {
+  .lf-section-content {
+    position: relative;
+
+    .lf-section-content-overlay {
+      &.lf-section-content-overlay-lt-md {
+        padding-top: ($lf-navbar-thickness-mobile + 16px);
+      }
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: rgba(255, 255, 255, 0.8);
+      padding: 16px;
+    }
+  }
+}
+
+.lf-section-header-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 100px;
+}
+
 .lf-section-images {
-  max-width: 350px;
+  position: relative;
+
+  .lf-section-images-overlay {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(255,255,255,0.3);
+  }
+}
+
+.lf-section-images-background {
+  background-image: url('background.jpg');
+  background-position: center top;
+  background-repeat: no-repeat;
+  background-size: cover;
 }

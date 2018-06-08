@@ -1,6 +1,53 @@
-.lf-burger {
+@import '../../../../variables';
+
+.lf-navbar, .lf-bottom-navbar {
+  background-color: rgba(255,255,255, 0.3);
   position: fixed;
-  right: 16px;
-  top: 16px;
-  z-index: 20000;
+  display: flex;
+  z-index: 1;
+}
+
+.lf-bottom-navbar {
+  bottom: 0;
+  right: 0;
+  left: 0;
+  height: $lf-navbar-thickness-mobile;
+}
+
+.lf-navbar {
+
+  .lf-logo-lt-md {
+    width: 200px;
+  }
+
+  .lf-fill {
+    width:100%;
+  }
+}
+
+.lf-navbar-spacing {
+  height: 16px;
+  width: 100%;
+}
+
+.lf-navbar-lt-md {
+  right: 0px;
+  left: 0px;
+  top: 0px;
+  height: $lf-navbar-thickness-mobile;
+  padding-top: 0px;
+  padding-right: 24px;
+  padding-left: 16px;
+}
+
+.lf-navbar-gt-sm {
+  right: 0px;
+  top: 0px;
+  bottom: 0px;
+  width: $lf-navbar-thickness-desktop;
+  padding-top: 16px;
+}
+
+lf-burger {
+  height: min-content;
 }

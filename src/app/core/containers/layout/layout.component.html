@@ -1,4 +1,35 @@
-<lf-burger class="lf-burger" (onBurgerClick)="toggleNavVisibility()"></lf-burger>
+<div
+  fxLayout.gt-sm="column"
+  fxLayoutAlign.gt-sm="start center"
+
+  fxLayout.lt-md="row"
+  fxLayoutAlign.lt-md="center center"
+
+  ngClass.gt-sm="lf-navbar-gt-sm"
+  ngClass.lt-md="lf-navbar-lt-md"
+
+  class="lf-navbar"
+  #navbar>
+
+  <div class="lf-logo-lt-md" fxHide="true" fxShow.lt-md="true">
+    <lf-logo [color]="navbarContentColor"></lf-logo>
+  </div>
+
+  <div fxHide="true" fxShow.lt-md="true" class="lf-fill"></div>
+
+  <lf-burger [backgroundColor]="navbarContentColor" (onBurgerClick)="toggleNavVisibility()"></lf-burger>
+
+  <div class="lf-navbar-spacing" fxHide="true" fxShow.gt-sm="true"></div>
+
+  <lf-quick-nav fxHide="false" fxHide.lt-md="true"></lf-quick-nav>
+</div>
+
+<div hidden="true">
+  <div class="lf-bottom-navbar" fxLayoutAlign="center center" fxHide="true" fxShow.lt-md="true">
+    <lf-quick-nav fxHide="true" fxShow.lt-md="true"></lf-quick-nav>
+  </div>
+</div>
+
 <lf-navigation [visible]="navVisibility$ | async"></lf-navigation>
 <router-outlet></router-outlet>
 

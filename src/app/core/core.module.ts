@@ -4,20 +4,22 @@ import { RouterModule } from "@angular/router";
 
 import { NavigationComponent } from './components/navigation/navigation.component';
 
-import { MaterialSharedModule } from "../shared";
+import {SharedModule} from "../shared";
 import { BurgerComponent } from './components/burger/burger.component';
 import { LayoutComponent } from './containers/layout/layout.component';
+import { QuickNavComponent } from './components/quick-nav/quick-nav.component';
 
 @NgModule({
   imports: [
     RouterModule,
     CommonModule,
-    MaterialSharedModule
+    SharedModule
   ],
   declarations: [
     NavigationComponent,
     BurgerComponent,
-    LayoutComponent
+    LayoutComponent,
+    QuickNavComponent
   ],
   exports: [
     LayoutComponent

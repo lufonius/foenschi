@@ -1,0 +1,22 @@
+.lf-burger {
+  display: inline-block;
+
+  .lf-burger-layer {
+    width: 32px;
+    height: 5px;
+    margin-top: 6px;
+    margin-bottom: 6px;
+
+    &:first-child {
+      margin-top: 0px;
+    }
+
+    &:last-child {
+      margin-bottom: 0px;
+    }
+  }
+
+  .mat-icon-button {
+    color: white;
+  }
+}

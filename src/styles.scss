@@ -2,6 +2,10 @@ body {
   margin: 0px;
 }
 
+* {
+  font-family: 'Helvetica';
+}
+
 /* Angular Material custom theme */
 
 @import '~@angular/material/theming';

@@ -1,6 +1,6 @@
 import {
   Component,
-  Input
+  Input, ViewEncapsulation
 } from '@angular/core';
 import {
   animate,
@@ -14,6 +14,7 @@ import {
   selector: 'lf-navigation',
   templateUrl: './navigation.component.html',
   styleUrls: ['./navigation.component.scss'],
+  encapsulation: ViewEncapsulation.None,
   animations: [
     trigger('visibility', [
       state('visible', style({

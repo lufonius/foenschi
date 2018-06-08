@@ -1,0 +1,25 @@
+@import '../../../../variables';
+
+.lf-quick-nav {
+  font-size: 12px;
+}
+
+.lf-stroke {
+  background-color: white;
+}
+
+.lf-stroke-lt-md {
+  height: 2px;
+  width: $lf-quick-nav-stroke-length-desktop;
+}
+
+.lf-stroke-gt-sm {
+  width: 2px;
+  height: $lf-quick-nav-stroke-length-desktop;
+}
+
+.lf-item {
+  padding: 16px;
+  font-weight: bold;
+  color: white;
+}
