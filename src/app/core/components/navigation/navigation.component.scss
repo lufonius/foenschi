@@ -1,8 +1,45 @@
 .lf-navigation {
-  position: fixed;
-  height: 100vh;
+  position: absolute;
+  min-height: 100vh;
   left: 0px;
   right: 0px;
   background-color: white;
   z-index: 1000;
+
+  .lf-navigation-header-container {
+    margin: 16px;
+    margin-bottom: 50px;
+
+    .lf-navigation-header-title span {
+      color: #962f2d;
+      font-size: 50px;
+      font-weight: lighter;
+    }
+
+    .lf-navigation-header-dismiss mat-icon, .lf-navigation-header-back mat-icon{
+      color: #962f2d;
+      font-size: 50px;
+      font-weight: lighter;
+      height: auto;
+      width: auto;
+    }
+  }
+
+  .lf-navigation-container {
+
+    .lf-navigation-first-level-lt-md, .lf-navigation-second-level-lt-md {
+      min-width: 100%;
+    }
+
+    .lf-navigation-element-divider {
+      width: 100%;
+      border-bottom: 1px solid #e3e3e3;
+    }
+
+    .lf-navigation-second-level-gt-sm {
+      margin-left: 16px;
+    }
+
+  }
+
 }

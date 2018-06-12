@@ -1,0 +1,21 @@
+<div
+  class="lf-navigation-element"
+  ngClass.lt-md="lf-navigation-element-lt-md"
+  fxLayout="row"
+  (click)="navigationElementClick()">
+  <div
+    class="lf-navigation-element-text"
+    fxFlex="1 1 auto"
+    fxLayout="column"
+    fxLayoutAlign="center start">
+    <div class="lf-navigation-element-title">
+      <h3>{{title}}</h3>
+    </div>
+    <div class="lf-navigation-element-subtitle">
+      <span>{{subtitle}}</span>
+    </div>
+  </div>
+  <div class="lf-navigation-element-arrow" fxLayoutAlign="center center" *ngIf="hasChildren">
+    <mat-icon>keyboard_arrow_right</mat-icon>
+  </div>
+</div>

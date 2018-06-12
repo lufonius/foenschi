@@ -1,3 +1,23 @@
-<lf-section-layout (sectionPosition)="emitSectionPosition($event)">
-  about me content
+<lf-section-layout
+  (sectionPosition)="emitSectionPosition($event)"
+  isFirstSection="true"
+  isLastSection="false">
+  <div
+    class="lf-about-me-container"
+    ngClass.lt-md="lf-about-me-container-lt-md"
+    ngClass.gt-sm="lf-about-me-container-gt-sm"
+  >
+    <div class="lf-about-me-title" fxHide="true" fxShow.lt-md="true">
+      <h1>Luc Fonjallaz</h1>
+    </div>
+    <div
+      class="lf-about-me-subsection-container"
+      ngClass.lt-md="lf-about-me-subsection-container-lt-md"
+      ngClass.gt-sm="lf-about-me-subsection-container-gt-sm"
+      fxLayout="column">
+      <lf-subsection fxFlex="1 1 auto" title="main skills" description="Web Technologies Front -and Backend / HTML / JavaScript / CSS3 / C# / Git / Usability / Project Management "></lf-subsection>
+      <lf-subsection fxFlex="1 1 auto" title="my person" description="Get to know me better"></lf-subsection>
+      <lf-subsection fxFlex="1 1 auto" title="leisure time" description="writing / reading / photography / travel / horseriding / sports / friends"></lf-subsection>
+    </div>
+  </div>
 </lf-section-layout>

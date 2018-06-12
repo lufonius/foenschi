@@ -13,11 +13,32 @@
 
     <div
       class="lf-section-header-overlay"
+      fxLayout="row"
+      fxLayoutAlign="start center"
       fxHide="true"
       fxShow.gt-sm="true">
 
+      <div>
+        <lf-stepper
+        [isFirstElement]="isFirstSection"
+        [isLastElement]="isLastSection">
+
+        </lf-stepper>
+      </div>
+
+      <div
+        class="lf-section-header-overlay-content"
+        fxLayout="row"
+        fxLayoutAlign="center start"
+      >
+        <div>
+          <h2>Get to know me better</h2>
+          <h1>Luc Fonjallaz</h1>
+        </div>
+      </div>
+
     </div>
-    <!--set background image class on s and xs media query-->
+
     <div
       fxFlex="1 1 auto"
       class="lf-section-content"
@@ -30,7 +51,7 @@
       </div>
     </div>
   </div>
-  <!--hide on s and xs-->
+
   <div
     fxFlex="1 1 auto"
     class="lf-section-images"

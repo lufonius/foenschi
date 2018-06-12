@@ -1,5 +1,6 @@
 .lf-burger {
   display: inline-block;
+  cursor: pointer;
 
   .lf-burger-layer {
     width: 32px;
@@ -14,9 +15,5 @@
     &:last-child {
       margin-bottom: 0px;
     }
-  }
-
-  .mat-icon-button {
-    color: white;
   }
 }

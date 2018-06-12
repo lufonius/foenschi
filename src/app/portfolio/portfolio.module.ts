@@ -17,6 +17,9 @@ import { AboutMeEffects } from './effects/about-me.effects';
 import { SectionLayoutComponent } from './components/section-layout/section-layout.component';
 import { SharedModule } from "../shared";
 
+import { StepperComponent } from './components/stepper/stepper.component';
+import { SubsectionComponent } from './components/subsection/subsection.component';
+
 
 @NgModule({
   imports: [
@@ -38,7 +41,9 @@ import { SharedModule } from "../shared";
     AboutMeComponent,
     ContactComponent,
     ProjectComponent,
-    SectionLayoutComponent
+    SectionLayoutComponent,
+    StepperComponent,
+    SubsectionComponent
   ]
 })
 export class PortfolioModule { }

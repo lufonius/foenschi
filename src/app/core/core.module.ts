@@ -8,6 +8,7 @@ import {SharedModule} from "../shared";
 import { BurgerComponent } from './components/burger/burger.component';
 import { LayoutComponent } from './containers/layout/layout.component';
 import { QuickNavComponent } from './components/quick-nav/quick-nav.component';
+import { NavigationElementComponent } from './components/navigation-element/navigation-element.component';
 
 @NgModule({
   imports: [
@@ -19,7 +20,8 @@ import { QuickNavComponent } from './components/quick-nav/quick-nav.component';
     NavigationComponent,
     BurgerComponent,
     LayoutComponent,
-    QuickNavComponent
+    QuickNavComponent,
+    NavigationElementComponent
   ],
   exports: [
     LayoutComponent

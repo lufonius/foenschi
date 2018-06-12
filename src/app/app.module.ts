@@ -22,6 +22,7 @@ import { CoreModule } from './core/core.module';
 import { PortfolioModule } from './portfolio/portfolio.module';
 import { EffectsModule } from "@ngrx/effects";
 import { SharedModule } from "./shared";
+import {NavigationEffects} from "./core/effects/navigation.effects";
 
 @NgModule({
   declarations: [
@@ -37,11 +38,10 @@ import { SharedModule } from "./shared";
     ]),
     BrowserModule,
     BrowserAnimationsModule,
-    // typescript issue here
     StoreModule.forRoot(reducers, {
       metaReducers
     }),
-    EffectsModule.forRoot([]),
+    EffectsModule.forRoot([ NavigationEffects ]),
     StoreRouterConnectingModule.forRoot({
       stateKey: 'router',
     }),
@@ -50,7 +50,9 @@ import { SharedModule } from "./shared";
     SharedModule,
     PortfolioModule
   ],
-  providers: [  ],
+  providers: [
+    NavigationEffects
+  ],
   bootstrap: [ AppComponent ]
 })
 export class AppModule { }

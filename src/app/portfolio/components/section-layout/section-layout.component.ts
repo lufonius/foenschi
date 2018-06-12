@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, ElementRef, EventEmitter, OnInit, Output, ViewChild} from '@angular/core';
+import {AfterViewInit, Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild} from '@angular/core';
 
 @Component({
   selector: 'lf-section-layout',
@@ -8,6 +8,8 @@ import {AfterViewInit, Component, ElementRef, EventEmitter, OnInit, Output, View
 export class SectionLayoutComponent implements AfterViewInit {
 
   @Output() sectionPosition: EventEmitter<{x: number, y: number}> = new EventEmitter<{x: number, y: number}>();
+  @Input() isFirstSection: boolean = false;
+  @Input() isLastSection: boolean = false;
 
   constructor(private element: ElementRef) {
 

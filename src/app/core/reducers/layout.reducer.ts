@@ -20,7 +20,7 @@ export interface State {
 }
 
 export const initialState: State = {
-  navVisible: false,
+  navVisible: true,
   isMobileMediaQuery: false,
   aboutMeSectionPosition: {x:0, y: 0},
   projectsSectionPosition: {x:0, y: 0},

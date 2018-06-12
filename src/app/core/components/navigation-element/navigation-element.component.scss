@@ -1,0 +1,32 @@
+.lf-navigation-element-lt-md {
+  width: 100%;
+}
+
+.lf-navigation-element {
+  height: 150px;
+  min-width:250px;
+  cursor: pointer;
+  padding-left: 16px;
+  padding-right: 16px;
+
+  .lf-navigation-element-text {
+    .lf-navigation-element-title h3 {
+      font-size: 45px;
+      color: #939393;
+      font-weight: lighter;
+      margin-top: 0px;
+      margin-bottom: 4px;
+    }
+
+    .lf-navigation-element-subtitle span {
+      font-size: 25px;
+      font-weight: lighter;
+      color: #e3e3e3;
+    }
+  }
+
+  .lf-navigation-element-arrow {
+    padding-left: 32px;
+    color: #939393;
+  }
+}

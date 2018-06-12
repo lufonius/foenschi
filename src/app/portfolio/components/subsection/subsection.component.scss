@@ -1,0 +1,45 @@
+
+
+.lf-about-me-subsection {
+
+  .lf-subsection-title {
+    span {
+      color: #962f2d;
+      letter-spacing: 6px;
+      font-size: 22px;
+      white-space: nowrap;
+    }
+
+    mat-icon {
+      margin-left: 8px;
+      color: #962f2d;
+    }
+  }
+
+  .lf-subsection-title-gt-sm {
+    span {
+      padding-left: 32px;
+      font-size: 22px;
+    }
+  }
+
+  .lf-subsection-description {
+    width: 100%;
+    border-top: 1px solid #939393;
+    margin-top: 4px;
+    padding-top: 4px;
+    padding-bottom: 4px;
+
+    span {
+      color: #939393;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      font-size: 16px;
+      font-weight: lighter;
+    }
+  }
+
+  .lf-subsection-description-gt-sm {
+    margin-top: 12px;
+  }
+}

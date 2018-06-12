@@ -8,7 +8,7 @@
 
 .lf-section-header-space {
   width: 100%;
-  height: 100px;
+  height: 150px;
 }
 
 .lf-section-content-container {
@@ -35,7 +35,28 @@
   top: 0;
   left: 0;
   right: 0;
-  height: 100px;
+  height: 150px;
+  padding: 16px;
+
+  .lf-section-header-overlay-content {
+    margin-left: 16px;
+  }
+
+  h1 {
+    text-transform: uppercase;
+    font-size: 35px;
+    letter-spacing: 6px;
+    font-weight: lighter;
+    margin-top: 4px;
+  }
+
+  h2 {
+    font-size: 25px;
+    letter-spacing: 6px;
+    font-weight: lighter;
+    margin-bottom: 4px;
+    color: #962f2d;
+  }
 }
 
 .lf-section-images {

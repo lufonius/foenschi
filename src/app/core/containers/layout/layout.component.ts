@@ -6,14 +6,17 @@ import {
   ToggleNavVisibilityAction
 } from "../../actions/layout.actions";
 import { State } from "../../../reducers";
-import {Observable, timer} from "rxjs/index";
+import {merge, Observable, of, timer} from "rxjs/index";
 import * as fromRoot from '../../../reducers';
 import {  combineLatest, Subject } from 'rxjs';
-import { map, filter } from 'rxjs/operators';
+import { flatMap, map, filter } from 'rxjs/operators';
 import {MediaChange, ObservableMedia} from "@angular/flex-layout";
+import {withLatestFrom} from "rxjs/internal/operators";
+import {LoadNavigationAction, SetActiveNavigationViewModelAction} from "../../actions/navigation.actions";
+import {NavigationViewModelAdapter} from "../../models/navigation-adapter.view-model";
 
 
-const calcPercentageFn = (navbarHeight: number, scrollYOffset: number, sectionYPosition: number) => {
+const calcInterceptionPercentageFn = (navbarHeight: number, scrollYOffset: number, sectionYPosition: number) => {
   const difference = sectionYPosition - scrollYOffset;
   let percentage = 0;
 
@@ -41,11 +44,13 @@ const calcPercentageFn = (navbarHeight: number, scrollYOffset: number, sectionYP
 export class LayoutComponent implements OnInit, AfterViewInit {
 
   private navVisibilityState$: Observable<boolean>;
+  private navigationItemsState$: Observable<NavigationViewModelAdapter[]>;
+  private activeNavigationItemState$: Observable<NavigationViewModelAdapter>;
   private navbarHeightState$: Observable<number>;
   private aboutMeSectionPositionState$: Observable<{x: number, y: number}>;
   private isMobileMediaQueryState$: Observable<boolean>;
   private scrollYOffset$: Subject<number>;
-  private navbarContentColor: string = "rgba(255,255,255,1)";
+  private navbarContentColor: string = "rgba(255, 255 ,255, 1)";
 
 
   constructor(
@@ -53,6 +58,8 @@ export class LayoutComponent implements OnInit, AfterViewInit {
     private mediaQuery$: ObservableMedia
   ) {
     this.navVisibilityState$ = store.pipe(select(fromRoot.getNavVisibilityState));
+    this.navigationItemsState$ = store.pipe(select(fromRoot.getNavigationItemsState));
+    this.activeNavigationItemState$ = store.pipe(select(fromRoot.getActiveNavigationItemState));
     this.navbarHeightState$ = store.pipe(select(fromRoot.getNavbarHeightState));
     this.aboutMeSectionPositionState$ = store.pipe(select(fromRoot.getAboutMeSectionPositionState));
     this.isMobileMediaQueryState$ = store.pipe(select(fromRoot.getIsMobileMediaQueryState));
@@ -65,36 +72,38 @@ export class LayoutComponent implements OnInit, AfterViewInit {
       this.store.dispatch(new SetMediaQueryAction(isXSMediaQueryActive || isSMMediaQueryActive));
     });
 
-    this.isMobileMediaQueryState$.pipe(
-      filter((isMobileMediaQuery: boolean) => isMobileMediaQuery)
-    ).subscribe(() => {
-      // giving these values to a stream, makes handling easier
-      // when both values are present, doing the calculations
-      const combined = combineLatest(
-        this.navbarHeightState$,
-        this.aboutMeSectionPositionState$,
-        this.scrollYOffset$,
-        (navbarHeight, aboutMeSectionPosition, scrollYOffset) => {
-          return [navbarHeight, aboutMeSectionPosition.y, scrollYOffset];
-        }
-      );
+    const combined = combineLatest(
+      this.navbarHeightState$,
+      this.aboutMeSectionPositionState$,
+      this.scrollYOffset$,
+      (navbarHeight, aboutMeSectionPosition, scrollYOffset) => {
+        return [navbarHeight, aboutMeSectionPosition.y, scrollYOffset];
+      }
+    );
 
-      const mapFn = map(([navbarHeight, aboutMeSectionYPosition, scrollYOffset]) => {
-        return calcPercentageFn(navbarHeight, scrollYOffset, aboutMeSectionYPosition);
-      });
+    const mapFn = map(([navbarHeight, aboutMeSectionYPosition, scrollYOffset]) => {
+      return calcInterceptionPercentageFn(navbarHeight, scrollYOffset, aboutMeSectionYPosition);
+    });
 
-      combined.pipe(mapFn).subscribe((percentage) => {
-        this.setNavbarContentColor(percentage);
-      });
-    })
+    const interceptionPercentage$ = combined.pipe(
+      mapFn,
+      withLatestFrom(this.isMobileMediaQueryState$),
+      filter((values) => values[1]),
+      map((value) => value[0])
+    );
+
+    interceptionPercentage$.subscribe((interceptionPercentage) => {
+      this.setNavbarContentColor(interceptionPercentage);
+    });
+
+    this.isMobileMediaQueryState$.subscribe((isMobileMediaQuery: boolean) => {
+      if(!isMobileMediaQuery) {
+        this.navbarContentColor = 'rgba(255, 255, 255, 1)';
+      }
+    });
+
+    this.store.dispatch(new LoadNavigationAction());
   }
-
-  /*
-  * Get scoll position here.
-  * Get difference to about-me-section position.
-  * if difference within the range of the navbar (eg. diff is 67, navbar height is 100 -> change color till 67%)
-  * Not recording scroll position in store as it makes the application slow and animations flickering
-  * */
 
   @HostListener('window:scroll', ['$event']) onScroll() {
     this.scrollYOffset$.next(window.pageYOffset);
@@ -115,9 +124,13 @@ export class LayoutComponent implements OnInit, AfterViewInit {
     this.store.dispatch(new ToggleNavVisibilityAction());
   }
 
-  setNavbarContentColor(percentage: number) {
-    let rgbValue = 255 - (1.25 * percentage);
+  setNavbarContentColor(interceptionPercentage: number) {
+    //TODO: refactor
+    let rgbValue = 255 - (1.25 * interceptionPercentage);
     this.navbarContentColor = `rgba(${rgbValue}, ${rgbValue}, ${rgbValue}, 1)`;
   }
 
+  activeNavigationItemChanged(item: NavigationViewModelAdapter) {
+    this.store.dispatch(new SetActiveNavigationViewModelAction(item));
+  }
 }

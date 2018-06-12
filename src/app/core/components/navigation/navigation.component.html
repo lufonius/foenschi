@@ -1,3 +1,73 @@
 <div class="lf-navigation" [@visibility]="visibilityState">
 
+  <div
+    class="lf-navigation-header-container"
+    fxLayout="row">
+    <!--show only when there is an active item and its mobile size-->
+    <div
+      class="lf-navigation-header-back"
+      *ngIf="activeNavigationItemId && isMobileMediaQuery"
+      (click)="back()">
+      <mat-icon>arrow_back</mat-icon>
+    </div>
+    <!--show 'where to go' when there is no active item, and when the last item gets selected (go back then)-->
+    <div class="lf-navigation-header-title"
+      fxFlex="1 1 auto">
+      <span>Where to go?</span>
+    </div>
+    <div class="lf-navigation-header-dismiss">
+      <mat-icon>close</mat-icon>
+    </div>
+  </div>
+
+  <!--triggering animation when there's an active id and when the screen is in mobile size-->
+  <div class="lf-navigation-container" fxLayout="row" [@navigationLevels]="currentNavigationLevel">
+
+    <div
+      class="lf-navigation-first-level"
+      ngClass.lt-md="lf-navigation-first-level-lt-md">
+
+      <div class="lf-navigation-element-divider"></div>
+
+      <ng-container *ngFor="let navigationItem of navigationItems">
+        <lf-navigation-element
+          [hasChildren]="navigationItem.hasChildren"
+          [isActive]="navigationItem.isActive"
+          [title]="navigationItem.title"
+          [subtitle]="navigationItem.subtitle"
+          [route]="navigationItem.route"
+          (navigationElementClicked)="activeNavigationItemChange(navigationItem);">
+
+        </lf-navigation-element>
+        <div class="lf-navigation-element-divider"></div>
+      </ng-container>
+
+    </div>
+
+    <div
+      ngClass.gt-sm="lf-navigation-second-level-gt-sm"
+      ngClass.lt-md="lf-navigation-second-level-lt-md">
+      <div class="lf-navigation-element-divider"></div>
+
+      <div class="lf-navigation-element-divider"></div>
+      <ng-container *ngFor="let navigationItem of navigationItems">
+        <ng-container *ngIf="navigationItem.id === activeNavigationItemId">
+          <ng-container *ngFor="let navigationChildItem of navigationItem.children">
+            <lf-navigation-element
+              [hasChildren]="navigationChildItem.hasChildren"
+              [isActive]="navigationChildItem.isActive"
+              [title]="navigationChildItem.title"
+              [subtitle]="navigationChildItem.subtitle"
+              [route]="navigationChildItem.route"
+              (navigationElementClicked)="activeNavigationItemChange(navigationItem);">
+            </lf-navigation-element>
+            <div class="lf-navigation-element-divider"></div>
+          </ng-container>
+        </ng-container>
+      </ng-container>
+
+    </div>
+
+  </div>
+
 </div>
