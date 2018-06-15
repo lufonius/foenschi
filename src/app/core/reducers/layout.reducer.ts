@@ -1,48 +1,50 @@
 import { Action } from '@ngrx/store';
 import {
-  ChangeNavVisibilityAction,
+  SetNavigationVisibileAction,
   LayoutActionTypes,
   SetAboutMeSectionPositionAction,
-  SetContactSectionPositionAction, SetFrontPageScrollYOffsetAction,
-  SetMediaQueryAction, SetNavbarHeightAction,
+  SetContactSectionPositionAction,
+  SetFrontPageScrollYOffsetAction,
+  SetMediaQueryAction,
+  SetNavigationBarHeightAction,
   SetProjectsSectionPositionAction
 } from "../actions/layout.actions";
 
 
 export interface State {
-  navVisible: boolean;
+  navigationVisible: boolean;
   isMobileMediaQuery: boolean;
   frontPageScrollYOffset: number;
   aboutMeSectionPosition: {x: number, y: number};
   projectsSectionPosition: {x: number, y: number};
   contactSectionPosition: {x: number, y: number};
-  navbarHeight: number;
+  navigationBarHeight: number;
 }
 
 export const initialState: State = {
-  navVisible: true,
+  navigationVisible: false,
   isMobileMediaQuery: false,
   aboutMeSectionPosition: {x:0, y: 0},
   projectsSectionPosition: {x:0, y: 0},
   contactSectionPosition: {x:0, y: 0},
-  navbarHeight: 0,
+  navigationBarHeight: 0,
   frontPageScrollYOffset: 0
 };
 
 export function reducer(state = initialState, action: Action): State {
   switch (action.type) {
 
-    case LayoutActionTypes.changeNavVisibility: {
+    case LayoutActionTypes.setNavigationVisible: {
       return {
         ...state,
-        navVisible: (<ChangeNavVisibilityAction>action).visible
+        navigationVisible: (<SetNavigationVisibileAction>action).visible
       }
     }
 
-    case LayoutActionTypes.toggleNavVisibility: {
+    case LayoutActionTypes.toggleNavigationVisibility: {
       return {
         ...state,
-        navVisible: !state.navVisible
+        navigationVisible: !state.navigationVisible
       }
     }
 
@@ -74,10 +76,10 @@ export function reducer(state = initialState, action: Action): State {
       }
     }
 
-    case LayoutActionTypes.setNavbarHeight: {
+    case LayoutActionTypes.setNavigationBarHeight: {
       return {
         ...state,
-        navbarHeight: (<SetNavbarHeightAction>action).height
+        navigationBarHeight: (<SetNavigationBarHeightAction>action).height
       }
     }
 
@@ -93,10 +95,10 @@ export function reducer(state = initialState, action: Action): State {
   }
 }
 
-export const getNavVisibleState = (state: State) => state.navVisible;
+export const getNavigationVisibleState = (state: State) => state.navigationVisible;
 export const getIsMobileMediaQueryState = (state: State) => state.isMobileMediaQuery;
 export const getAboutMeSectionPositionState = (state: State) => state.aboutMeSectionPosition;
 export const getProjectsSectionPositionState = (state: State) => state.projectsSectionPosition;
 export const getContactSectionPositionState = (state: State) => state.contactSectionPosition;
-export const getNavbarHeightState = (state: State) => state.navbarHeight;
+export const getNavigationBarHeightState = (state: State) => state.navigationBarHeight;
 export const getFrontPageScrollYOffsetState = (state: State) => state.frontPageScrollYOffset;

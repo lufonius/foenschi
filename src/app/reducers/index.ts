@@ -9,6 +9,7 @@ import {
 import { environment } from '../../environments/environment';
 import * as fromLayout from '../core/reducers/layout.reducer';
 import * as fromNavigation from '../core/reducers/navigation.reducer';
+import * as fromPortfolio from '../portfolio/reducers/project.reducer';
 import {NavigationViewModelAdapter} from "../core/models/navigation-adapter.view-model";
 
 export interface State {
@@ -28,9 +29,9 @@ export const metaReducers: MetaReducer<State>[] = !environment.production ? [] :
 export const getLayoutState = createFeatureSelector<fromLayout.State>('layout');
 export const getNavigationState = createFeatureSelector<fromNavigation.State>('navigation');
 
-export const getNavVisibilityState = createSelector(
+export const getNavigationVisibleState = createSelector(
   getLayoutState,
-  fromLayout.getNavVisibleState
+  fromLayout.getNavigationVisibleState
 );
 
 export const getIsMobileMediaQueryState = createSelector(
@@ -55,7 +56,7 @@ export const getContactSectionPositionState = createSelector(
 
 export const getNavbarHeightState = createSelector(
   getLayoutState,
-  fromLayout.getNavbarHeightState
+  fromLayout.getNavigationBarHeightState
 );
 
 export const getFrontPageScrollYOffsetState = createSelector(
@@ -85,3 +86,4 @@ export const getActiveNavigationItemState = createSelector(
     return index[id];
   }
 );
+

@@ -9,6 +9,7 @@ import { BurgerComponent } from './components/burger/burger.component';
 import { LayoutComponent } from './containers/layout/layout.component';
 import { QuickNavComponent } from './components/quick-nav/quick-nav.component';
 import { NavigationElementComponent } from './components/navigation-element/navigation-element.component';
+import { CloseComponent } from './components/close/close.component';
 
 @NgModule({
   imports: [
@@ -21,7 +22,8 @@ import { NavigationElementComponent } from './components/navigation-element/navi
     BurgerComponent,
     LayoutComponent,
     QuickNavComponent,
-    NavigationElementComponent
+    NavigationElementComponent,
+    CloseComponent
   ],
   exports: [
     LayoutComponent

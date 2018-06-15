@@ -46,9 +46,6 @@ export function reducer(state = initialState, action: Action): State {
         id = item.id;
       }
 
-      //let stateCopy: State = _.cloneDeep(state);
-      //stateCopy.activeNavigationItemId = id;
-
       return {
         ...state,
         activeNavigationItemId: id,
@@ -82,7 +79,7 @@ const generateNavigationViewModel
       navigationViewModelItem.hasChildren = false;
     }
 
-    index[navigationViewModelItem.id] = navigationViewModelItem;
+    index[navigationViewModelItem.id] = _.cloneDeep(navigationViewModelItem);
     navigationViewModelItems.push(navigationViewModelItem);
   });
 

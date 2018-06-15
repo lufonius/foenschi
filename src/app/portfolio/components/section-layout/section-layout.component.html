@@ -29,11 +29,10 @@
       <div
         class="lf-section-header-overlay-content"
         fxLayout="row"
-        fxLayoutAlign="center start"
-      >
+        fxLayoutAlign="center start">
         <div>
-          <h2>Get to know me better</h2>
-          <h1>Luc Fonjallaz</h1>
+          <h2>{{subtitle}}</h2>
+          <h1>{{title}}</h1>
         </div>
       </div>
 
@@ -42,11 +41,14 @@
     <div
       fxFlex="1 1 auto"
       class="lf-section-content"
-      ngClass.lt-md="lf-section-images-background">
-
+      [ngClass.lt-md]="{'lf-section-images-background': showBackground}">
       <div
         class="lf-section-content-overlay"
         ngClass.lt-md="lf-section-content-overlay-lt-md">
+        <div class="lf-section-content-overlay-title" fxHide="true" fxShow.lt-md="true">
+          <h2>{{subtitle}}</h2>
+          <h1>{{title}}</h1>
+        </div>
         <ng-content></ng-content>
       </div>
     </div>
@@ -55,7 +57,7 @@
   <div
     fxFlex="1 1 auto"
     class="lf-section-images"
-    ngClass.gt-sm="lf-section-images-background"
+    [ngClass.gt-sm]="{'lf-section-images-background': showBackground}"
     fxHide="true"
     fxShow.gt-sm="true">
     <div class="lf-section-images-overlay"></div>

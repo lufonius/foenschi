@@ -12,13 +12,14 @@ import { AboutMeComponent } from './components/about-me/about-me.component';
 import { ContactComponent } from './components/contact/contact.component';
 import { ProjectComponent } from './components/project/project.component';
 
-import * as fromAboutMe from './reducers/about-me.reducer';
-import { AboutMeEffects } from './effects/about-me.effects';
 import { SectionLayoutComponent } from './components/section-layout/section-layout.component';
 import { SharedModule } from "../shared";
 
 import { StepperComponent } from './components/stepper/stepper.component';
 import { SubsectionComponent } from './components/subsection/subsection.component';
+
+import * as fromProject from './reducers/project.reducer';
+import { ProjectEffects } from './effects/project.effects';
 
 
 @NgModule({
@@ -31,8 +32,10 @@ import { SubsectionComponent } from './components/subsection/subsection.componen
         pathMatch: 'full'
       }
     ]),
-    StoreModule.forFeature('aboutMe', fromAboutMe.reducer),
-    EffectsModule.forFeature([AboutMeEffects]),
+    StoreModule.forFeature('portfolio', {
+      project: fromProject.reducer
+    }),
+    EffectsModule.forFeature([ ProjectEffects ]),
     SharedModule
   ],
   declarations: [
@@ -44,6 +47,9 @@ import { SubsectionComponent } from './components/subsection/subsection.componen
     SectionLayoutComponent,
     StepperComponent,
     SubsectionComponent
+  ],
+  providers : [
+    ProjectEffects
   ]
 })
 export class PortfolioModule { }

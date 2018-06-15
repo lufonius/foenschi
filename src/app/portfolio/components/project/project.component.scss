@@ -1,0 +1,12 @@
+.lf-project-tabs {
+  .lf-project-tab-element {
+    span {
+      font-size: 23px;
+      color: #939393;
+    }
+
+    &.active span {
+      color: #962f2d;
+    }
+  }
+}

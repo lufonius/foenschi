@@ -16,9 +16,6 @@
     position: relative;
 
     .lf-section-content-overlay {
-      &.lf-section-content-overlay-lt-md {
-        padding-top: ($lf-navbar-thickness-mobile + 16px);
-      }
       position: absolute;
       top: 0;
       left: 0;
@@ -26,6 +23,31 @@
       bottom: 0;
       background-color: rgba(255, 255, 255, 0.8);
       padding: 16px;
+
+      &.lf-section-content-overlay-lt-md {
+        padding-top: ($lf-navbar-thickness-mobile + 16px);
+      }
+
+      .lf-section-content-overlay-title {
+        margin-bottom: 32px;
+
+        h1 {
+          text-transform: uppercase;
+          letter-spacing: 6px;
+          font-weight: lighter;
+          color: #555555;
+          font-size: 30px;
+          margin-top: 0px;
+        }
+
+        h2 {
+          color: #962f2d;
+          letter-spacing: 6px;
+          font-weight: lighter;
+          font-size: 20px;
+          margin-bottom: 0px;
+        }
+      }
     }
   }
 }

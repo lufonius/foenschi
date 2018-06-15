@@ -12,12 +12,12 @@
   #navbar>
 
   <div class="lf-logo-lt-md" fxHide="true" fxShow.lt-md="true">
-    <lf-logo [color]="navbarContentColor"></lf-logo>
+    <lf-logo [color]="navigationBarContentColor"></lf-logo>
   </div>
 
   <div fxHide="true" fxShow.lt-md="true" class="lf-fill"></div>
 
-  <lf-burger [backgroundColor]="navbarContentColor" (onBurgerClick)="toggleNavVisibility()"></lf-burger>
+  <lf-burger [backgroundColor]="navigationBarContentColor" (onBurgerClick)="toggleNavVisibility()"></lf-burger>
 
   <div class="lf-navbar-spacing" fxHide="true" fxShow.gt-sm="true"></div>
 
@@ -31,11 +31,12 @@
 </div>
 
 <lf-navigation
-  [visible]="navVisibilityState$ | async"
+  [visible]="navigationVisibleState$ | async"
   [navigationItems]="navigationItemsState$ | async"
   [isMobileMediaQuery]="isMobileMediaQueryState$ | async"
   [activeNavigationItem]="activeNavigationItemState$ | async"
   (activeNavigationItemChanged)="activeNavigationItemChanged($event)"
+  (navigationClosed)="closeNavigation()"
 ></lf-navigation>
 
 <!--
@@ -43,7 +44,7 @@ This was made like this, because the navigation should be scrollable.
 otherwise it would scroll further down (bigger as the actual navigation) and the
 rest of the site would be shown up
 -->
-<div [hidden]="navVisibilityState$ | async">
+<div [hidden]="navigationVisibleState$ | async">
   <router-outlet></router-outlet>
 </div>
 

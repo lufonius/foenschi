@@ -2,8 +2,8 @@ import {AfterViewInit, Component, ElementRef, HostListener, OnInit, ViewChild, V
 import {select, Store} from "@ngrx/store";
 import {
   SetMediaQueryAction,
-  SetNavbarHeightAction,
-  ToggleNavVisibilityAction
+  SetNavigationBarHeightAction, SetNavigationVisibileAction,
+  ToggleNavigationVisibilityAction
 } from "../../actions/layout.actions";
 import { State } from "../../../reducers";
 import {merge, Observable, of, timer} from "rxjs/index";
@@ -43,24 +43,24 @@ const calcInterceptionPercentageFn = (navbarHeight: number, scrollYOffset: numbe
 })
 export class LayoutComponent implements OnInit, AfterViewInit {
 
-  private navVisibilityState$: Observable<boolean>;
+  private navigationVisibleState$: Observable<boolean>;
   private navigationItemsState$: Observable<NavigationViewModelAdapter[]>;
   private activeNavigationItemState$: Observable<NavigationViewModelAdapter>;
-  private navbarHeightState$: Observable<number>;
+  private navigationBarHeightState$: Observable<number>;
   private aboutMeSectionPositionState$: Observable<{x: number, y: number}>;
   private isMobileMediaQueryState$: Observable<boolean>;
   private scrollYOffset$: Subject<number>;
-  private navbarContentColor: string = "rgba(255, 255 ,255, 1)";
+  private navigationBarContentColor: string = "rgba(255, 255 ,255, 1)";
 
 
   constructor(
     private store: Store<State>,
     private mediaQuery$: ObservableMedia
   ) {
-    this.navVisibilityState$ = store.pipe(select(fromRoot.getNavVisibilityState));
+    this.navigationVisibleState$ = store.pipe(select(fromRoot.getNavigationVisibleState));
     this.navigationItemsState$ = store.pipe(select(fromRoot.getNavigationItemsState));
     this.activeNavigationItemState$ = store.pipe(select(fromRoot.getActiveNavigationItemState));
-    this.navbarHeightState$ = store.pipe(select(fromRoot.getNavbarHeightState));
+    this.navigationBarHeightState$ = store.pipe(select(fromRoot.getNavbarHeightState));
     this.aboutMeSectionPositionState$ = store.pipe(select(fromRoot.getAboutMeSectionPositionState));
     this.isMobileMediaQueryState$ = store.pipe(select(fromRoot.getIsMobileMediaQueryState));
     this.scrollYOffset$ = new Subject();
@@ -73,7 +73,7 @@ export class LayoutComponent implements OnInit, AfterViewInit {
     });
 
     const combined = combineLatest(
-      this.navbarHeightState$,
+      this.navigationBarHeightState$,
       this.aboutMeSectionPositionState$,
       this.scrollYOffset$,
       (navbarHeight, aboutMeSectionPosition, scrollYOffset) => {
@@ -98,7 +98,7 @@ export class LayoutComponent implements OnInit, AfterViewInit {
 
     this.isMobileMediaQueryState$.subscribe((isMobileMediaQuery: boolean) => {
       if(!isMobileMediaQuery) {
-        this.navbarContentColor = 'rgba(255, 255, 255, 1)';
+        this.navigationBarContentColor = 'rgba(255, 255, 255, 1)';
       }
     });
 
@@ -117,20 +117,25 @@ export class LayoutComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit() {
     let navbarHeight: number = this.navbar.nativeElement.offsetHeight;
-    this.store.dispatch(new SetNavbarHeightAction(navbarHeight));
+    this.store.dispatch(new SetNavigationBarHeightAction(navbarHeight));
   }
 
   toggleNavVisibility() {
-    this.store.dispatch(new ToggleNavVisibilityAction());
+    this.store.dispatch(new ToggleNavigationVisibilityAction());
   }
 
   setNavbarContentColor(interceptionPercentage: number) {
     //TODO: refactor
     let rgbValue = 255 - (1.25 * interceptionPercentage);
-    this.navbarContentColor = `rgba(${rgbValue}, ${rgbValue}, ${rgbValue}, 1)`;
+    this.navigationBarContentColor = `rgba(${rgbValue}, ${rgbValue}, ${rgbValue}, 1)`;
   }
 
   activeNavigationItemChanged(item: NavigationViewModelAdapter) {
     this.store.dispatch(new SetActiveNavigationViewModelAction(item));
   }
+
+  closeNavigation() {
+    this.store.dispatch(new SetNavigationVisibileAction(false));
+  }
+
 }

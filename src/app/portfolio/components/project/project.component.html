@@ -1,3 +1,27 @@
-<p>
-  project works!
-</p>
+<lf-section-layout
+  isFirstSection="false"
+  isLastSection="false"
+  [showBackground]="false"
+  title="What I've done"
+  subtitle="Projects">
+
+<div class="lf-project-tabs" fxLayout="row" >
+  <div
+    *ngFor="let projectSection of projectSections; let i = index"
+    class="lf-project-tab-element active"
+    fxFlex="1 1 auto"
+    (click)="setActiveProjectSectionId($event)">
+    <span>{{i + 1}}</span>
+  </div>
+</div>
+
+  <div class="lf-project-tab-container">
+    <div class="lf-project-tab-content" *ngIf="activeProjectSection">
+      <h3>{{activeProjectSection.title}}</h3>
+      <p>
+        {{activeProjectSection.description}}
+      </p>
+    </div>
+  </div>
+
+</lf-section-layout>

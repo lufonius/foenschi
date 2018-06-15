@@ -1,24 +1,24 @@
 import { Action } from '@ngrx/store';
 
 export enum LayoutActionTypes {
-  changeNavVisibility = '[Layout] ChangeNavVisibilityAction',
-  toggleNavVisibility = '[Layout] toggleNavVisibilityAction',
+  setNavigationVisible = '[Layout] setNavigationVisible',
+  toggleNavigationVisibility = '[Layout] toggleNavVisibilityAction',
   setAboutMeSectionPosition = '[Layout] setAboutMeSectionPosition',
   setProjectsSectionPosition = '[Layout] setProjectsSectionPosition',
   setContactSectionPosition = '[Layout] setContactSectionPosition',
   setIsMobileMediaQuery = '[Layout] setIsMobileMediaQuery',
-  setNavbarHeight = '[Layout] setNavbarHeight',
+  setNavigationBarHeight = '[Layout] setNavigationBarHeight',
   setFrontPageScrollYOffset = '[Layout] setFrontPageScrollYOffset'
 }
 
-export class ChangeNavVisibilityAction implements Action {
-  readonly type = LayoutActionTypes.changeNavVisibility;
+export class SetNavigationVisibileAction implements Action {
+  readonly type = LayoutActionTypes.setNavigationVisible;
 
   constructor(public visible: boolean) {}
 }
 
-export class ToggleNavVisibilityAction implements Action {
-  readonly type = LayoutActionTypes.toggleNavVisibility;
+export class ToggleNavigationVisibilityAction implements Action {
+  readonly type = LayoutActionTypes.toggleNavigationVisibility;
 }
 
 export class SetAboutMeSectionPositionAction implements Action {
@@ -45,8 +45,8 @@ export class SetMediaQueryAction implements Action {
   constructor(public isMobileMediaQuery: boolean) {}
 }
 
-export class SetNavbarHeightAction implements Action {
-  readonly type = LayoutActionTypes.setNavbarHeight;
+export class SetNavigationBarHeightAction implements Action {
+  readonly type = LayoutActionTypes.setNavigationBarHeight;
 
   constructor(public height: number) {}
 }
@@ -58,8 +58,8 @@ export class SetFrontPageScrollYOffsetAction implements Action {
 }
 
 export type LayoutActions =
-  ChangeNavVisibilityAction |
-  ToggleNavVisibilityAction |
+  SetNavigationVisibileAction |
+  ToggleNavigationVisibilityAction |
   SetAboutMeSectionPositionAction |
   SetContactSectionPositionAction |
   SetProjectsSectionPositionAction |

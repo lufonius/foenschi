@@ -3,13 +3,18 @@ import {
   Input, Output, ViewEncapsulation
 } from '@angular/core';
 import {
-  animate,
+  animate, animateChild, keyframes, query,
   state,
   style,
   transition,
   trigger
 } from "@angular/animations";
 import {NavigationViewModelAdapter} from "../../models/navigation-adapter.view-model";
+
+const EASE_IN_OUT_CIRC = 'cubic-bezier(0.075, 0.82, 0.165, 1)';
+const EASE_IN_OUT_BACK = "cubic-bezier(0.68, -0.55, 0.265, 1.55)";
+
+
 
 @Component({
   selector: 'lf-navigation',
@@ -24,8 +29,17 @@ import {NavigationViewModelAdapter} from "../../models/navigation-adapter.view-m
       state('invisible', style({
         top: '-100vh'
       })),
-      transition('visible => invisible', animate('250ms ease-in')),
-      transition('invisible => visible', animate('250ms ease-out'))
+      transition('visible => invisible', [
+        query('@closeVisibility', [
+          animateChild()
+        ])
+      ]),
+      transition('invisible => visible', [
+        animate(`200ms ${EASE_IN_OUT_CIRC}`),
+        query('@closeVisibility', [
+          animateChild()
+        ])
+      ])
     ]),
     trigger('navigationLevels', [
       state('first', style({
@@ -34,8 +48,20 @@ import {NavigationViewModelAdapter} from "../../models/navigation-adapter.view-m
       state('second', style({
         transform: 'translateX(-100%)'
       })),
-      transition('first => second', animate('250ms ease-in')),
-      transition('second => first', animate('250ms ease-out'))
+      transition('first => second', animate(`250ms ${EASE_IN_OUT_CIRC}`)),
+      transition('second => first', animate(`200ms ${EASE_IN_OUT_CIRC}`))
+    ]),
+    trigger('closeVisibility', [
+      state('visible', style({
+        transform: 'rotate(0deg) scale(1)',
+        opacity: 1
+      })),
+      state('invisible', style({
+        transform: 'rotate(45deg) scale(0.75)',
+        opacity: 0
+      })),
+      transition('visible => invisible', animate(`200ms ${EASE_IN_OUT_BACK}`)),
+      transition('invisible => visible', animate(`200ms ${EASE_IN_OUT_BACK}`))
     ])
   ]
 })
@@ -47,6 +73,8 @@ export class NavigationComponent {
 
   private activeNavigationItemId: string = null;
 
+  private navigationHeaderTitle: string = "";
+
   @Input() set visible(isVisible: boolean) {
     if(isVisible === true) {
       this.visibilityState = 'visible';
@@ -55,6 +83,10 @@ export class NavigationComponent {
     }
 
     this.isVisible = isVisible;
+  }
+
+  get visible(): boolean {
+    return this.isVisible;
   }
 
   @Input() navigationItems: NavigationViewModelAdapter[] = [];
@@ -68,10 +100,13 @@ export class NavigationComponent {
     }
     //animate back when there is no selected nav-item
     if(this.isMobileMediaQuery) {
+
       if(navigationItem) {
         this.currentNavigationLevel = 'second';
+        this.navigationHeaderTitle = navigationItem.title;
       } else {
         this.currentNavigationLevel = 'first';
+        this.navigationHeaderTitle = "";
       }
     }
   }
@@ -83,6 +118,8 @@ export class NavigationComponent {
 
   @Output() routeChanged: EventEmitter<string> = new EventEmitter<string>();
 
+  @Output() navigationClosed: EventEmitter<void> = new EventEmitter<void>();
+
   back() {
     this.resetActiveNavigationItem();
   }
@@ -93,6 +130,7 @@ export class NavigationComponent {
 
   activeNavigationItemChange(item: NavigationViewModelAdapter) {
     if(!item.hasChildren) {
+      this.navigationClosed.emit();
       this.routeChange(item.route);
       this.resetActiveNavigationItem();
     } else {
@@ -102,5 +140,9 @@ export class NavigationComponent {
 
   routeChange(route: string) {
     this.routeChanged.emit(route);
+  }
+
+  closeNavigation() {
+    this.navigationClosed.emit();
   }
 }

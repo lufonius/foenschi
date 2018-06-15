@@ -10,6 +10,9 @@ export class SectionLayoutComponent implements AfterViewInit {
   @Output() sectionPosition: EventEmitter<{x: number, y: number}> = new EventEmitter<{x: number, y: number}>();
   @Input() isFirstSection: boolean = false;
   @Input() isLastSection: boolean = false;
+  @Input() showBackground: boolean = true;
+  @Input() title: string = "title";
+  @Input() subtitle: string = "subtitle";
 
   constructor(private element: ElementRef) {
 
