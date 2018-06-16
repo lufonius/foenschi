@@ -20,6 +20,8 @@ import { SubsectionComponent } from './components/subsection/subsection.componen
 
 import * as fromProject from './reducers/project.reducer';
 import { ProjectEffects } from './effects/project.effects';
+import {ProjectService} from "./services/project.service";
+import {FrontPageService} from "./services/front-page.service";
 
 
 @NgModule({
@@ -49,6 +51,8 @@ import { ProjectEffects } from './effects/project.effects';
     SubsectionComponent
   ],
   providers : [
+    FrontPageService,
+    ProjectService,
     ProjectEffects
   ]
 })

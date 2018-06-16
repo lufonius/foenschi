@@ -1,7 +1,7 @@
-import { Project } from "./project.model";
+import { Project } from "./project.view-model";
 
 
-export class ProjectSection {
+export class ProjectSubsection {
 
   constructor(project: Project) {
     this.id = project.id;

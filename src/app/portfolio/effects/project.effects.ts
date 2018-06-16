@@ -13,7 +13,7 @@ import {
   Observable,
   of
 } from "rxjs";
-import { Project } from "../models/project.model";
+import { Project } from "../models/project.view-model";
 import {
   ProjectActionTypes,
   ProjectsLoadFailureAction,

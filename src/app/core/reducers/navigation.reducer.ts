@@ -2,7 +2,8 @@ import { Action } from '@ngrx/store';
 import { NavigationViewModelAdapter } from "../models/navigation-adapter.view-model";
 import { NavigationModel } from "../models/navigation.model";
 import {
-  NavigationActionTypes, NavigationLoadSuccessAction,
+  NavigationActionTypes,
+  NavigationLoadSuccessAction,
   SetActiveNavigationViewModelAction
 } from "../actions/navigation.actions";
 import * as uuidv4 from 'uuid/v4';
@@ -15,12 +16,14 @@ export interface State {
   //the index is used for accessing the nav item quickly
   navigationItemsIndex: NavigationViewModelIndex;
   activeNavigationItemId: string;
+  title: string;
 }
 
 export const initialState: State = {
   navigationItems: [],
   navigationItemsIndex: {},
-  activeNavigationItemId: null
+  activeNavigationItemId: null,
+  title: ""
 };
 
 export function reducer(state = initialState, action: Action): State {

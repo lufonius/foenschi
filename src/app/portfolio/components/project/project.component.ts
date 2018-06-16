@@ -1,5 +1,5 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
-import {ProjectSection} from "../../models/project-section.view-model";
+import {ProjectSubsection} from "../../models/project-subsection.view-model";
 
 @Component({
   selector: 'lf-project',
@@ -8,8 +8,8 @@ import {ProjectSection} from "../../models/project-section.view-model";
 })
 export class ProjectComponent {
   @Input() projectsLoading: boolean = true;
-  @Input() projectSections: ProjectSection[] = [];
-  @Input() activeProjectSection: ProjectSection = null;
+  @Input() projectSections: ProjectSubsection[] = [];
+  @Input() activeProjectSection: ProjectSubsection = null;
   @Output() activeProjectSectionIdChanged: EventEmitter<string> = new EventEmitter<string>();
 
   setActiveProjectSectionId(id: string) {

@@ -1,12 +1,11 @@
 import { Action } from '@ngrx/store';
-import { Project} from '../models/project.model';
+import { Project} from '../models/project.view-model';
 
 export enum ProjectActionTypes {
   LoadProjects = '[Project] Load Projects',
   ProjectsLoading = '[Projects] ProjectsLoading',
   ProjectsLoadSuccess = '[Projects] ProjectsLoadSuccessAction',
-  ProjectsLoadFailure = '[Projects] ProjectsLoadFailureAction',
-  SetActiveProjectSectionId = '[Projects] SetActiveProjectSectionId'
+  ProjectsLoadFailure = '[Projects] ProjectsLoadFailureAction'
 }
 
 export class LoadProjectsAction implements Action {
@@ -29,16 +28,9 @@ export class ProjectsLoadFailureAction implements Action {
   readonly type = ProjectActionTypes.ProjectsLoadFailure;
 }
 
-export class SetActiveProjectSectionIdAction implements Action {
-  readonly type = ProjectActionTypes.SetActiveProjectSectionId;
-
-  constructor(public payload: { id: string }) {}
-}
-
 
 export type ProjectActions =
  LoadProjectsAction |
   ProjectsLoadSuccessAction |
   ProjectsLoadFailureAction |
-  ProjectsLoadingAction |
-  SetActiveProjectSectionIdAction;
+  ProjectsLoadingAction;
