@@ -1,3 +1,31 @@
-<p>
-  contact works!
-</p>
+<lf-section-layout
+  (sectionPosition)="emitSectionPosition($event)"
+  (goToNextSection)="emitGoToNextSection($event)"
+  (goToPreviousSection)="emitGoToPreviousSection($event)"
+  [isFirstSection]="isFirstSection"
+  [isLastSection]="isLastSection"
+  [title]="title"
+  [subtitle]="subtitle"
+  [background]="background">
+
+  <mat-form-field class="lf-contact-full-width">
+    <input matInput [placeholder]="namePlaceholder">
+  </mat-form-field>
+
+  <mat-form-field class="lf-contact-full-width">
+    <input matInput [placeholder]="emailPlaceholder">
+  </mat-form-field>
+
+  <mat-form-field class="lf-contact-full-width">
+    <input matInput [placeholder]="subjectPlaceholder">
+  </mat-form-field>
+
+  <mat-form-field class="lf-contact-full-width">
+    <textarea matInput [placeholder]="messagePlaceholder"></textarea>
+  </mat-form-field>
+
+  <div class="lf-contact-full-width" fxLayoutAlign="end start">
+    <button mat-raised-button color="primary">{{submitButtonText}}</button>
+  </div>
+
+</lf-section-layout>

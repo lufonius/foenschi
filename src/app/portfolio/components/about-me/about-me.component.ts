@@ -1,15 +1,15 @@
-import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {Component, ElementRef, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import { BaseSection } from "../base-section";
+import {AboutMeSubsection} from "../../models/about-me-subsection.view-model";
+import {BaseSectionPosition} from "../base-section-position";
 
 @Component({
   selector: 'lf-about-me',
   templateUrl: './about-me.component.html',
   styleUrls: ['./about-me.component.scss']
 })
-export class AboutMeComponent {
+export class AboutMeComponent extends BaseSectionPosition {
 
-  @Output() sectionPosition: EventEmitter<{x: number, y: number}> = new EventEmitter<{x: number, y: number}>();
+  @Input() subsections: AboutMeSubsection[] = [];
 
-  emitSectionPosition(position) {
-    this.sectionPosition.emit(position);
-  }
 }

@@ -9,7 +9,7 @@ import {
   transition,
   trigger
 } from "@angular/animations";
-import {NavigationViewModelAdapter} from "../../models/navigation-adapter.view-model";
+import { NavigationItemAdapter } from "../../models/navigation-item-adapter.view-model";
 
 const EASE_IN_OUT_CIRC = 'cubic-bezier(0.075, 0.82, 0.165, 1)';
 const EASE_IN_OUT_BACK = "cubic-bezier(0.68, -0.55, 0.265, 1.55)";
@@ -24,15 +24,20 @@ const EASE_IN_OUT_BACK = "cubic-bezier(0.68, -0.55, 0.265, 1.55)";
   animations: [
     trigger('visibility', [
       state('visible', style({
-        top: '0px'
+        top: '0px',
+        width: '100%',
+        left: '0%'
       })),
       state('invisible', style({
-        top: '-100vh'
+        top: '-100vh',
+        width: '0%',
+        left: '100%'
       })),
       transition('visible => invisible', [
         query('@closeVisibility', [
           animateChild()
-        ])
+        ]),
+        animate(`200ms ${EASE_IN_OUT_CIRC}`),
       ]),
       transition('invisible => visible', [
         animate(`200ms ${EASE_IN_OUT_CIRC}`),
@@ -89,9 +94,9 @@ export class NavigationComponent {
     return this.isVisible;
   }
 
-  @Input() navigationItems: NavigationViewModelAdapter[] = [];
+  @Input() navigationItems: NavigationItemAdapter[] = [];
 
-  @Input() set activeNavigationItem(navigationItem: NavigationViewModelAdapter) {
+  @Input() set activeNavigationItem(navigationItem: NavigationItemAdapter) {
 
     if(navigationItem) {
       this.activeNavigationItemId = navigationItem.id;
@@ -113,8 +118,10 @@ export class NavigationComponent {
 
   @Input() isMobileMediaQuery: boolean = false;
 
-  @Output() activeNavigationItemChanged: EventEmitter<NavigationViewModelAdapter>
-    = new EventEmitter<NavigationViewModelAdapter>();
+  @Input() title: string = "";
+
+  @Output() activeNavigationItemChanged: EventEmitter<NavigationItemAdapter>
+    = new EventEmitter<NavigationItemAdapter>();
 
   @Output() routeChanged: EventEmitter<string> = new EventEmitter<string>();
 
@@ -128,7 +135,7 @@ export class NavigationComponent {
     this.activeNavigationItemChanged.emit(null);
   }
 
-  activeNavigationItemChange(item: NavigationViewModelAdapter) {
+  activeNavigationItemChange(item: NavigationItemAdapter) {
     if(!item.hasChildren) {
       this.navigationClosed.emit();
       this.routeChange(item.route);

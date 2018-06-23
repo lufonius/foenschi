@@ -1,6 +1,6 @@
-export interface NavigationModel {
-  title: string;
-  subtitle: string;
-  route: string;
-  children: NavigationModel[];
+import { NavigationItem } from "./navigation-item.model";
+
+export interface Navigation {
+  navigation: NavigationItem[];
+  navigationTitle: string;
 }

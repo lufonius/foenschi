@@ -9,25 +9,28 @@ import {
 import { environment } from '../../environments/environment';
 import * as fromLayout from '../core/reducers/layout.reducer';
 import * as fromNavigation from '../core/reducers/navigation.reducer';
-import * as fromPortfolio from '../portfolio/reducers/project.reducer';
-import {NavigationViewModelAdapter} from "../core/models/navigation-adapter.view-model";
+import * as fromLanguage from '../core/reducers/language.reducer';
+import { NavigationItemAdapter } from "../core/models/navigation-item-adapter.view-model";
 
 export interface State {
   layout: fromLayout.State,
   navigation: fromNavigation.State,
-  router: RouterReducerState
+  router: RouterReducerState,
+  language: fromLanguage.State
 }
 
 export const reducers: ActionReducerMap<State, any> = {
   layout: fromLayout.reducer,
   navigation: fromNavigation.reducer,
-  router: routerReducer
+  router: routerReducer,
+  language: fromLanguage.reducer
 };
 
 export const metaReducers: MetaReducer<State>[] = !environment.production ? [] : [];
 
 export const getLayoutState = createFeatureSelector<fromLayout.State>('layout');
 export const getNavigationState = createFeatureSelector<fromNavigation.State>('navigation');
+export const getLanguageState = createFeatureSelector<fromLanguage.State>('language');
 
 export const getNavigationVisibleState = createSelector(
   getLayoutState,
@@ -39,19 +42,9 @@ export const getIsMobileMediaQueryState = createSelector(
   fromLayout.getIsMobileMediaQueryState
 );
 
-export const getAboutMeSectionPositionState = createSelector(
+export const getSectionPositionsState = createSelector(
   getLayoutState,
-  fromLayout.getAboutMeSectionPositionState
-);
-
-export const getProjectsSectionPositionState = createSelector(
-  getLayoutState,
-  fromLayout.getProjectsSectionPositionState
-);
-
-export const getContactSectionPositionState = createSelector(
-  getLayoutState,
-  fromLayout.getContactSectionPositionState
+  fromLayout.getSectionPositions
 );
 
 export const getNavbarHeightState = createSelector(
@@ -59,9 +52,9 @@ export const getNavbarHeightState = createSelector(
   fromLayout.getNavigationBarHeightState
 );
 
-export const getFrontPageScrollYOffsetState = createSelector(
+export const getCurrentPageScrollYOffsetState = createSelector(
   getLayoutState,
-  fromLayout.getFrontPageScrollYOffsetState
+  fromLayout.getCurrentPageScrollYOffsetState
 );
 
 export const getNavigationItemsState = createSelector(
@@ -82,8 +75,18 @@ export const getNavigationItemsIndexState = createSelector(
 export const getActiveNavigationItemState = createSelector(
   getNavigationItemsIndexState,
   getActiveNavigationItemIdState,
-  (index: {[id: string]: NavigationViewModelAdapter}, id: string) => {
+  (index: {[id: string]: NavigationItemAdapter}, id: string) => {
     return index[id];
   }
+);
+
+export const getNavigationTitleState = createSelector(
+  getNavigationState,
+  fromNavigation.getNavigationTitleState
+);
+
+export const getCurrentLanguageState = createSelector(
+  getLanguageState,
+  fromLanguage.getCurrentLanguage
 );
 

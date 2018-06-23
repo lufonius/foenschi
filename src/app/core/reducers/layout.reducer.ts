@@ -4,31 +4,33 @@ import {
   LayoutActionTypes,
   SetAboutMeSectionPositionAction,
   SetContactSectionPositionAction,
-  SetFrontPageScrollYOffsetAction,
   SetMediaQueryAction,
   SetNavigationBarHeightAction,
-  SetProjectsSectionPositionAction
+  SetProjectsSectionPositionAction, SetCurrentPageScrollYOffsetAction, SetEntrySectionPositionAction,
+  SetSectionScreenCoverageAction
 } from "../actions/layout.actions";
 
+export interface SectionPositionsState {
+  entrySectionPosition: {x: number, y: number};
+  aboutMeSectionPosition: {x: number, y: number};
+  projectsSectionPosition: {x: number, y: number};
+  contactSectionPosition: {x: number, y: number};
+}
 
 export interface State {
   navigationVisible: boolean;
   isMobileMediaQuery: boolean;
-  frontPageScrollYOffset: number;
-  aboutMeSectionPosition: {x: number, y: number};
-  projectsSectionPosition: {x: number, y: number};
-  contactSectionPosition: {x: number, y: number};
+  currentPageScrollYOffset: number;
+  sectionPositions: SectionPositionsState;
   navigationBarHeight: number;
 }
 
 export const initialState: State = {
   navigationVisible: false,
   isMobileMediaQuery: false,
-  aboutMeSectionPosition: {x:0, y: 0},
-  projectsSectionPosition: {x:0, y: 0},
-  contactSectionPosition: {x:0, y: 0},
+  sectionPositions: null,
   navigationBarHeight: 0,
-  frontPageScrollYOffset: 0
+  currentPageScrollYOffset: 0
 };
 
 export function reducer(state = initialState, action: Action): State {
@@ -37,13 +39,19 @@ export function reducer(state = initialState, action: Action): State {
     case LayoutActionTypes.setNavigationVisible: {
       return {
         ...state,
-        navigationVisible: (<SetNavigationVisibileAction>action).visible
+        sectionPositions: {
+          ...state.sectionPositions
+        },
+        navigationVisible: (<SetNavigationVisibileAction>action).payload.visible
       }
     }
 
     case LayoutActionTypes.toggleNavigationVisibility: {
       return {
         ...state,
+        sectionPositions: {
+          ...state.sectionPositions
+        },
         navigationVisible: !state.navigationVisible
       }
     }
@@ -51,42 +59,70 @@ export function reducer(state = initialState, action: Action): State {
     case LayoutActionTypes.setIsMobileMediaQuery: {
       return {
         ...state,
-        isMobileMediaQuery: (<SetMediaQueryAction>action).isMobileMediaQuery
+        sectionPositions: {
+          ...state.sectionPositions
+        },
+        isMobileMediaQuery: (<SetMediaQueryAction>action).payload.isMobileMediaQuery
+      }
+    }
+
+    case LayoutActionTypes.setEntrySectionPosition: {
+      return {
+        ...state,
+        sectionPositions: {
+          ...state.sectionPositions,
+          entrySectionPosition: (<SetEntrySectionPositionAction>action).payload.position
+        }
       }
     }
 
     case LayoutActionTypes.setAboutMeSectionPosition: {
       return {
         ...state,
-        aboutMeSectionPosition: (<SetAboutMeSectionPositionAction>action).position
+        sectionPositions: {
+          ...state.sectionPositions,
+          aboutMeSectionPosition: (<SetAboutMeSectionPositionAction>action).payload.position
+        }
       }
     }
 
     case LayoutActionTypes.setContactSectionPosition: {
       return {
         ...state,
-        contactSectionPosition: (<SetContactSectionPositionAction>action).position
+        sectionPositions: {
+          ...state.sectionPositions,
+          contactSectionPosition: (<SetContactSectionPositionAction>action).payload.position
+        }
       }
     }
 
     case LayoutActionTypes.setProjectsSectionPosition: {
       return {
         ...state,
-        projectsSectionPosition: (<SetProjectsSectionPositionAction>action).position
+        sectionPositions: {
+          ...state.sectionPositions,
+          projectsSectionPosition: (<SetProjectsSectionPositionAction>action).payload.position
+        }
       }
     }
 
     case LayoutActionTypes.setNavigationBarHeight: {
       return {
         ...state,
-        navigationBarHeight: (<SetNavigationBarHeightAction>action).height
+        sectionPositions: {
+          ...state.sectionPositions
+        },
+        navigationBarHeight: (<SetNavigationBarHeightAction>action).payload.height
       }
     }
 
-    case LayoutActionTypes.setFrontPageScrollYOffset: {
+    case LayoutActionTypes.setCurrentPageScrollYOffset: {
       return {
         ...state,
-        frontPageScrollYOffset: (<SetFrontPageScrollYOffsetAction>action).yOffset
+        sectionPositions: {
+          ...state.sectionPositions
+        },
+        currentPageScrollYOffset: (<SetCurrentPageScrollYOffsetAction>action).payload.yOffset
       }
     }
 
@@ -97,8 +133,6 @@ export function reducer(state = initialState, action: Action): State {
 
 export const getNavigationVisibleState = (state: State) => state.navigationVisible;
 export const getIsMobileMediaQueryState = (state: State) => state.isMobileMediaQuery;
-export const getAboutMeSectionPositionState = (state: State) => state.aboutMeSectionPosition;
-export const getProjectsSectionPositionState = (state: State) => state.projectsSectionPosition;
-export const getContactSectionPositionState = (state: State) => state.contactSectionPosition;
 export const getNavigationBarHeightState = (state: State) => state.navigationBarHeight;
-export const getFrontPageScrollYOffsetState = (state: State) => state.frontPageScrollYOffset;
+export const getCurrentPageScrollYOffsetState = (state: State) => state.currentPageScrollYOffset;
+export const getSectionPositions = (state: State) => state.sectionPositions;

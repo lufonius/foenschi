@@ -2,12 +2,11 @@ import * as fromPortfolio from "./project.reducer";
 import {createFeatureSelector, createSelector} from "@ngrx/store";
 import * as fromProject from './project.reducer';
 import * as fromFrontPage from './front-page.reducer';
-import * as fromLanguage from './language.reducer';
+import {Project} from "../models/project.view-model";
 
 export interface State {
   project: fromProject.State,
-  frontPage: fromFrontPage.State,
-  language: fromLanguage.State
+  frontPage: fromFrontPage.State
 }
 
 export const getPortfolioState = createFeatureSelector<State>('portfolio');
@@ -15,11 +14,6 @@ export const getPortfolioState = createFeatureSelector<State>('portfolio');
 export const getProjectState = createSelector(
   getPortfolioState,
   (state: State) => state.project
-);
-
-export const getLanguageState = createSelector(
-  getPortfolioState,
-  (state: State) => state.language
 );
 
 export const getFrontPageState = createSelector(
@@ -37,12 +31,7 @@ export const getProjectsLoadingState = createSelector(
   fromPortfolio.getProjectsLoadingState
 );
 
-export const getCurrentLanguageState = createSelector(
-  getLanguageState,
-  fromLanguage.getCurrentLanguage
-);
-
-export const getActiveProjectIdState = createSelector(
+export const getProjectSectionActiveProjectIdState = createSelector(
   getFrontPageState,
   fromFrontPage.getActiveProjectId
 );
@@ -75,4 +64,18 @@ export const getContactSectionFormState = createSelector(
 export const getAboutMeSectionSubsectionState = createSelector(
   getFrontPageState,
   fromFrontPage.getAboutMeSectionSubsectionState
+);
+
+export const getProjectSectionActiveProjectState = createSelector(
+  getProjectsState,
+  getProjectSectionActiveProjectIdState,
+  (projects: Project[], activeProjectId: string) => {
+    let activeProject = projects.find(project => project.id === activeProjectId);
+
+    if(activeProject) {
+      return activeProject;
+    }
+
+    return null;
+  }
 );

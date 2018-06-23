@@ -1,12 +1,61 @@
 .lf-project-tabs {
+  margin-bottom: 16px;
+
+  .lf-project-tab-element-divider {
+    height: 15px;
+    width: 1px;
+    background-color: #939393;
+  }
+
+  .lf-project-tab-element-divider:last-child {
+    display: none;
+  }
+
+  .lf-project-tab-element:first-child {
+    padding-left: 0px;
+  }
+
+  .lf-project-tab-element:last-child {
+    padding-right: 0px;
+  }
+
   .lf-project-tab-element {
+    padding-left: 16px;
+    padding-right: 16px;
+    cursor: pointer;
+
     span {
-      font-size: 23px;
+      font-size: 19px;
       color: #939393;
     }
 
     &.active span {
       color: #962f2d;
     }
+  }
+}
+
+.lf-project-tab-container .lf-project-tab-content{
+  .lf-project-tab-content-title {
+    h3 {
+      color: #962f2d;
+      font-weight: normal;
+      font-size: 23px;
+      margin: 0px;
+    }
+
+    .lf-project-tab-content-title-stroke {
+      height: 1px;
+      width: 100%;
+      margin-left: 16px;
+      background-color: #962f2d;
+    }
+  }
+  .lf-project-tab-content-description{
+
+  }
+
+  .lf-project-tab-content-read-more {
+    width: 100%;
   }
 }

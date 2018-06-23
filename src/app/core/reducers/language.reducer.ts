@@ -8,7 +8,7 @@ export interface State {
 
 export const initialState: State = {
   availableLanguages: ['de-ch', 'en-gb'],
-  currentLanguage: 'de-ch'
+  currentLanguage: 'en-gb'
 };
 
 export function reducer(state = initialState, action: Action): State {
@@ -20,4 +20,4 @@ export function reducer(state = initialState, action: Action): State {
 }
 
 export const getAvailableLanguagesState = (state: State) => state.availableLanguages;
-export const getCurrentLanguage = (state: State) => state.currentLanguage;
+export const getCurrentLanguage = (state: State) => state.currentLanguage

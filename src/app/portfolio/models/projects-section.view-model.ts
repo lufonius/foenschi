@@ -1,6 +1,5 @@
-export interface ProjectsSection {
-  title: string;
-  subtitle: string;
-  backgrounds: string[];
+import { BaseSection } from "./base-section.view-model";
+
+export interface ProjectsSection extends BaseSection {
   activeProjectId: string;
 }

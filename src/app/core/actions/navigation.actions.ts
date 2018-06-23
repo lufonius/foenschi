@@ -1,6 +1,7 @@
 import { Action } from '@ngrx/store';
-import {NavigationModel} from "../models/navigation.model";
-import {NavigationViewModelAdapter} from "../models/navigation-adapter.view-model";
+import {NavigationItem} from "../models/navigation-item.model";
+import {NavigationItemAdapter} from "../models/navigation-item-adapter.view-model";
+import {Navigation} from "../models/navigation.model";
 
 export enum NavigationActionTypes {
   LoadNavigation = '[Navigation] LoadNavigation',
@@ -21,7 +22,7 @@ export class NavigationLoadingAction implements Action {
 export class NavigationLoadSuccessAction implements Action {
   readonly type = NavigationActionTypes.NavigationLoadSuccess;
 
-  constructor(public navigationModel: NavigationModel[]) {}
+  constructor(public payload: { navigation: Navigation }) {}
 }
 
 export class NavigationLoadFailureAction implements Action {
@@ -31,7 +32,7 @@ export class NavigationLoadFailureAction implements Action {
 export class SetActiveNavigationViewModelAction implements Action {
   readonly type = NavigationActionTypes.SetActiveNavigationViewModel;
 
-  constructor(public item: NavigationViewModelAdapter) {}
+  constructor(public payload: { item: NavigationItemAdapter }) {}
 }
 
 export type NavigationActions =

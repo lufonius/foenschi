@@ -3,59 +3,67 @@ import { Action } from '@ngrx/store';
 export enum LayoutActionTypes {
   setNavigationVisible = '[Layout] setNavigationVisible',
   toggleNavigationVisibility = '[Layout] toggleNavVisibilityAction',
+  setEntrySectionPosition = '[Layout] setEntrySectionPosition',
   setAboutMeSectionPosition = '[Layout] setAboutMeSectionPosition',
   setProjectsSectionPosition = '[Layout] setProjectsSectionPosition',
   setContactSectionPosition = '[Layout] setContactSectionPosition',
   setIsMobileMediaQuery = '[Layout] setIsMobileMediaQuery',
   setNavigationBarHeight = '[Layout] setNavigationBarHeight',
-  setFrontPageScrollYOffset = '[Layout] setFrontPageScrollYOffset'
+  setCurrentPageScrollYOffset = '[Layout] setCurrentPageScrollYOffset'
 }
 
 export class SetNavigationVisibileAction implements Action {
   readonly type = LayoutActionTypes.setNavigationVisible;
 
-  constructor(public visible: boolean) {}
+  constructor(public payload: { visible: boolean }) {}
 }
 
 export class ToggleNavigationVisibilityAction implements Action {
   readonly type = LayoutActionTypes.toggleNavigationVisibility;
 }
 
+export class SetEntrySectionPositionAction implements Action {
+  readonly type = LayoutActionTypes.setEntrySectionPosition;
+
+  constructor(public payload: { position: {x: number, y: number }}) {}
+}
+
 export class SetAboutMeSectionPositionAction implements Action {
   readonly type = LayoutActionTypes.setAboutMeSectionPosition;
 
-  constructor(public position: {x: number, y: number}) {}
+  constructor(public payload: { position: {x: number, y: number }}) {}
 }
 
 export class SetProjectsSectionPositionAction implements Action {
   readonly type = LayoutActionTypes.setProjectsSectionPosition;
 
-  constructor(public position: {x: number, y: number}) {}
+  constructor(public payload: { position: {x: number, y: number}}) {}
 }
 
 export class SetContactSectionPositionAction implements Action {
   readonly type = LayoutActionTypes.setContactSectionPosition;
 
-  constructor(public position: {x: number, y: number}) {}
+  constructor(public payload: { position: {x: number, y: number}}) {}
 }
 
 export class SetMediaQueryAction implements Action {
   readonly type = LayoutActionTypes.setIsMobileMediaQuery;
 
-  constructor(public isMobileMediaQuery: boolean) {}
+  constructor(public payload: { isMobileMediaQuery: boolean }) {}
 }
 
 export class SetNavigationBarHeightAction implements Action {
   readonly type = LayoutActionTypes.setNavigationBarHeight;
 
-  constructor(public height: number) {}
+  constructor(public payload: { height: number }) {}
 }
 
-export class SetFrontPageScrollYOffsetAction implements Action {
-  readonly type = LayoutActionTypes.setFrontPageScrollYOffset;
+export class SetCurrentPageScrollYOffsetAction implements Action {
+  readonly type = LayoutActionTypes.setCurrentPageScrollYOffset;
 
-  constructor(public yOffset: number) {}
+  constructor(public payload: { yOffset: number }) {}
 }
+
 
 export type LayoutActions =
   SetNavigationVisibileAction |
@@ -64,4 +72,4 @@ export type LayoutActions =
   SetContactSectionPositionAction |
   SetProjectsSectionPositionAction |
   SetMediaQueryAction |
-  SetFrontPageScrollYOffsetAction;
+  SetCurrentPageScrollYOffsetAction;

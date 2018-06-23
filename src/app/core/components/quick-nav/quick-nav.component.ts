@@ -1,4 +1,6 @@
-import {Component, OnInit, ViewEncapsulation} from '@angular/core';
+import {Component, Input, OnInit, ViewEncapsulation} from '@angular/core';
+import {SectionScreenCoverage} from "../../models/section-screen-coverage.model";
+import {SectionScrollOffsetPercentageModel} from "../../models/section-scroll-offset-percentage.model";
 
 @Component({
   selector: 'lf-quick-nav',
@@ -6,11 +8,9 @@ import {Component, OnInit, ViewEncapsulation} from '@angular/core';
   styleUrls: ['./quick-nav.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
-export class QuickNavComponent implements OnInit {
+export class QuickNavComponent {
 
-  constructor() { }
-
-  ngOnInit() {
-  }
+  @Input() sectionScreenCoverage: SectionScreenCoverage = {};
+  @Input() sectionScrollOffsetPercentage: SectionScrollOffsetPercentageModel = {};
 
 }

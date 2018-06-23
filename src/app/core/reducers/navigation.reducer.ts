@@ -1,6 +1,6 @@
 import { Action } from '@ngrx/store';
-import { NavigationViewModelAdapter } from "../models/navigation-adapter.view-model";
-import { NavigationModel } from "../models/navigation.model";
+import { NavigationItemAdapter } from "../models/navigation-item-adapter.view-model";
+import { NavigationItem } from "../models/navigation-item.model";
 import {
   NavigationActionTypes,
   NavigationLoadSuccessAction,
@@ -9,21 +9,21 @@ import {
 import * as uuidv4 from 'uuid/v4';
 import * as _ from 'lodash';
 
-type NavigationViewModelIndex = {[id: string]: NavigationViewModelAdapter};
+type NavigationViewModelIndex = {[id: string]: NavigationItemAdapter};
 
 export interface State {
-  navigationItems: NavigationViewModelAdapter[];
+  navigationItems: NavigationItemAdapter[];
   //the index is used for accessing the nav item quickly
   navigationItemsIndex: NavigationViewModelIndex;
   activeNavigationItemId: string;
-  title: string;
+  navigationTitle: string;
 }
 
 export const initialState: State = {
   navigationItems: [],
   navigationItemsIndex: {},
   activeNavigationItemId: null,
-  title: ""
+  navigationTitle: ""
 };
 
 export function reducer(state = initialState, action: Action): State {
@@ -31,18 +31,20 @@ export function reducer(state = initialState, action: Action): State {
 
     case NavigationActionTypes.NavigationLoadSuccess: {
       let index = {};
-      const navigationModelItems = (<NavigationLoadSuccessAction>action).navigationModel;
+      const navigationModelItems = (<NavigationLoadSuccessAction>action).payload.navigation.navigation;
+      const navigationTitle = (<NavigationLoadSuccessAction>action).payload.navigation.navigationTitle;
       const navigationViewModelItems = generateNavigationViewModel(navigationModelItems, index);
 
       return {
         ...state,
         navigationItems: navigationViewModelItems,
-        navigationItemsIndex: index
+        navigationItemsIndex: index,
+        navigationTitle: navigationTitle
       }
     }
 
     case NavigationActionTypes.SetActiveNavigationViewModel: {
-      const item = (<SetActiveNavigationViewModelAction>action).item;
+      const item = (<SetActiveNavigationViewModelAction>action).payload.item;
       let id = null;
 
       if(item) {
@@ -65,11 +67,11 @@ export function reducer(state = initialState, action: Action): State {
 //passing index as a reference parameter is a bit messy, but it makes it much easier,
 //otherwise the recursive function has to return the partial indexes too, a new type has to be make etc.
 const generateNavigationViewModel
-  = (navigationModelItems: NavigationModel[], index: NavigationViewModelIndex): NavigationViewModelAdapter[] => {
-  let navigationViewModelItems: NavigationViewModelAdapter[] = [];
+  = (navigationModelItems: NavigationItem[], index: NavigationViewModelIndex): NavigationItemAdapter[] => {
+  let navigationViewModelItems: NavigationItemAdapter[] = [];
 
-  navigationModelItems.forEach((navigationModelItem: NavigationModel) => {
-    let navigationViewModelItem = new NavigationViewModelAdapter(navigationModelItem);
+  navigationModelItems.forEach((navigationModelItem: NavigationItem) => {
+    let navigationViewModelItem = new NavigationItemAdapter(navigationModelItem);
     navigationViewModelItem.id = uuidv4();
 
     if(navigationModelItem.children) {
@@ -92,3 +94,4 @@ const generateNavigationViewModel
 export const getNavigationItemsState = (state: State) => state.navigationItems;
 export const getActiveNavigationItemIdState = (state: State) => state.activeNavigationItemId;
 export const getNavigationItemsIndexState = (state: State) => state.navigationItemsIndex;
+export const getNavigationTitleState = (state: State) => state.navigationTitle;

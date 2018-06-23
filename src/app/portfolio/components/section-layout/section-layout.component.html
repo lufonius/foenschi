@@ -19,11 +19,15 @@
       fxShow.gt-sm="true">
 
       <div>
-        <lf-stepper
-        [isFirstElement]="isFirstSection"
-        [isLastElement]="isLastSection">
-
-        </lf-stepper>
+        <div class="lf-stepper-container" fxLayout="column" fxLayoutAlign="center center">
+          <button mat-icon-button [disabled]="isFirstSection" (click)="emitGoToPreviousSection()">
+            <mat-icon>keyboard_arrow_up</mat-icon>
+          </button>
+          <div class="lf-stepper-divider"></div>
+          <button mat-icon-button [disabled]="isLastSection" (click)="emitGoToNextSection()">
+            <mat-icon>keyboard_arrow_down</mat-icon>
+          </button>
+        </div>
       </div>
 
       <div
@@ -41,7 +45,8 @@
     <div
       fxFlex="1 1 auto"
       class="lf-section-content"
-      [ngClass.lt-md]="{'lf-section-images-background': showBackground}">
+      [ngClass.lt-md]="{'lf-section-images-background': showBackground}"
+      >
       <div
         class="lf-section-content-overlay"
         ngClass.lt-md="lf-section-content-overlay-lt-md">
@@ -55,9 +60,11 @@
   </div>
 
   <div
+    id="test"
     fxFlex="1 1 auto"
     class="lf-section-images"
-    [ngClass.gt-sm]="{'lf-section-images-background': showBackground}"
+    ngClass.gt-sm="lf-section-images-background"
+    [ngStyle]="{'background-image': getBackgroundUrl() }"
     fxHide="true"
     fxShow.gt-sm="true">
     <div class="lf-section-images-overlay"></div>

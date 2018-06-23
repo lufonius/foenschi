@@ -13,7 +13,7 @@ export class FrontPageService {
 
   constructor(public db: AngularFirestore) { }
 
-  public getFrontPageViewModel(language: string): Observable<FrontPage> {
+  public getFrontPage(language: string): Observable<FrontPage> {
     let frontPageSnapshot$ =
       this.db
         .collection("languages")

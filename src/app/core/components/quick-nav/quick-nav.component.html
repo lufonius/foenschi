@@ -1,15 +1,44 @@
+
+<!--Refactor!-->
 <div fxLayout.lt-xs="row" fxLayout.gt-sm="column" class="lf-quick-nav">
-  <div fxLayoutAlign="center center" class="lf-item">00</div>
+  <div
+    fxLayoutAlign="center center"
+    class="lf-item"
+    [ngClass]="{'active': sectionScreenCoverage.entrySection > 50}">00</div>
   <div fxLayoutAlign="center center">
-    <div class="lf-stroke" ngClass.lt-md="lf-stroke-lt-md" ngClass.gt-sm="lf-stroke-gt-sm"></div>
+    <div class="lf-stroke" ngClass.lt-md="lf-stroke-lt-md" ngClass.gt-sm="lf-stroke-gt-sm">
+      <div
+        class="lf-ball"
+        *ngIf="sectionScrollOffsetPercentage.aboutMeSection > 0 && sectionScrollOffsetPercentage.aboutMeSection <= 100"
+        [style.top]="sectionScrollOffsetPercentage.aboutMeSection + '%'">
+
+      </div>
+    </div>
   </div>
-  <div fxLayoutAlign="center center" class="lf-item">01</div>
+  <div fxLayoutAlign="center center" class="lf-item"
+       [ngClass]="{'active': sectionScreenCoverage.aboutMeSection > 50}">01</div>
   <div fxLayoutAlign="center center">
-    <div class="lf-stroke" ngClass.lt-md="lf-stroke-lt-md" ngClass.gt-sm="lf-stroke-gt-sm"></div>
+    <div class="lf-stroke" ngClass.lt-md="lf-stroke-lt-md" ngClass.gt-sm="lf-stroke-gt-sm">
+      <div
+        class="lf-ball"
+        *ngIf="sectionScrollOffsetPercentage.projectSection > 0 && sectionScrollOffsetPercentage.projectSection <= 100"
+        [style.top]="sectionScrollOffsetPercentage.projectSection + '%'">
+
+      </div>
+    </div>
   </div>
-  <div fxLayoutAlign="center center" class="lf-item">02</div>
+  <div fxLayoutAlign="center center" class="lf-item"
+       [ngClass]="{'active': sectionScreenCoverage.projectSection > 50}">02</div>
   <div fxLayoutAlign="center center">
-    <div class="lf-stroke" ngClass.lt-md="lf-stroke-lt-md" ngClass.gt-sm="lf-stroke-gt-sm"></div>
+    <div class="lf-stroke" ngClass.lt-md="lf-stroke-lt-md" ngClass.gt-sm="lf-stroke-gt-sm">
+      <div
+        class="lf-ball"
+        *ngIf="sectionScrollOffsetPercentage.contactSection > 0 && sectionScrollOffsetPercentage.contactSection <= 100"
+        [style.top]="sectionScrollOffsetPercentage.contactSection + '%'">
+
+      </div>
+    </div>
   </div>
-  <div fxLayoutAlign="center center" class="lf-item">03</div>
+  <div fxLayoutAlign="center center" class="lf-item"
+       [ngClass]="{'active': sectionScreenCoverage.contactSection > 50}">03</div>
 </div>

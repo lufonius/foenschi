@@ -1,26 +1,43 @@
 <lf-section-layout
-  isFirstSection="false"
-  isLastSection="false"
+  (sectionPosition)="emitSectionPosition($event)"
+  (goToNextSection)="emitGoToNextSection($event)"
+  (goToPreviousSection)="emitGoToPreviousSection($event)"
+  [isFirstSection]="isFirstSection"
+  [isLastSection]="isLastSection"
   [showBackground]="false"
-  title="What I've done"
-  subtitle="Projects">
+  [background]="background"
+  [title]="title"
+  [subtitle]="subtitle">
 
-<div class="lf-project-tabs" fxLayout="row" >
-  <div
-    *ngFor="let projectSection of projectSections; let i = index"
-    class="lf-project-tab-element active"
-    fxFlex="1 1 auto"
-    (click)="setActiveProjectSectionId($event)">
-    <span>{{i + 1}}</span>
-  </div>
+<div class="lf-project-tabs" fxLayout="row" fxLayoutAlign="start center">
+  <ng-container *ngFor="let projectSection of projectSections; let i = index">
+    <div
+      class="lf-project-tab-element"
+      [ngClass]="{'active': activeProjectSection && activeProjectSection.id === projectSection.id}"
+      (click)="setActiveProjectSectionId(projectSection.id)">
+      <span >0{{i + 1}}</span>
+    </div>
+    <div class="lf-project-tab-element-divider"></div>
+  </ng-container>
 </div>
 
   <div class="lf-project-tab-container">
     <div class="lf-project-tab-content" *ngIf="activeProjectSection">
-      <h3>{{activeProjectSection.title}}</h3>
-      <p>
-        {{activeProjectSection.description}}
-      </p>
+      <div class="lf-project-tab-content-title" fxLayout="row" fxLayoutAlign="start center">
+        <h3>{{activeProjectSection.title}}</h3>
+        <div class="lf-project-tab-content-title-stroke" fxFlex="1 1 auto"></div>
+      </div>
+      <div class="lf-project-tab-content-description" fxFlex="1 1 auto">
+        <p>
+          {{activeProjectSection.secondaryDescription}}
+        </p>
+      </div>
+      <div class="lf-project-tab-content-read-more" fxLayoutAlign="end center">
+        <!--<button mat-button color="primary">
+          <span>Read more</span>
+          <mat-icon>keyboard_arrow_right</mat-icon>
+        </button>-->
+      </div>
     </div>
   </div>
 

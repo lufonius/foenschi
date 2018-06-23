@@ -2,7 +2,7 @@ import { Action } from '@ngrx/store';
 import { FrontPage } from "../models/front-page.view-model";
 import {
   FrontPageActionTypes,
-  FrontPageViewModelLoadSuccessAction
+  FrontPageLoadSuccessAction, SetActiveProjectIdAction
 } from "../actions/front-page.actions";
 
 
@@ -11,23 +11,25 @@ export interface State extends FrontPage {}
 export const initialState: State = {
   entrySection: {
     title: "",
-    backgrounds: []
+    subtitle: "",
+    background: ""
   },
   aboutMeSection: {
     title: "About me",
     subtitle: "some subtitle",
-    backgrounds: [],
+    background: "",
     subsections: []
   },
   projectsSection:{
     title: "Projects",
     subtitle: "What I've done",
-    backgrounds: [],
+    background: "",
     activeProjectId: null
   },
   contactSection: {
     title: "Get in touch",
     subtitle: "without touching",
+    background: "",
     form: {
       emailPlaceholder: "EMail",
       messagePlaceholder: "Your message",
@@ -41,8 +43,8 @@ export const initialState: State = {
 export function reducer(state = initialState, action: Action): State {
   switch (action.type) {
 
-    case FrontPageActionTypes.FrontPageViewModelLoadSuccess: {
-      const frontPageViewModel = (<FrontPageViewModelLoadSuccessAction>action).payload.frontPageViewModel;
+    case FrontPageActionTypes.FrontPageLoadSuccess: {
+      const frontPageViewModel = (<FrontPageLoadSuccessAction>action).payload.frontPage;
       return {
         ...state,
         entrySection: {
@@ -63,8 +65,39 @@ export function reducer(state = initialState, action: Action): State {
       }
     }
 
+    case FrontPageActionTypes.SetActiveProjectIdAction: {
+      const id = (<SetActiveProjectIdAction>action).payload.id;
+
+      let clonedState = clone(state);
+
+      clonedState.projectsSection.activeProjectId = id;
+
+      return clonedState;
+    }
+
     default:
       return state;
+  }
+}
+
+const clone = (state: State): State => {
+  return {
+    ...state,
+    entrySection: {
+      ...state.entrySection
+    },
+    aboutMeSection: {
+    ...state.aboutMeSection
+    },
+    projectsSection: {
+    ...state.projectsSection
+    },
+    contactSection: {
+    ...state.contactSection,
+        form: {
+      ...state.contactSection.form
+      }
+    }
   }
 }
 

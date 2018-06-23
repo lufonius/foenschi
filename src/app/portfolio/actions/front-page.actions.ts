@@ -2,31 +2,31 @@ import { Action } from '@ngrx/store';
 import {FrontPage} from "../models/front-page.view-model";
 
 export enum FrontPageActionTypes {
-  LoadFrontPageViewModel = '[FrontPage] LoadFrontPageViewModel',
-  FrontPageViewModelLoadSuccess = '[FrontPage] FrontPageViewModelLoadSuccess',
-  FrontPageViewModelLoadFailure = '[FrontPage] FrontPageViewModelLoadFailure',
-  FrontPageViewModelLoading = '[FrontPage] FrontPageViewModelLoading',
+  LoadFrontPage = '[FrontPage] LoadFrontPage',
+  FrontPageLoadSuccess = '[FrontPage] FrontPageLoadSuccess',
+  FrontPageLoadFailure = '[FrontPage] FrontPageLoadFailure',
+  FrontPageLoading = '[FrontPage] FrontPageLoading',
   SetActiveProjectIdAction = '[FrontPage] SetActiveProjectIdAction'
 }
 
-export class LoadFrontPageViewModelAction implements Action {
-  readonly type = FrontPageActionTypes.LoadFrontPageViewModel;
+export class LoadFrontPageAction implements Action {
+  readonly type = FrontPageActionTypes.LoadFrontPage;
 }
 
-export class FrontPageViewModelLoadSuccessAction implements Action {
-  readonly type = FrontPageActionTypes.FrontPageViewModelLoadSuccess;
+export class FrontPageLoadSuccessAction implements Action {
+  readonly type = FrontPageActionTypes.FrontPageLoadSuccess;
 
-  constructor(public payload: { frontPageViewModel: FrontPage }) {}
+  constructor(public payload: { frontPage: FrontPage }) {}
 }
 
-export class FrontPageViewModelLoadFailureAction implements Action {
-  readonly type = FrontPageActionTypes.FrontPageViewModelLoadFailure;
+export class FrontPageLoadFailureAction implements Action {
+  readonly type = FrontPageActionTypes.FrontPageLoadFailure;
 
   constructor(public payload: { error: string }) {}
 }
 
-export class FrontPageViewModelLoadingAction implements Action {
-  readonly type = FrontPageActionTypes.FrontPageViewModelLoading;
+export class FrontPageLoadingAction implements Action {
+  readonly type = FrontPageActionTypes.FrontPageLoading;
 }
 
 export class SetActiveProjectIdAction implements Action {
@@ -36,7 +36,7 @@ export class SetActiveProjectIdAction implements Action {
 }
 
 export type FrontPageActions =
-  LoadFrontPageViewModelAction |
-  FrontPageViewModelLoadSuccessAction |
-  FrontPageViewModelLoadFailureAction |
-  FrontPageViewModelLoadingAction;
+  LoadFrontPageAction |
+  FrontPageLoadSuccessAction |
+  FrontPageLoadFailureAction |
+  FrontPageLoadingAction;

@@ -1,8 +1,8 @@
-import { NavigationModel } from "./navigation.model";
+import { NavigationItem } from "./navigation-item.model";
 
-export class NavigationViewModelAdapter {
+export class NavigationItemAdapter {
 
-  constructor(navigationModel: NavigationModel) {
+  constructor(navigationModel: NavigationItem) {
     this.title = navigationModel.title;
     this.subtitle = navigationModel.subtitle;
     this.route = navigationModel.route;
@@ -15,6 +15,6 @@ export class NavigationViewModelAdapter {
   title: string;
   subtitle: string;
   route: string;
-  children: NavigationViewModelAdapter[];
+  children: NavigationItemAdapter[];
   hasChildren: boolean;
 }

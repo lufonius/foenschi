@@ -15,13 +15,18 @@ import { ProjectComponent } from './components/project/project.component';
 import { SectionLayoutComponent } from './components/section-layout/section-layout.component';
 import { SharedModule } from "../shared";
 
-import { StepperComponent } from './components/stepper/stepper.component';
 import { SubsectionComponent } from './components/subsection/subsection.component';
 
 import * as fromProject from './reducers/project.reducer';
 import { ProjectEffects } from './effects/project.effects';
-import {ProjectService} from "./services/project.service";
-import {FrontPageService} from "./services/front-page.service";
+import { ProjectService } from "./services/project.service";
+
+import * as fromFrontPage from './reducers/front-page.reducer';
+import { FrontPageService } from "./services/front-page.service";
+import { FrontPageEffects } from './effects/front-page.effects';
+import {ElementPositionDirective} from "./directives/element-position.directive";
+import {ScreenCoverageDirective} from "./directives/screen-coverage.directive";
+import {ScrollOffsetPercentageDirective} from "./directives/scroll-offset-percentage.directive";
 
 
 @NgModule({
@@ -35,9 +40,13 @@ import {FrontPageService} from "./services/front-page.service";
       }
     ]),
     StoreModule.forFeature('portfolio', {
-      project: fromProject.reducer
+      project: fromProject.reducer,
+      frontPage: fromFrontPage.reducer
     }),
-    EffectsModule.forFeature([ ProjectEffects ]),
+    EffectsModule.forFeature([
+      ProjectEffects,
+      FrontPageEffects
+    ]),
     SharedModule
   ],
   declarations: [
@@ -47,11 +56,14 @@ import {FrontPageService} from "./services/front-page.service";
     ContactComponent,
     ProjectComponent,
     SectionLayoutComponent,
-    StepperComponent,
-    SubsectionComponent
+    SubsectionComponent,
+    ElementPositionDirective,
+    ScreenCoverageDirective,
+    ScrollOffsetPercentageDirective
   ],
   providers : [
     FrontPageService,
+    FrontPageEffects,
     ProjectService,
     ProjectEffects
   ]

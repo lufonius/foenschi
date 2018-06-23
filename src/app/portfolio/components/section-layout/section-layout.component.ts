@@ -1,27 +1,20 @@
 import {AfterViewInit, Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild} from '@angular/core';
+import {DomSanitizer} from "@angular/platform-browser";
+import {BaseSection} from "../base-section";
+import {BaseSectionPosition} from "../base-section-position";
 
 @Component({
   selector: 'lf-section-layout',
   templateUrl: './section-layout.component.html',
   styleUrls: ['./section-layout.component.scss']
 })
-export class SectionLayoutComponent implements AfterViewInit {
+export class SectionLayoutComponent extends BaseSection {
 
-  @Output() sectionPosition: EventEmitter<{x: number, y: number}> = new EventEmitter<{x: number, y: number}>();
-  @Input() isFirstSection: boolean = false;
-  @Input() isLastSection: boolean = false;
-  @Input() showBackground: boolean = true;
-  @Input() title: string = "title";
-  @Input() subtitle: string = "subtitle";
-
-  constructor(private element: ElementRef) {
-
+  constructor() {
+    super();
   }
 
-  ngAfterViewInit() {
-    let x: number = this.element.nativeElement.offsetLeft;
-    let y: number = this.element.nativeElement.offsetTop;
-
-    this.sectionPosition.emit({x, y});
+  getBackgroundUrl() {
+    return `url(${this.background})`;
   }
 }

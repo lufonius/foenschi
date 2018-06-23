@@ -11,6 +11,30 @@
   height: 150px;
 }
 
+
+.lf-stepper-container {
+  width: 40px;
+
+  button mat-icon {
+
+    font-size: 40px;
+    width: auto;
+    height: auto;
+    color: #555555;
+  }
+
+  button[disabled] mat-icon {
+    color: #939393;
+  }
+
+  .lf-stepper-divider {
+    width: 20px;
+    height: 1px;
+    background-color: #555555;
+  }
+
+}
+
 .lf-section-content-container {
   .lf-section-content {
     position: relative;
@@ -32,8 +56,6 @@
         margin-bottom: 32px;
 
         h1 {
-          text-transform: uppercase;
-          letter-spacing: 6px;
           font-weight: lighter;
           color: #555555;
           font-size: 30px;
@@ -42,8 +64,7 @@
 
         h2 {
           color: #962f2d;
-          letter-spacing: 6px;
-          font-weight: lighter;
+          font-weight: normal;
           font-size: 20px;
           margin-bottom: 0px;
         }
@@ -95,7 +116,6 @@
 }
 
 .lf-section-images-background {
-  background-image: url('background.jpg');
   background-position: center top;
   background-repeat: no-repeat;
   background-size: cover;

@@ -1,4 +1,3 @@
-export interface EntrySection {
-  title: string;
-  backgrounds: string[];
-}
+import { BaseSection } from "./base-section.view-model";
+
+export interface EntrySection extends BaseSection {}

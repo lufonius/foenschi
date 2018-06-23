@@ -26,6 +26,9 @@ import { LayoutComponent } from './containers/layout/layout.component';
 import { QuickNavComponent } from './components/quick-nav/quick-nav.component';
 import { NavigationElementComponent } from './components/navigation-element/navigation-element.component';
 import { CloseComponent } from './components/close/close.component';
+import { LoadingOverlayComponent } from './components/loading-overlay/loading-overlay.component';
+import {NavigationService} from "./services/navigation.service";
+import {ScrollService} from "./services/scroll.service";
 
 
 
@@ -58,10 +61,16 @@ import { CloseComponent } from './components/close/close.component';
     LayoutComponent,
     QuickNavComponent,
     NavigationElementComponent,
-    CloseComponent
+    CloseComponent,
+    LoadingOverlayComponent
   ],
   exports: [
     LayoutComponent
+  ],
+  providers: [
+    NavigationEffects,
+    NavigationService,
+    ScrollService
   ]
 })
 export class CoreModule { }

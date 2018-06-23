@@ -4,7 +4,7 @@
 
   <div class="lf-navigation-header-container" *ngIf="!isMobileMediaQuery" fxLayout="row">
     <div class="lf-navigation-header-title" fxFlex="1 1 auto">
-      <span>Where to go?</span>
+      <span>{{title}}</span>
     </div>
     <div class="lf-navigation-header-dismiss">
       <lf-close
@@ -22,7 +22,7 @@
       <div class="lf-navigation-header-container" *ngIf="isMobileMediaQuery" fxLayout="row">
 
         <div class="lf-navigation-header-title" fxFlex="1 1 auto">
-          <span>Where to go?</span>
+          <span>{{title}}</span>
         </div>
         <div class="lf-navigation-header-dismiss">
           <lf-close

@@ -6,6 +6,17 @@
 
 .lf-stroke {
   background-color: white;
+  position: relative;
+
+  .lf-ball {
+    position: absolute;
+    top:50%;
+    background-color: #962f2d;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    right: -6px;
+  }
 }
 
 .lf-stroke-lt-md {
@@ -22,4 +33,9 @@
   padding: 16px;
   font-weight: bold;
   color: white;
+  cursor: pointer;
+
+   &.active {
+     color: #962f2d;
+   }
 }

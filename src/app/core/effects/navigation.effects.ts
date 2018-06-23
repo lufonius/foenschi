@@ -1,52 +1,33 @@
 import { Injectable } from '@angular/core';
 import {Actions, Effect, ofType} from '@ngrx/effects';
-import { Action } from "@ngrx/store";
+import {Action, select, Store} from "@ngrx/store";
 import { Observable, of } from "rxjs";
-import { map, catchError } from 'rxjs/operators';
-import { NavigationModel } from "../models/navigation.model";
+import { map, catchError, filter,mergeMap, withLatestFrom } from 'rxjs/operators';
+import { NavigationItem } from "../models/navigation-item.model";
 import {
   NavigationActionTypes, NavigationLoadFailureAction,
   NavigationLoadSuccessAction
 } from "../actions/navigation.actions";
-
-const NAVIGATION_MODEL: NavigationModel[] = [
-  {
-    title: 'About Me',
-    subtitle: 'More about my person',
-    route: null,
-    children: [
-      {
-        title: 'Skills',
-        subtitle: 'What I can do',
-        route: '/skills',
-        children: null
-      }
-    ]
-  },
-  {
-    title: 'Projects',
-    subtitle: 'What I\'ve done so far',
-    route: null,
-    children: [
-      {
-        title: 'AppExplorer',
-        subtitle: '',
-        route: '/appexplorer',
-        children: null
-      }
-    ]
-  }
-];
+import {State} from "../../reducers";
+import * as fromRoot from '../../reducers';
+import { NavigationService } from "../services/navigation.service";
 
 @Injectable()
 export class NavigationEffects {
 
-  constructor(private actions$: Actions) {}
+  constructor(private actions$: Actions, private store: Store<State>, private navigationService: NavigationService) {}
 
   @Effect()
   getNavigation$: Observable<Action> = this.actions$.pipe(
     ofType(NavigationActionTypes.LoadNavigation),
-    map(navigation => new NavigationLoadSuccessAction(NAVIGATION_MODEL)),
+    withLatestFrom(
+      this.store.pipe(select(fromRoot.getCurrentLanguageState)).pipe(
+        filter(language => !!language)
+      ),
+      (action, currentLanguage) => currentLanguage
+    ),
+    mergeMap(currentLanguage => this.navigationService.getNavigation(currentLanguage)),
+    map(navigation => new NavigationLoadSuccessAction({ navigation })),
     catchError(() => of(new NavigationLoadFailureAction()))
   );
 }

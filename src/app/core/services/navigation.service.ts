@@ -1,0 +1,21 @@
+import { Injectable } from '@angular/core';
+import { AngularFirestore } from "angularfire2/firestore";
+import { map } from "rxjs/operators";
+import {NavigationItem} from "../models/navigation-item.model";
+import {Observable} from "rxjs/index";
+import {Navigation} from "../models/navigation.model";
+
+@Injectable()
+export class NavigationService {
+
+ constructor(private db: AngularFirestore) { }
+
+ public getNavigation(language: string): Observable<Navigation> {
+    return <any>this.db
+      .collection('languages')
+      .doc(language)
+      .valueChanges();
+ }
+
+
+}

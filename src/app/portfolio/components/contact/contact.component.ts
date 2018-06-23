@@ -1,15 +1,17 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, ElementRef, Input, OnInit} from '@angular/core';
+import { BaseSection } from "../base-section";
+import {BaseSectionPosition} from "../base-section-position";
 
 @Component({
   selector: 'lf-contact',
   templateUrl: './contact.component.html',
-  styleUrls: ['./contact.component.css']
+  styleUrls: ['./contact.component.scss']
 })
-export class ContactComponent implements OnInit {
+export class ContactComponent extends BaseSectionPosition {
 
-  constructor() { }
-
-  ngOnInit() {
-  }
-
+  @Input() namePlaceholder: string = "";
+  @Input() subjectPlaceholder: string = "";
+  @Input() emailPlaceholder: string = "";
+  @Input() messagePlaceholder: string = "";
+  @Input() submitButtonText: string = "";
 }

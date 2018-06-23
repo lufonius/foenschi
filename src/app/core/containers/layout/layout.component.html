@@ -17,11 +17,18 @@
 
   <div fxHide="true" fxShow.lt-md="true" class="lf-fill"></div>
 
-  <lf-burger [backgroundColor]="navigationBarContentColor" (onBurgerClick)="toggleNavVisibility()"></lf-burger>
+  <lf-burger
+    [backgroundColor]="navigationBarContentColor"
+    (onBurgerClick)="toggleNavVisibility()"
+  ></lf-burger>
 
   <div class="lf-navbar-spacing" fxHide="true" fxShow.gt-sm="true"></div>
 
-  <lf-quick-nav fxHide="false" fxHide.lt-md="true"></lf-quick-nav>
+  <lf-quick-nav
+    [sectionScreenCoverage]="scrollService.sectionScreenCoverage$ | async"
+    [sectionScrollOffsetPercentage]="scrollService.sectionScrollOffsetPercentage$ | async"
+    fxHide="false"
+    fxHide.lt-md="true"></lf-quick-nav>
 </div>
 
 <div hidden="true">
@@ -32,6 +39,7 @@
 
 <lf-navigation
   [visible]="navigationVisibleState$ | async"
+  [title]="navigationTitleState$ | async"
   [navigationItems]="navigationItemsState$ | async"
   [isMobileMediaQuery]="isMobileMediaQueryState$ | async"
   [activeNavigationItem]="activeNavigationItemState$ | async"

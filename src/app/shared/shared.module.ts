@@ -2,7 +2,8 @@ import { NgModule } from '@angular/core';
 import { FlexLayoutModule } from "@angular/flex-layout";
 import {
   MatButtonModule,
-  MatIconModule,
+  MatIconModule, MatInputModule,
+  MatRippleModule,
   MatTabsModule
 } from "@angular/material";
 import { LogoComponent } from './logo/logo.component';
@@ -14,7 +15,9 @@ const IMPORT_EXPORT = [
 const MATERIAL_MODULES = [
   MatButtonModule,
   MatIconModule,
-  MatTabsModule
+  MatTabsModule,
+  MatRippleModule,
+  MatInputModule
 ];
 
 @NgModule({
