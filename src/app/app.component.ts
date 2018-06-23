@@ -5,7 +5,7 @@ import {MatButtonModule} from "@angular/material";
 @Component({
   selector: 'lf-app',
   template: `
-    <lf-layout></lf-layout>
+    <router-outlet></router-outlet>
   `
 })
 export class AppComponent implements OnInit {

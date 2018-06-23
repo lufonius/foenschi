@@ -7,9 +7,11 @@ import {
   MatTabsModule
 } from "@angular/material";
 import { LogoComponent } from './logo/logo.component';
+import {RouterModule} from "@angular/router";
 
 const IMPORT_EXPORT = [
-  FlexLayoutModule
+  FlexLayoutModule,
+  RouterModule
 ];
 
 const MATERIAL_MODULES = [

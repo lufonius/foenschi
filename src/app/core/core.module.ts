@@ -29,6 +29,7 @@ import { CloseComponent } from './components/close/close.component';
 import { LoadingOverlayComponent } from './components/loading-overlay/loading-overlay.component';
 import {NavigationService} from "./services/navigation.service";
 import {ScrollService} from "./services/scroll.service";
+import { WelcomeComponent } from './containers/welcome/welcome.component';
 
 
 
@@ -37,13 +38,6 @@ import {ScrollService} from "./services/scroll.service";
     RouterModule,
     CommonModule,
     SharedModule,
-    RouterModule.forRoot([
-      {
-        path: '',
-        redirectTo: '/front',
-        pathMatch: 'full'
-      }
-    ]),
     StoreModule.forRoot(reducers, {
       metaReducers
     }),
@@ -62,7 +56,8 @@ import {ScrollService} from "./services/scroll.service";
     QuickNavComponent,
     NavigationElementComponent,
     CloseComponent,
-    LoadingOverlayComponent
+    LoadingOverlayComponent,
+    WelcomeComponent
   ],
   exports: [
     LayoutComponent

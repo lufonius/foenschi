@@ -2,6 +2,16 @@ import {ElementRef, EventEmitter, Input, Output} from "@angular/core";
 
 export class BaseSection {
 
+  //okay, better would be if the section layout component had some subcomponents, which renders to the right
+  //place, but thats overkill for now
+  /*
+  * <lf-section-layout>
+  *     <lf-header [title]="..."></lf-header>
+  *     content
+  * </lf-section-layout>
+  * */
+  @Input() showHeader: boolean = true;
+
   @Input() isFirstSection: boolean = false;
   @Input() isLastSection: boolean = false;
   @Input() showBackground: boolean = true;

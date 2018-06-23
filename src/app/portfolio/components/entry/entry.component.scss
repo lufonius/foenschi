@@ -37,14 +37,68 @@
 
   .lf-entry-words {
     color: white;
-    font-weight: lighter;
+    text-align: center;
+    letter-spacing: 4px;
+    height: 100%;
 
-    .lf-title{
-      font-size: 30px;
+    .lf-entry-title {
+      h1 {
+        font-weight: normal;
+        margin: 0px;
+      }
     }
 
-    .lf-subtitle {
-      font-size: 22px;
+    .lf-entry-title-gt-sm {
+      margin-top: 50px;
+
+      h1 { font-size: 60px; }
+    }
+    .lf-entry-title-lt-md {
+      margin-top: 50px;
+
+      h1 { font-size: 40px; }
+    }
+
+    .lf-entry-subtitle {
+      h2 {
+        font-weight: lighter;
+        margin:0px;
+      }
+    }
+
+    .lf-entry-subtitle-gt-sm h2 { font-size: 35px; }
+    .lf-entry-subtitle-lt-md {
+      margin-top: 10px;
+
+      h2 { font-size: 25px; }
+    }
+
+    .lf-entry-saying {
+      flex: 1;
+
+      h3 {
+        font-weight: lighter;
+      }
+    }
+
+    .lf-entry-saying-gt-sm h3 { font-size: 25px; }
+    .lf-entry-saying-lt-md {
+      margin-top: 40px;
+
+      h3 { font-size: 20px; }
+    }
+
+    .lf-entry-next-section {
+      font-weight: lighter;
+
+      span {
+        font-size: 20px;
+      }
+
+      mat-icon {
+        margin-top: 10px;
+        font-size: 30px;
+      }
     }
   }
 }

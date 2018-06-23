@@ -8,6 +8,9 @@ import { CoreModule } from './core/core.module';
 import { PortfolioModule } from './portfolio/portfolio.module';
 import { SharedModule } from "./shared";
 import { NavigationEffects } from "./core/effects/navigation.effects";
+import {RouterModule} from "@angular/router";
+
+import { LayoutComponent } from "./core/containers/layout/layout.component";
 
 @NgModule({
   declarations: [
@@ -16,9 +19,15 @@ import { NavigationEffects } from "./core/effects/navigation.effects";
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
+    RouterModule.forRoot([
+      {
+        path: '',
+        component: LayoutComponent,
+        loadChildren: () => PortfolioModule
+      }
+    ]),
     CoreModule,
-    SharedModule,
-    PortfolioModule
+    SharedModule
   ],
   providers: [
     NavigationEffects

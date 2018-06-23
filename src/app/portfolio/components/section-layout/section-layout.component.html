@@ -8,6 +8,7 @@
 
     <div
       class="lf-section-header-space"
+      *ngIf="showHeader"
       fxHide="true"
       fxShow.gt-sm="true"></div>
 
@@ -15,6 +16,7 @@
       class="lf-section-header-overlay"
       fxLayout="row"
       fxLayoutAlign="start center"
+      *ngIf="showHeader"
       fxHide="true"
       fxShow.gt-sm="true">
 

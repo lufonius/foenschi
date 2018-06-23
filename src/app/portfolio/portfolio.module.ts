@@ -27,18 +27,14 @@ import { FrontPageEffects } from './effects/front-page.effects';
 import {ElementPositionDirective} from "./directives/element-position.directive";
 import {ScreenCoverageDirective} from "./directives/screen-coverage.directive";
 import {ScrollOffsetPercentageDirective} from "./directives/scroll-offset-percentage.directive";
+import {PORTFOLIO_ROUTES} from "./portfolio.routes";
+
 
 
 @NgModule({
   imports: [
     CommonModule,
-    RouterModule.forChild([
-      {
-        path: 'front',
-        component: FrontPageComponent,
-        pathMatch: 'full'
-      }
-    ]),
+    RouterModule.forChild(PORTFOLIO_ROUTES),
     StoreModule.forFeature('portfolio', {
       project: fromProject.reducer,
       frontPage: fromFrontPage.reducer

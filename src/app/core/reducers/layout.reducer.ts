@@ -6,8 +6,7 @@ import {
   SetContactSectionPositionAction,
   SetMediaQueryAction,
   SetNavigationBarHeightAction,
-  SetProjectsSectionPositionAction, SetCurrentPageScrollYOffsetAction, SetEntrySectionPositionAction,
-  SetSectionScreenCoverageAction
+  SetProjectsSectionPositionAction, SetCurrentPageScrollYOffsetAction, SetEntrySectionPositionAction
 } from "../actions/layout.actions";
 
 export interface SectionPositionsState {
