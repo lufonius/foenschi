@@ -1,0 +1,13 @@
+@import './about-me/_about-me-theme.scss';
+@import './entry/_entry-theme.scss';
+@import './project/_project-theme.scss';
+@import './section-layout/_section-layout-theme.scss';
+@import './subsection/_subsection-theme.scss';
+
+@mixin lf-portfolio-theme($theme) {
+  @include lf-about-me-theme($theme);
+  @include lf-entry-theme($theme);
+  @include lf-project-theme($theme);
+  @include lf-section-layout-theme($theme);
+  @include lf-subsection-theme($theme);
+}

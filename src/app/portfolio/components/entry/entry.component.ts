@@ -1,4 +1,4 @@
-import {Component, ElementRef, OnInit} from '@angular/core';
+import {Component, ElementRef, Input, OnInit} from '@angular/core';
 import {BaseSectionPosition} from "../base-section-position";
 
 @Component({
@@ -7,5 +7,10 @@ import {BaseSectionPosition} from "../base-section-position";
   styleUrls: ['./entry.component.scss']
 })
 export class EntryComponent extends BaseSectionPosition {
+  @Input() saying: string = "";
+  @Input() nextSectionText: string = "";
 
+  getBackgroundUrl() {
+    return `url(${this.background})`;
+  }
 }

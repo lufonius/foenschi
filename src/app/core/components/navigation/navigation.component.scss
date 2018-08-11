@@ -2,13 +2,15 @@ lf-close {
   display: block;
 }
 .lf-navigation {
-  position: absolute;
+  position: fixed;
   min-height: 100vh;
+  top: 0;
+  overflow-y: scroll;
+  overflow-x: hidden;
   left: 0px;
   right: 0px;
   background-color: #962f2d;
   z-index: 1000;
-  overflow: hidden;
 
   .lf-navigation-container {
 

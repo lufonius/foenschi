@@ -20,8 +20,8 @@ import {
   ProjectsLoadSuccessAction
 } from "../actions/project.actions";
 import {ProjectService} from "../services/project.service";
-import {State} from "../../reducers";
-import * as fromRoot from '../../reducers';
+import {State} from "../../core/reducers/index";
+import * as fromRoot from '../../core/reducers/index';
 import {combineLatest, filter, mergeMap} from "rxjs/operators";
 import {Subject} from "rxjs/index";
 

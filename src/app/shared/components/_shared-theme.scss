@@ -1,0 +1,5 @@
+@import './logo/_logo-theme.scss';
+
+@mixin lf-shared-theme($theme) {
+  @include lf-logo-theme($theme);
+}

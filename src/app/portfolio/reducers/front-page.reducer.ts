@@ -9,10 +9,13 @@ import {
 export interface State extends FrontPage {}
 
 export const initialState: State = {
+
   entrySection: {
     title: "",
     subtitle: "",
-    background: ""
+    saying: "",
+    background: "",
+    nextSectionText: ""
   },
   aboutMeSection: {
     title: "About me",

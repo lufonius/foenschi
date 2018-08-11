@@ -6,7 +6,7 @@ import {
   MatRippleModule,
   MatTabsModule
 } from "@angular/material";
-import { LogoComponent } from './logo/logo.component';
+import { LogoComponent } from './components/logo/logo.component';
 import {RouterModule} from "@angular/router";
 
 const IMPORT_EXPORT = [

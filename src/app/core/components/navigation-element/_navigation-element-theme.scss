@@ -1,0 +1,18 @@
+@mixin lf-navigation-element-theme($theme) {
+
+  .lf-navigation-element {
+    .lf-navigation-element-text {
+      .lf-navigation-element-title h3 {
+        color: white;
+      }
+
+      .lf-navigation-element-subtitle span {
+        color: #e3e3e3;
+      }
+    }
+
+    .lf-navigation-element-arrow {
+      color: white;
+    }
+  }
+}

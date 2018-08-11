@@ -1,0 +1,14 @@
+@mixin lf-quick-nav-theme($theme) {
+  .lf-stroke {
+    .lf-ball {
+      background-color: #962f2d;
+    }
+  }
+
+  .lf-item {
+    &.active {
+      color: #962f2d;
+    }
+  }
+
+}

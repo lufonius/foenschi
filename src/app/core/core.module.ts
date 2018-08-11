@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import {NgModule, NO_ERRORS_SCHEMA} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from "@angular/router";
 
@@ -14,7 +14,7 @@ import { environment } from "../../environments/environment";
 import {
   metaReducers,
   reducers
-} from "../reducers";
+} from "./reducers/index";
 
 import { NavigationEffects } from "./effects/navigation.effects";
 
@@ -29,7 +29,12 @@ import { CloseComponent } from './components/close/close.component';
 import { LoadingOverlayComponent } from './components/loading-overlay/loading-overlay.component';
 import {NavigationService} from "./services/navigation.service";
 import {ScrollService} from "./services/scroll.service";
-import { WelcomeComponent } from './containers/welcome/welcome.component';
+import { ChooseLanguageComponent } from './components/choose-language/choose-language.component';
+import { ChooseLanguagePageComponent } from './containers/choose-language-page/choose-language-page.component';
+import {LanguageEffects} from "./effects/language.effects";
+import {LanguagesService} from "./services/languages.service";
+import {CheckLanguageGuardService} from "./services/check-language-guard.service";
+import { NavbarComponent } from './components/navbar/navbar.component';
 
 
 
@@ -41,7 +46,7 @@ import { WelcomeComponent } from './containers/welcome/welcome.component';
     StoreModule.forRoot(reducers, {
       metaReducers
     }),
-    EffectsModule.forRoot([ NavigationEffects ]),
+    EffectsModule.forRoot([ NavigationEffects, LanguageEffects ]),
     StoreRouterConnectingModule.forRoot({
       stateKey: 'router',
     }),
@@ -49,6 +54,7 @@ import { WelcomeComponent } from './containers/welcome/welcome.component';
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule
   ],
+  schemas: [ NO_ERRORS_SCHEMA ],
   declarations: [
     NavigationComponent,
     BurgerComponent,
@@ -57,7 +63,9 @@ import { WelcomeComponent } from './containers/welcome/welcome.component';
     NavigationElementComponent,
     CloseComponent,
     LoadingOverlayComponent,
-    WelcomeComponent
+    ChooseLanguageComponent,
+    ChooseLanguagePageComponent,
+    NavbarComponent
   ],
   exports: [
     LayoutComponent
@@ -65,6 +73,9 @@ import { WelcomeComponent } from './containers/welcome/welcome.component';
   providers: [
     NavigationEffects,
     NavigationService,
+    LanguageEffects,
+    LanguagesService,
+    CheckLanguageGuardService,
     ScrollService
   ]
 })

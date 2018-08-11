@@ -6,6 +6,5 @@ import {Component, Input, OnInit} from '@angular/core';
   styleUrls: ['./logo.component.scss']
 })
 export class LogoComponent {
-  @Input() color: string = 'rgba(255,255,255,1)';
 
 }

@@ -1,0 +1,11 @@
+@mixin lf-choose-language-theme($theme) {
+
+  .lf-choose-language-title {
+    color: white;
+  }
+
+  .lf-choose-language-background-overlay {
+    background: rgba(120,120,120,0.4);
+  }
+
+}

@@ -24,10 +24,12 @@ import { ProjectService } from "./services/project.service";
 import * as fromFrontPage from './reducers/front-page.reducer';
 import { FrontPageService } from "./services/front-page.service";
 import { FrontPageEffects } from './effects/front-page.effects';
-import {ElementPositionDirective} from "./directives/element-position.directive";
-import {ScreenCoverageDirective} from "./directives/screen-coverage.directive";
-import {ScrollOffsetPercentageDirective} from "./directives/scroll-offset-percentage.directive";
-import {PORTFOLIO_ROUTES} from "./portfolio.routes";
+import { ElementPositionDirective } from "./directives/element-position.directive";
+import { ScreenCoverageDirective } from "./directives/screen-coverage.directive";
+import { ScrollOffsetPercentageDirective } from "./directives/scroll-offset-percentage.directive";
+import { PORTFOLIO_ROUTES } from "./portfolio.routes";
+import { SkillsComponent } from './components/skills/skills.component';
+import { SkillsPageComponent } from './containers/skills-page.component';
 
 
 
@@ -55,7 +57,9 @@ import {PORTFOLIO_ROUTES} from "./portfolio.routes";
     SubsectionComponent,
     ElementPositionDirective,
     ScreenCoverageDirective,
-    ScrollOffsetPercentageDirective
+    ScrollOffsetPercentageDirective,
+    SkillsComponent,
+    SkillsPageComponent
   ],
   providers : [
     FrontPageService,

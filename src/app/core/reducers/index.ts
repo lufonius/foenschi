@@ -6,11 +6,11 @@ import {
   createSelector,
   MetaReducer
 } from '@ngrx/store';
-import { environment } from '../../environments/environment';
-import * as fromLayout from '../core/reducers/layout.reducer';
-import * as fromNavigation from '../core/reducers/navigation.reducer';
-import * as fromLanguage from '../core/reducers/language.reducer';
-import { NavigationItemAdapter } from "../core/models/navigation-item-adapter.view-model";
+import * as fromLayout from './layout.reducer';
+import * as fromNavigation from './navigation.reducer';
+import * as fromLanguage from './language.reducer';
+import { NavigationItemAdapter } from "../models/navigation-item-adapter.view-model";
+import {localStorageMetaReducer} from "./localstorage.meta-reducer";
 
 export interface State {
   layout: fromLayout.State,
@@ -26,7 +26,10 @@ export const reducers: ActionReducerMap<State, any> = {
   language: fromLanguage.reducer
 };
 
-export const metaReducers: MetaReducer<State>[] = !environment.production ? [] : [];
+//!environment.production ? [] : [];
+export const metaReducers: MetaReducer<State>[] = [
+  localStorageMetaReducer
+];
 
 export const getLayoutState = createFeatureSelector<fromLayout.State>('layout');
 export const getNavigationState = createFeatureSelector<fromNavigation.State>('navigation');
@@ -88,5 +91,10 @@ export const getNavigationTitleState = createSelector(
 export const getCurrentLanguageState = createSelector(
   getLanguageState,
   fromLanguage.getCurrentLanguage
+);
+
+export const getAvailableLanguagesState = createSelector(
+  getLanguageState,
+  fromLanguage.getAvailableLanguagesState
 );
 

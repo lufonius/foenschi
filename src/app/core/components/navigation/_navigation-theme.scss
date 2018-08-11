@@ -1,0 +1,18 @@
+@mixin lf-navigation-theme($theme) {
+  .lf-navigation {
+    background-color: #962f2d;
+
+    .lf-navigation-container {
+      .lf-navigation-element-divider {
+        border-bottom: 1px solid #e3e3e3;
+      }
+    }
+
+    .lf-navigation-header-container {
+
+      .lf-navigation-header-dismiss mat-icon, .lf-navigation-header-back mat-icon {
+        color: white;
+      }
+    }
+  }
+}

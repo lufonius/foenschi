@@ -6,33 +6,35 @@
         class="lf-entry-title"
         ngClass.lt-md="lf-entry-title-lt-md"
         ngClass.gt-sm="lf-entry-title-gt-sm">
-        <h1>Luc Fonjallaz</h1>
+        <h1>{{title}}</h1>
       </div>
 
       <div
         class="lf-entry-subtitle"
         ngClass.lt-md="lf-entry-subtitle-lt-md"
         ngClass.gt-sm="lf-entry-subtitle-gt-sm">
-        <h2>Full Stack Developer</h2>
+        <h2>{{subtitle}}</h2>
       </div>
 
       <div
         class="lf-entry-saying"
         ngClass.lt-md="lf-entry-saying-lt-md"
         ngClass.gt-sm="lf-entry-saying-gt-sm">
-        <h3>A lot of drive, ideas and enthusiasm</h3>
+        <h3>{{saying}}</h3>
       </div>
 
       <div
         class="lf-entry-next-section"
         fxLayout="column"
         fxLayoutAlign="center center">
-        <span>Get started</span>
+        <span>{{nextSectionText}}</span>
         <button mat-icon-button (click)="emitGoToNextSection()"><mat-icon>keyboard_arrow_down</mat-icon></button>
       </div>
     </span>
   </div>
-  <div class="lf-entry-image-background">
+  <div
+    class="lf-entry-image-background"
+    [ngStyle]="{'background-image': getBackgroundUrl() }">
 
   </div>
 </div>

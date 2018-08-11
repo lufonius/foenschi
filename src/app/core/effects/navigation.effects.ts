@@ -8,8 +8,8 @@ import {
   NavigationActionTypes, NavigationLoadFailureAction,
   NavigationLoadSuccessAction
 } from "../actions/navigation.actions";
-import {State} from "../../reducers";
-import * as fromRoot from '../../reducers';
+import {State} from "../reducers/index";
+import * as fromRoot from '../reducers/index';
 import { NavigationService } from "../services/navigation.service";
 
 @Injectable()

@@ -1,0 +1,9 @@
+@import './portfolio/components/_portfolio-theme.scss';
+@import './core/components/_core-theme.scss';
+@import './shared/components/_shared-theme.scss';
+
+@mixin lf-app-theme($theme) {
+  @include lf-core-theme($theme);
+  @include lf-portfolio-theme($theme);
+  @include lf-shared-theme($theme);
+}

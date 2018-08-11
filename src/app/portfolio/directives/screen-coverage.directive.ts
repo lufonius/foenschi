@@ -18,7 +18,6 @@ export class ScreenCoverageDirective implements AfterViewInit{
 
     let coverage = (coveragePx * 100) / this.screenDimension.height;
 
-    console.log(coverage);
 
     this.screenCoverage.emit(coverage);
   }

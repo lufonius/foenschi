@@ -1,0 +1,5 @@
+@mixin lf-navbar-theme($theme) {
+  .lf-navbar, .lf-bottom-navbar {
+    background-color: #555555;
+  }
+}

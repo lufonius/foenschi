@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import {select, Store} from '@ngrx/store';
 import {Observable, Subject} from "rxjs/index";
 import * as fromLayout from '../../core/reducers/layout.reducer';
-import * as fromRoot from '../../reducers';
+import * as fromRoot from '../../core/reducers/index';
 import * as fromPortfolio from '../reducers/index';
 import {LoadProjectsAction} from "../actions/project.actions";
 import {Project} from "../models/project.view-model";
@@ -19,6 +19,7 @@ import {
 import {filter, map, mergeMap, withLatestFrom} from "rxjs/internal/operators";
 import {ProjectService} from "../services/project.service";
 import {ScrollService} from "../../core/services/scroll.service";
+import {EntrySection} from "../models/entry-section.view-model";
 
 @Component({
   selector: 'lf-front-page',
@@ -30,7 +31,12 @@ import {ScrollService} from "../../core/services/scroll.service";
     (screenCoverage)="setEntrySectionScreenCoverage($event)"
     lfElementPosition
     (sectionPosition)="setEntrySectionPosition($event)"
-    (goToNextSection)="goToAboutMeSection()">
+    (goToNextSection)="goToAboutMeSection()"
+    [title]="(entrySectionState$ | async).title"
+    [subtitle]="(entrySectionState$ | async).subtitle"
+    [background]="(entrySectionState$ | async).background"
+    [saying]="(entrySectionState$ | async).saying"
+    [nextSectionText]="(entrySectionState$ | async).nextSectionText">
     </lf-entry>
     
     <lf-about-me 
@@ -105,6 +111,7 @@ export class FrontPageComponent {
   private activeProjectState$: Observable<Project>;
   private projectsLoadingState$: Observable<boolean>;
 
+  private entrySectionState$: Observable<EntrySection>;
   private aboutMeSectionState$: Observable<AboutMeSubsection>;
   private aboutMeSubsectionState$: Observable<AboutMeSubsection[]>;
   private projectsSectionState$: Observable<ProjectsSection>;
@@ -122,6 +129,7 @@ export class FrontPageComponent {
     this.projectsLoadingState$ = this.store.pipe(select(fromPortfolio.getProjectsLoadingState));
     this.projectsState$ = this.store.pipe(select(fromPortfolio.getProjectsState));
     this.activeProjectState$ = this.store.pipe(select(fromPortfolio.getProjectSectionActiveProjectState));
+    this.entrySectionState$ = this.store.pipe(select(fromPortfolio.getEntrySectionState));
     this.aboutMeSectionState$ = this.store.pipe(select(fromPortfolio.getAboutMeSectionState));
     this.aboutMeSubsectionState$ = this.store.pipe(select(fromPortfolio.getAboutMeSectionSubsectionState));
     this.projectsSectionState$ = this.store.pipe(select(fromPortfolio.getProjectSectionState));

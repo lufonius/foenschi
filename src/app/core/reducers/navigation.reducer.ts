@@ -39,7 +39,7 @@ export function reducer(state = initialState, action: Action): State {
         ...state,
         navigationItems: navigationViewModelItems,
         navigationItemsIndex: index,
-        navigationTitle: navigationTitle
+        navigationTitle: navigationTitle 
       }
     }
 

@@ -1,0 +1,13 @@
+@import './navigation/_navigation-theme.scss';
+@import './navigation-element/_navigation-element-theme.scss';
+@import './quick-nav/_quick-nav-theme.scss';
+@import './navbar/_navbar-theme.scss';
+@import './burger/_burger-theme.scss';
+
+@mixin lf-core-theme($theme) {
+  @include lf-navigation-theme($theme);
+  @include lf-navigation-element-theme($theme);
+  @include lf-quick-nav-theme($theme);
+  @include lf-navbar-theme($theme);
+  @include lf-burger-theme($theme);
+}

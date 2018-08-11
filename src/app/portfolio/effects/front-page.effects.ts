@@ -6,10 +6,10 @@ import {
   FrontPageLoadSuccessAction
 } from "../actions/front-page.actions";
 import {flatMap} from "tslint/lib/utils";
-import {State} from "../../reducers";
+import {State} from "../../core/reducers/index";
 import {select, Store} from "@ngrx/store";
 import {Observable, of, Subject} from "rxjs/index";
-import * as fromRoot from '../../reducers';
+import * as fromRoot from '../../core/reducers/index';
 import {catchError, combineLatest, filter, map, mergeMap} from "rxjs/internal/operators";
 
 
