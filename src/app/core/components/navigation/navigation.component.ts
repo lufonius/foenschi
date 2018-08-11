@@ -84,6 +84,8 @@ export class NavigationComponent {
 
   private navigationHeaderTitle: string = "";
 
+  @Input() currentLanguage: string = null;
+
   @Input() set visible(isVisible: boolean) {
     if(isVisible === true) {
       this.visibilityState = 'visible';
@@ -127,7 +129,8 @@ export class NavigationComponent {
   @Output() activeNavigationItemChanged: EventEmitter<NavigationItemAdapter>
     = new EventEmitter<NavigationItemAdapter>();
 
-  @Output() routeChanged: EventEmitter<string> = new EventEmitter<string>();
+  @Output() routeChanged: EventEmitter<{route: string, currentLanguage: string}>
+    = new EventEmitter<{route: string, currentLanguage: string}>();
 
   @Output() navigationClosed: EventEmitter<void> = new EventEmitter<void>();
 
@@ -150,7 +153,7 @@ export class NavigationComponent {
   }
 
   routeChange(route: string) {
-    this.routeChanged.emit(route);
+    this.routeChanged.emit({ route: route, currentLanguage: this.currentLanguage });
   }
 
   closeNavigation() {

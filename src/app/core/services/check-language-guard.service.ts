@@ -33,8 +33,6 @@ export class CheckLanguageGuardService implements CanActivate {
       })
     );
 
-    obs.subscribe(test => console.log(test));
-
     return obs;
   }
 

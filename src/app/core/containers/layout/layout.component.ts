@@ -27,13 +27,14 @@ import * as fromRoot from '../../reducers/index';
 import { Subject } from 'rxjs';
 import {
   map,
-  filter
+  filter,
+  tap
 } from 'rxjs/operators';
 import {
   MediaChange,
   ObservableMedia
 } from "@angular/flex-layout";
-import { withLatestFrom } from "rxjs/operators";
+import { last } from "rxjs/operators";
 import {
   LoadNavigationAction,
   SetActiveNavigationViewModelAction
@@ -41,6 +42,7 @@ import {
 import { NavigationItemAdapter } from "../../models/navigation-item-adapter.view-model";
 import {NavigationService} from "../../services/navigation.service";
 import {ScrollService} from "../../services/scroll.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'lf-layout',
@@ -58,12 +60,14 @@ export class LayoutComponent {
   private isMobileMediaQueryState$: Observable<boolean>;
   private scrollYOffset$: Subject<number>;
   private currentPageScrollYOffset$: Observable<number>;
+  private currentLanguageState$: Observable<string>;
 
 
   constructor(
     private store: Store<State>,
     private mediaQuery$: ObservableMedia,
-    private scrollService: ScrollService
+    private scrollService: ScrollService,
+    private router: Router
   ) {
     this.navigationVisibleState$ = store.pipe(select(fromRoot.getNavigationVisibleState));
     this.navigationItemsState$ = store.pipe(select(fromRoot.getNavigationItemsState));
@@ -76,6 +80,7 @@ export class LayoutComponent {
       map(sectionPosition => sectionPosition.aboutMeSectionPosition)
     );
     this.isMobileMediaQueryState$ = store.pipe(select(fromRoot.getIsMobileMediaQueryState));
+    this.currentLanguageState$ = store.pipe(select(fromRoot.getCurrentLanguageState));
     this.scrollYOffset$ = new Subject();
 
     this.setIsMobileMediaQuery();
@@ -112,4 +117,9 @@ export class LayoutComponent {
     this.store.dispatch(new SetNavigationVisibileAction({ visible: false }));
   }
 
+  routeChange(routeParts: { route: string, currentLanguage: string }) {
+    if(routeParts.route) {
+      this.router.navigate([`${routeParts.currentLanguage}/${routeParts.route}`]);
+    }
+  }
 }

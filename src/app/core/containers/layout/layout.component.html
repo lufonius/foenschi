@@ -23,8 +23,10 @@
   [navigationItems]="navigationItemsState$ | async"
   [isMobileMediaQuery]="isMobileMediaQueryState$ | async"
   [activeNavigationItem]="activeNavigationItemState$ | async"
+  [currentLanguage]="currentLanguageState$ | async"
   (activeNavigationItemChanged)="activeNavigationItemChanged($event)"
   (navigationClosed)="closeNavigation()"
+  (routeChanged)="routeChange($event)"
 ></lf-navigation>
 
 

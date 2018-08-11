@@ -35,6 +35,7 @@ import {LanguageEffects} from "./effects/language.effects";
 import {LanguagesService} from "./services/languages.service";
 import {CheckLanguageGuardService} from "./services/check-language-guard.service";
 import { NavbarComponent } from './components/navbar/navbar.component';
+import {CheckCurrentLanguageGuardService} from "./services/check-current-language-guard.service";
 
 
 
@@ -76,6 +77,7 @@ import { NavbarComponent } from './components/navbar/navbar.component';
     LanguageEffects,
     LanguagesService,
     CheckLanguageGuardService,
+    CheckCurrentLanguageGuardService,
     ScrollService
   ]
 })

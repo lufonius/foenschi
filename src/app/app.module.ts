@@ -13,6 +13,7 @@ import {RouterModule} from "@angular/router";
 import { LayoutComponent } from "./core/containers/layout/layout.component";
 import {ChooseLanguagePageComponent} from "./core/containers/choose-language-page/choose-language-page.component";
 import {CheckLanguageGuardService} from "./core/services/check-language-guard.service";
+import {CheckCurrentLanguageGuardService} from "./core/services/check-current-language-guard.service";
 
 @NgModule({
   declarations: [
@@ -33,10 +34,14 @@ import {CheckLanguageGuardService} from "./core/services/check-language-guard.se
         component: ChooseLanguagePageComponent,
         pathMatch: 'full'
       },
+      //attention here: when the route is empty and there's already a pagevisit and ergo a choosen
+      //language from beforehand, the site should switch automatically to the front page
+      //a meta-reducer gets the language from the local store and should save it into the state
       {
         path: '',
-        redirectTo: 'choose-language',
-        pathMatch: 'full'
+        component: ChooseLanguagePageComponent,
+        pathMatch: 'full',
+        canActivate: [ CheckCurrentLanguageGuardService ]
       },
       {
         path: ':language',

@@ -11,7 +11,7 @@ export class NavigationElementComponent {
   @Input() subtitle: string = "subtitle";
   @Input() isActive: boolean = false;
   @Input() hasChildren: boolean = false;
-  @Input() route: string = "";
+  @Input() route: string = null;
 
   @Output() navigationElementClicked: EventEmitter<void> = new EventEmitter<void>();
 
