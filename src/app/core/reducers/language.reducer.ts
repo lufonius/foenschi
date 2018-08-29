@@ -20,7 +20,7 @@ export const initialState: State = {
 export function reducer(state = initialState, action: Action): State {
   switch (action.type) {
 
-    case LanguageActionTypes.setCurrentLanguage: {
+    case LanguageActionTypes.SetCurrentLanguage: {
       const language = (<SetCurrentLanguageAction>action).payload.language;
 
       return {
@@ -29,7 +29,7 @@ export function reducer(state = initialState, action: Action): State {
       };
     }
 
-    case LanguageActionTypes.loadAvailableLanguagesSuccess: {
+    case LanguageActionTypes.LoadAvailableLanguagesSuccess: {
       const availableLanguages = (<LoadAvailableLanguagesSuccessAction>action).payload.availableLanguages;
 
       return {

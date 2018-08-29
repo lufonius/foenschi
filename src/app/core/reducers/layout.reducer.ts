@@ -6,8 +6,12 @@ import {
   SetContactSectionPositionAction,
   SetMediaQueryAction,
   SetNavigationBarHeightAction,
-  SetProjectsSectionPositionAction, SetCurrentPageScrollYOffsetAction, SetEntrySectionPositionAction
+  SetProjectsSectionPositionAction,
+  SetCurrentPageScrollYOffsetAction,
+  SetEntrySectionPositionAction
 } from "../actions/layout.actions";
+import * as _ from 'lodash';
+import {BaseLoadingActionTypes, SetLoadAction} from "../actions/base-loading.actions";
 
 export interface SectionPositionsState {
   entrySectionPosition: {x: number, y: number};
@@ -22,6 +26,7 @@ export interface State {
   currentPageScrollYOffset: number;
   sectionPositions: SectionPositionsState;
   navigationBarHeight: number;
+  loadingList: {[id: string]: { loading: boolean, id: string }};
 }
 
 export const initialState: State = {
@@ -29,11 +34,44 @@ export const initialState: State = {
   isMobileMediaQuery: false,
   sectionPositions: null,
   navigationBarHeight: 0,
-  currentPageScrollYOffset: 0
+  currentPageScrollYOffset: 0,
+  loadingList: {}
 };
 
 export function reducer(state = initialState, action: Action): State {
   switch (action.type) {
+
+    case BaseLoadingActionTypes.SetLoad:
+    case BaseLoadingActionTypes.SetLoadSuccess:
+    case BaseLoadingActionTypes.SetLoadFailure: {
+
+      let loadingListEntry = (<SetLoadAction>action).payload;
+      let newLoadingList = { ...state.loadingList };
+
+      //logic for update or insert
+      let found: boolean = false;
+
+      _.forEach(newLoadingList, (value, key) => {
+        if(value.id === loadingListEntry.id) {
+          newLoadingList[key] = loadingListEntry;
+          found = true;
+          return;
+        }
+      })
+
+      if(!found) newLoadingList[loadingListEntry.id] = loadingListEntry;
+
+
+
+      return {
+        ...state,
+        loadingList: newLoadingList,
+        sectionPositions: {
+          ...state.sectionPositions
+        }
+      }
+
+    }
 
     case LayoutActionTypes.setNavigationVisible: {
       return {
@@ -135,3 +173,4 @@ export const getIsMobileMediaQueryState = (state: State) => state.isMobileMediaQ
 export const getNavigationBarHeightState = (state: State) => state.navigationBarHeight;
 export const getCurrentPageScrollYOffsetState = (state: State) => state.currentPageScrollYOffset;
 export const getSectionPositions = (state: State) => state.sectionPositions;
+export const getLoadingList = (state: State) => state.loadingList;

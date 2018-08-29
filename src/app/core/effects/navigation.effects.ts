@@ -5,7 +5,9 @@ import { Observable, of } from "rxjs";
 import { map, catchError, filter,mergeMap, withLatestFrom } from 'rxjs/operators';
 import { NavigationItem } from "../models/navigation-item.model";
 import {
-  NavigationActionTypes, NavigationLoadFailureAction,
+  LoadNavigationAction,
+  NavigationActionTypes,
+  NavigationLoadFailureAction,
   NavigationLoadSuccessAction
 } from "../actions/navigation.actions";
 import {State} from "../reducers/index";
@@ -24,10 +26,25 @@ export class NavigationEffects {
       this.store.pipe(select(fromRoot.getCurrentLanguageState)).pipe(
         filter(language => !!language)
       ),
-      (action, currentLanguage) => currentLanguage
+      (action, currentLanguage) => {
+        return { action, currentLanguage }
+      }
     ),
-    mergeMap(currentLanguage => this.navigationService.getNavigation(currentLanguage)),
-    map(navigation => new NavigationLoadSuccessAction({ navigation })),
-    catchError(() => of(new NavigationLoadFailureAction()))
+    mergeMap(obj => {
+       return this.navigationService.getNavigation(obj.currentLanguage).pipe(
+         map(navigation => {
+           return {
+             requestId: (<LoadNavigationAction>obj.action).request.id,
+             navigation
+           }
+         })
+       )
+    }),
+    map(obj =>
+      new NavigationLoadSuccessAction({ navigation: obj.navigation }, obj.requestId)
+    ),
+    catchError((obj) =>
+      of(new NavigationLoadFailureAction(obj.requestId))
+    )
   );
 }

@@ -15,6 +15,7 @@ import {
 } from "rxjs";
 import { Project } from "../models/project.view-model";
 import {
+  LoadProjectsAction,
   ProjectActionTypes,
   ProjectsLoadFailureAction,
   ProjectsLoadSuccessAction
@@ -24,6 +25,7 @@ import {State} from "../../core/reducers/index";
 import * as fromRoot from '../../core/reducers/index';
 import {combineLatest, filter, mergeMap} from "rxjs/operators";
 import {Subject} from "rxjs/index";
+import {SetLoadAction} from "../../core/actions/base-loading.actions";
 
 @Injectable()
 export class ProjectEffects {
@@ -45,10 +47,25 @@ export class ProjectEffects {
       this.store.pipe(select(fromRoot.getCurrentLanguageState)).pipe(
         filter(currentLanguage => !!currentLanguage)
       ),
-      (action, currentLanguage) => currentLanguage
+      (action, currentLanguage) => {
+        return {
+          action,
+          currentLanguage
+        }
+      }
     ),
-    mergeMap(currentLanguage => this.projectService.getProjects(currentLanguage)),
-    map(projects => new ProjectsLoadSuccessAction({ projects: projects })),
-    catchError(() => of(new ProjectsLoadFailureAction()))
+    mergeMap(obj =>
+      this.projectService.getProjects(obj.currentLanguage).pipe(
+        map((projects) => {
+            return {
+              action: <LoadProjectsAction>obj.action,
+              projects
+            }
+          }
+        )
+      )
+    ),
+    map(obj => new ProjectsLoadSuccessAction({ projects: obj.projects }, obj.action.request.id)),
+    catchError((obj) => of(new ProjectsLoadFailureAction(obj.action.request.id)))
   );
 }

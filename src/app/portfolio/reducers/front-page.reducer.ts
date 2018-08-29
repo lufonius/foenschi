@@ -68,6 +68,11 @@ export function reducer(state = initialState, action: Action): State {
       }
     }
 
+    case FrontPageActionTypes.FrontPageLoadFailure: {
+      console.log(action);
+      break;
+    }
+
     case FrontPageActionTypes.SetActiveProjectIdAction: {
       const id = (<SetActiveProjectIdAction>action).payload.id;
 

@@ -10,7 +10,8 @@ import * as fromLayout from './layout.reducer';
 import * as fromNavigation from './navigation.reducer';
 import * as fromLanguage from './language.reducer';
 import { NavigationItemAdapter } from "../models/navigation-item-adapter.view-model";
-import {localStorageMetaReducer} from "./localstorage.meta-reducer";
+import { localStorageMetaReducer } from "./localstorage.meta-reducer";
+import * as _ from 'lodash';
 
 export interface State {
   layout: fromLayout.State,
@@ -96,5 +97,18 @@ export const getCurrentLanguageState = createSelector(
 export const getAvailableLanguagesState = createSelector(
   getLanguageState,
   fromLanguage.getAvailableLanguagesState
+);
+
+export const getLoadingListState = createSelector(
+  getLayoutState,
+  fromLayout.getLoadingList
+);
+
+export const getIsSomethingLoading = createSelector(
+  getLoadingListState,
+  (loadingList: {[id: string]: { loading: boolean, id: string }}) => {
+    let requestsInProgess = _.filter(loadingList, (request) => request.loading);
+    return requestsInProgess.length > 0;
+  }
 );
 

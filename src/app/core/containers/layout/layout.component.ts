@@ -61,6 +61,7 @@ export class LayoutComponent {
   private scrollYOffset$: Subject<number>;
   private currentPageScrollYOffset$: Observable<number>;
   private currentLanguageState$: Observable<string>;
+  private isSomethingLoading$: Observable<boolean>;
 
 
   constructor(
@@ -81,6 +82,7 @@ export class LayoutComponent {
     );
     this.isMobileMediaQueryState$ = store.pipe(select(fromRoot.getIsMobileMediaQueryState));
     this.currentLanguageState$ = store.pipe(select(fromRoot.getCurrentLanguageState));
+    this.isSomethingLoading$ = store.pipe(select(fromRoot.getIsSomethingLoading));
     this.scrollYOffset$ = new Subject();
 
     this.setIsMobileMediaQuery();

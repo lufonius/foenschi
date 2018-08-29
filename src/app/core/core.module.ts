@@ -36,6 +36,7 @@ import {LanguagesService} from "./services/languages.service";
 import {CheckLanguageGuardService} from "./services/check-language-guard.service";
 import { NavbarComponent } from './components/navbar/navbar.component';
 import {CheckCurrentLanguageGuardService} from "./services/check-current-language-guard.service";
+import {BaseLoadingEffects} from "./effects/base-loading.effect";
 
 
 
@@ -47,7 +48,7 @@ import {CheckCurrentLanguageGuardService} from "./services/check-current-languag
     StoreModule.forRoot(reducers, {
       metaReducers
     }),
-    EffectsModule.forRoot([ NavigationEffects, LanguageEffects ]),
+    EffectsModule.forRoot([ NavigationEffects, LanguageEffects, BaseLoadingEffects ]),
     StoreRouterConnectingModule.forRoot({
       stateKey: 'router',
     }),
@@ -76,6 +77,7 @@ import {CheckCurrentLanguageGuardService} from "./services/check-current-languag
     NavigationService,
     LanguageEffects,
     LanguagesService,
+    BaseLoadingEffects,
     CheckLanguageGuardService,
     CheckCurrentLanguageGuardService,
     ScrollService

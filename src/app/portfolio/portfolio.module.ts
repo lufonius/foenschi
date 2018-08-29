@@ -30,6 +30,7 @@ import { ScrollOffsetPercentageDirective } from "./directives/scroll-offset-perc
 import { PORTFOLIO_ROUTES } from "./portfolio.routes";
 import { SkillsComponent } from './components/skills/skills.component';
 import { SkillsPageComponent } from './containers/skills-page.component';
+import {BaseLoadingEffects} from "./effects/base-loading.effects";
 
 
 
@@ -43,7 +44,8 @@ import { SkillsPageComponent } from './containers/skills-page.component';
     }),
     EffectsModule.forFeature([
       ProjectEffects,
-      FrontPageEffects
+      FrontPageEffects,
+      BaseLoadingEffects
     ]),
     SharedModule
   ],
@@ -65,7 +67,8 @@ import { SkillsPageComponent } from './containers/skills-page.component';
     FrontPageService,
     FrontPageEffects,
     ProjectService,
-    ProjectEffects
+    ProjectEffects,
+    BaseLoadingEffects
   ]
 })
 export class PortfolioModule { }

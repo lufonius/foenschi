@@ -9,7 +9,8 @@ export enum LayoutActionTypes {
   setContactSectionPosition = '[Layout] setContactSectionPosition',
   setIsMobileMediaQuery = '[Layout] setIsMobileMediaQuery',
   setNavigationBarHeight = '[Layout] setNavigationBarHeight',
-  setCurrentPageScrollYOffset = '[Layout] setCurrentPageScrollYOffset'
+  setCurrentPageScrollYOffset = '[Layout] setCurrentPageScrollYOffset',
+  addLoadingRessourceToQueue = '[Layout] addLoadingRessourceToQueue'
 }
 
 export class SetNavigationVisibileAction implements Action {
@@ -64,6 +65,12 @@ export class SetCurrentPageScrollYOffsetAction implements Action {
   constructor(public payload: { yOffset: number }) {}
 }
 
+export class AddLoadingRessourceToQueue implements Action {
+  readonly type = LayoutActionTypes.addLoadingRessourceToQueue;
+
+  constructor(public payload: { loading: boolean, id: string }) {}
+}
+
 
 export type LayoutActions =
   SetNavigationVisibileAction |
@@ -72,4 +79,5 @@ export type LayoutActions =
   SetContactSectionPositionAction |
   SetProjectsSectionPositionAction |
   SetMediaQueryAction |
-  SetCurrentPageScrollYOffsetAction;
+  SetCurrentPageScrollYOffsetAction |
+  AddLoadingRessourceToQueue;

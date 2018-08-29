@@ -1,5 +1,6 @@
 import { Action } from '@ngrx/store';
 import { Project} from '../models/project.view-model';
+import {SetLoad, SetLoadFailure, SetLoadSuccess} from "../../core/actions/base-loading.actions";
 
 export enum ProjectActionTypes {
   LoadProjects = '[Project] Load Projects',
@@ -8,7 +9,7 @@ export enum ProjectActionTypes {
   ProjectsLoadFailure = '[Projects] ProjectsLoadFailureAction'
 }
 
-export class LoadProjectsAction implements Action {
+export class LoadProjectsAction extends SetLoad implements Action {
   readonly type = ProjectActionTypes.LoadProjects;
 }
 
@@ -18,14 +19,20 @@ export class ProjectsLoadingAction implements Action {
   constructor(public payload: { loading: boolean }) {}
 }
 
-export class ProjectsLoadSuccessAction implements Action {
+export class ProjectsLoadSuccessAction extends SetLoadSuccess implements Action {
   readonly type = ProjectActionTypes.ProjectsLoadSuccess;
 
-  constructor(public payload: { projects: Project[] }) {}
+  constructor(public payload: { projects: Project[] }, requestId: string) {
+    super(requestId);
+  }
 }
 
-export class ProjectsLoadFailureAction implements Action {
+export class ProjectsLoadFailureAction extends SetLoadFailure implements Action {
   readonly type = ProjectActionTypes.ProjectsLoadFailure;
+
+  constructor(requestId: string) {
+    super(requestId);
+  }
 }
 
 

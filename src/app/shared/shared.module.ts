@@ -2,7 +2,9 @@ import { NgModule } from '@angular/core';
 import { FlexLayoutModule } from "@angular/flex-layout";
 import {
   MatButtonModule,
-  MatIconModule, MatInputModule,
+  MatIconModule,
+  MatInputModule,
+  MatProgressSpinnerModule,
   MatRippleModule,
   MatTabsModule
 } from "@angular/material";
@@ -19,7 +21,8 @@ const MATERIAL_MODULES = [
   MatIconModule,
   MatTabsModule,
   MatRippleModule,
-  MatInputModule
+  MatInputModule,
+  MatProgressSpinnerModule
 ];
 
 @NgModule({

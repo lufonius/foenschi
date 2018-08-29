@@ -1,5 +1,6 @@
 import { Action } from '@ngrx/store';
 import {FrontPage} from "../models/front-page.view-model";
+import {SetLoad, SetLoadFailure, SetLoadSuccess} from "../../core/actions/base-loading.actions";
 
 export enum FrontPageActionTypes {
   LoadFrontPage = '[FrontPage] LoadFrontPage',
@@ -9,20 +10,24 @@ export enum FrontPageActionTypes {
   SetActiveProjectIdAction = '[FrontPage] SetActiveProjectIdAction'
 }
 
-export class LoadFrontPageAction implements Action {
+export class LoadFrontPageAction extends SetLoad implements Action {
   readonly type = FrontPageActionTypes.LoadFrontPage;
 }
 
-export class FrontPageLoadSuccessAction implements Action {
+export class FrontPageLoadSuccessAction extends SetLoadSuccess implements Action {
   readonly type = FrontPageActionTypes.FrontPageLoadSuccess;
 
-  constructor(public payload: { frontPage: FrontPage }) {}
+  constructor(public payload: { frontPage: FrontPage }, requestId: string) {
+    super(requestId);
+  }
 }
 
-export class FrontPageLoadFailureAction implements Action {
+export class FrontPageLoadFailureAction extends SetLoadFailure implements Action {
   readonly type = FrontPageActionTypes.FrontPageLoadFailure;
 
-  constructor(public payload: { error: string }) {}
+  constructor(requestId: string) {
+    super(requestId);
+  }
 }
 
 export class FrontPageLoadingAction implements Action {

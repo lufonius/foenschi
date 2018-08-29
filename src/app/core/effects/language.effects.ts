@@ -18,10 +18,20 @@ export class LanguageEffects {
 
   @Effect()
   getAvailableLanguages$: Observable<Action> = this.actions$.pipe(
-    ofType(LanguageActionTypes.loadAvailableLanguages),
-    mergeMap(() => this.languagesService.getAvailableLanguages()),
-    map(availableLanguages => new LoadAvailableLanguagesSuccessAction( { availableLanguages })),
-    catchError(() => of(new LoadAvailableLanguagesFailureAction()))
+    ofType(LanguageActionTypes.LoadAvailableLanguages),
+    mergeMap((action) =>
+      this.languagesService.getAvailableLanguages().pipe(
+        map(availableLanguages => {
+          return {
+            requestId: (<LoadAvailableLanguagesAction>action).request.id,
+            availableLanguages
+          }
+        })
+      )
+    ),
+    map(obj =>
+      new LoadAvailableLanguagesSuccessAction( { availableLanguages: obj.availableLanguages }, obj.requestId)),
+    catchError((obj) => of(new LoadAvailableLanguagesFailureAction(obj.requestId)))
   );
 
   //made this way because its better for debugging

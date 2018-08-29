@@ -1,33 +1,40 @@
 import { Action } from '@ngrx/store';
 import {Language} from "../models/language.model";
+import {SetLoad, SetLoadFailure, SetLoadSuccess} from "./base-loading.actions";
 
 export enum LanguageActionTypes {
-  setCurrentLanguage = '[Language] setCurrentLanguage',
-  loadAvailableLanguages = '[Language] loadAvailableLanguages',
-  loadAvailableLanguagesSuccess = '[Language] loadAvailableLanguagesSuccess',
-  loadAvailableLanguageFailure = '[Language] loadAvailableLanguageFailure'
+  SetCurrentLanguage = '[Language] SetCurrentLanguage',
+  LoadAvailableLanguages = '[Language] LoadAvailableLanguages',
+  LoadAvailableLanguagesSuccess = '[Language] LoadAvailableLanguagesSuccess',
+  LoadAvailableLanguageFailure = '[Language] LoadAvailableLanguageFailure'
 }
 
 export class SetCurrentLanguageAction implements Action {
-  readonly type = LanguageActionTypes.setCurrentLanguage;
+  readonly type = LanguageActionTypes.SetCurrentLanguage;
 
   constructor(public payload: { language: string }) {}
 }
 
-export class LoadAvailableLanguagesAction implements Action {
-  readonly type = LanguageActionTypes.loadAvailableLanguages;
+export class LoadAvailableLanguagesAction extends SetLoad implements Action {
+  readonly type = LanguageActionTypes.LoadAvailableLanguages;
 }
 
-export class LoadAvailableLanguagesSuccessAction implements Action {
-  readonly type = LanguageActionTypes.loadAvailableLanguagesSuccess;
+export class LoadAvailableLanguagesSuccessAction extends SetLoadSuccess implements Action {
+  readonly type = LanguageActionTypes.LoadAvailableLanguagesSuccess;
 
-  constructor(public payload: { availableLanguages: Language[] }) {}
+  constructor(public payload: { availableLanguages: Language[] }, requestId: string) {
+    super();
+    this.request.id = requestId;
+  }
 }
 
-export class LoadAvailableLanguagesFailureAction implements Action {
-  readonly type = LanguageActionTypes.loadAvailableLanguageFailure;
+export class LoadAvailableLanguagesFailureAction extends SetLoadFailure implements Action {
+  readonly type = LanguageActionTypes.LoadAvailableLanguageFailure;
 
-  constructor(public payload?: { error: string }) {}
+  constructor(requestId: string, public payload?: { error: string }) {
+    super();
+    this.request.id = requestId;
+  }
 }
 
 export type LanguageActions = SetCurrentLanguageAction |
