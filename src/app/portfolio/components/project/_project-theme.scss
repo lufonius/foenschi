@@ -1,3 +1,41 @@
+@import '~@angular/material/theming';
+
 @mixin lf-project-theme($theme) {
+  $foreground: map-get($theme, foreground);
+  $primary: mat-color(map-get($theme, primary));
+  $text: mat-color($foreground, text);
+  $secondary-text: mat-color($foreground, secondary-text);
+
+  .lf-project-tabs {
+
+    .lf-project-tab-element-divider {
+      background-color: $secondary-text;
+    }
+
+    .lf-project-tab-element {
+      span {
+        color: $secondary-text;
+      }
+
+      &.active span {
+        color: $primary;
+      }
+    }
+  }
+
+  .lf-project-tab-container .lf-project-tab-content{
+    .lf-project-tab-content-description {
+      color: $text;
+    }
+    .lf-project-tab-content-title {
+      h3 {
+        color: $primary;
+      }
+
+      .lf-project-tab-content-title-stroke {
+        background-color: $primary;
+      }
+    }
+  }
 
 }

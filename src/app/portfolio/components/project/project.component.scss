@@ -1,10 +1,13 @@
 .lf-project-tabs {
+  * {
+    position: relative;
+  }
+
   margin-bottom: 16px;
 
   .lf-project-tab-element-divider {
     height: 15px;
     width: 1px;
-    background-color: #939393;
   }
 
   .lf-project-tab-element-divider:last-child {
@@ -26,19 +29,21 @@
 
     span {
       font-size: 19px;
-      color: #939393;
     }
 
     &.active span {
-      color: #962f2d;
     }
   }
 }
 
 .lf-project-tab-container .lf-project-tab-content{
+
+  * {
+    position: relative;
+  }
+
   .lf-project-tab-content-title {
     h3 {
-      color: #962f2d;
       font-weight: normal;
       font-size: 23px;
       margin: 0px;
@@ -48,7 +53,6 @@
       height: 1px;
       width: 100%;
       margin-left: 16px;
-      background-color: #962f2d;
     }
   }
   .lf-project-tab-content-description{

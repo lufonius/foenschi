@@ -9,7 +9,6 @@ lf-close {
   overflow-x: hidden;
   left: 0px;
   right: 0px;
-  background-color: #962f2d;
   z-index: 1000;
 
   .lf-navigation-container {
@@ -20,7 +19,8 @@ lf-close {
 
     .lf-navigation-element-divider {
       width: 100%;
-      border-bottom: 1px solid #e3e3e3;
+      border-bottom-width: 1px;
+      border-bottom-style: solid;
     }
 
     .lf-navigation-second-level-gt-sm {
@@ -35,13 +35,12 @@ lf-close {
     overflow: hidden;
 
     .lf-navigation-header-title span {
-      color: white;
       font-size: 50px;
       font-weight: lighter;
+      margin-right: 32px;
     }
 
     .lf-navigation-header-dismiss mat-icon, .lf-navigation-header-back mat-icon{
-      color: white;
       font-size: 50px;
       font-weight: lighter;
       height: auto;

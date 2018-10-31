@@ -1,5 +1,10 @@
+@import '~@angular/material/theming';
+
 @mixin lf-navbar-theme($theme) {
-  .lf-navbar, .lf-bottom-navbar {
-    background-color: #555555;
+  $background: map-get($theme, background);
+  $dialog: mat-color($background, dialog);
+
+  .lf-navbar-lt-md, .lf-navbar-gt-sm, .lf-navbar-minimal-lt-md {
+    background-color: $dialog;
   }
 }

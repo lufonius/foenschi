@@ -53,7 +53,9 @@ import {EntrySection} from "../models/entry-section.view-model";
     [title]="(aboutMeSectionState$ | async).title"
     [subtitle]="(aboutMeSectionState$ | async).subtitle"
     [background]="(aboutMeSectionState$ | async).background"
-    [subsections]="aboutMeSubsectionState$ | async">
+    [subsections]="aboutMeSubsectionState$ | async"
+    [currentLanguage]="currentLanguage$ | async"
+    placeInOrder="01">
     </lf-about-me>
     
     <lf-project
@@ -72,8 +74,10 @@ import {EntrySection} from "../models/entry-section.view-model";
     [projectsLoading]="projectsLoadingState$ | async"
     [projectSections]="projectsState$ | async"
     [background]="(projectsSectionState$ | async).background"
+    [currentLanguage]="currentLanguage$ | async"
     [activeProjectSection]="activeProjectState$ | async"
-    (activeProjectSectionIdChanged)="activeProjectSectionIdChanged($event)">
+    (activeProjectSectionIdChanged)="activeProjectSectionIdChanged($event)"
+    placeInOrder="02">
     </lf-project>
     
     
@@ -95,6 +99,7 @@ import {EntrySection} from "../models/entry-section.view-model";
     [subjectPlaceholder]="(contactSectionState$ | async).form.subjectPlaceholder"
     [messagePlaceholder]="(contactSectionState$ | async).form.messagePlaceholder"
     [submitButtonText]="(contactSectionState$ | async).form.submitButtonText"
+    placeInOrder="03"
     ></lf-contact>
   `,
   styles: [
@@ -117,6 +122,8 @@ export class FrontPageComponent {
   private projectsSectionState$: Observable<ProjectsSection>;
   private contactSectionState$: Observable<ContactSection>;
 
+  private currentLanguage$: Observable<string>;
+
   private sectionPositionsState$: Observable<fromLayout.SectionPositionsState>;
 
   private moveToSection$: Subject<(sectionPositions) => {x: number, y: number}> = new Subject();
@@ -138,6 +145,7 @@ export class FrontPageComponent {
       select(fromRoot.getSectionPositionsState),
       filter(value => !!value)
     );
+    this.currentLanguage$ = this.store.pipe(select(fromRoot.getCurrentLanguageState));
 
     this.store.dispatch(new LoadProjectsAction());
     this.store.dispatch(new LoadFrontPageAction());

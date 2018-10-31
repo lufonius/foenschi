@@ -9,6 +9,7 @@ import {
   MatTabsModule
 } from "@angular/material";
 import { LogoComponent } from './components/logo/logo.component';
+import { NotYetImplementedComponent } from './components/not-yet-implemented/not-yet-implemented.component';
 import {RouterModule} from "@angular/router";
 
 const IMPORT_EXPORT = [
@@ -33,8 +34,12 @@ const MATERIAL_MODULES = [
   exports: [
     ...IMPORT_EXPORT,
     ...MATERIAL_MODULES,
-    LogoComponent
+    LogoComponent,
+    NotYetImplementedComponent
   ],
-  declarations: [ LogoComponent ]
+  declarations: [
+    LogoComponent,
+    NotYetImplementedComponent
+  ]
 })
 export class SharedModule { }

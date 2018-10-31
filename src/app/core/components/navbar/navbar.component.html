@@ -1,0 +1,45 @@
+<ng-template #navbarLogo><ng-content select="lf-navbar-logo"></ng-content></ng-template>
+<ng-template #navbarBurger><ng-content select="lf-navbar-burger"></ng-content></ng-template>
+<ng-template #navbarQuickNav><ng-content select="lf-navbar-quick-nav"></ng-content></ng-template>
+
+<!--a bit hacky because there cannot be multiple instances of an ng-content template without hiding it with ngIf-->
+
+<div
+  *ngIf="mode !== 'minimal'"
+  fxLayout.gt-sm="column"
+  fxLayoutAlign.gt-sm="start center"
+
+  fxLayout.lt-md="row"
+  fxLayoutAlign.lt-md="center center"
+
+  class="lf-navbar"
+  ngClass.gt-sm="lf-navbar-gt-sm"
+  ngClass.lt-md="lf-navbar-lt-md">
+
+
+
+  <div class="lf-navbar-logo" fxHide="true" fxShow.lt-md="true">
+    <ng-container *ngTemplateOutlet="navbarLogo"></ng-container>
+  </div>
+
+  <div fxHide="true" fxShow.lt-md="true" class="lf-navbar-fill"></div>
+
+  <ng-container *ngTemplateOutlet="navbarBurger"></ng-container>
+
+  <div class="lf-navbar-spacing" fxHide="true" fxShow.gt-sm="true"></div>
+
+  <div *ngIf="showQuickNav">
+    <ng-container *ngTemplateOutlet="navbarQuickNav"></ng-container>
+  </div>
+</div>
+
+<div *ngIf="mode === 'minimal'" class="lf-navbar-minimal" ngClass.lt-md="lf-navbar-minimal-lt-md lf-navbar-lt-md" fxLayout.lt-md="row" fxLayoutAlign="start center">
+  <div fxHide="true" fxShow.gt-sm="true" class="lf-navbar-fill"></div>
+  <div class="lf-navbar-logo">
+    <ng-container *ngTemplateOutlet="navbarLogo"></ng-container>
+  </div>
+  <div fxHide="true" fxShow.lt-md="true" class="lf-navbar-fill"></div>
+  <div class="lf-navbar-burger">
+    <ng-container *ngTemplateOutlet="navbarBurger"></ng-container>
+  </div>
+</div>

@@ -20,18 +20,6 @@
       fxHide="true"
       fxShow.gt-sm="true">
 
-      <div>
-        <div class="lf-stepper-container" fxLayout="column" fxLayoutAlign="center center">
-          <button mat-icon-button [disabled]="isFirstSection" (click)="emitGoToPreviousSection()">
-            <mat-icon>keyboard_arrow_up</mat-icon>
-          </button>
-          <div class="lf-stepper-divider"></div>
-          <button mat-icon-button [disabled]="isLastSection" (click)="emitGoToNextSection()">
-            <mat-icon>keyboard_arrow_down</mat-icon>
-          </button>
-        </div>
-      </div>
-
       <div
         class="lf-section-header-overlay-content"
         fxLayout="row"
@@ -55,6 +43,9 @@
         <div class="lf-section-content-overlay-title" fxHide="true" fxShow.lt-md="true">
           <h2>{{subtitle}}</h2>
           <h1>{{title}}</h1>
+        </div>
+        <div class="lf-section-content-overlay-counter">
+          {{placeInOrder}}
         </div>
         <ng-content></ng-content>
       </div>

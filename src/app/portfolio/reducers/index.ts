@@ -2,11 +2,15 @@ import * as fromPortfolio from "./project.reducer";
 import {createFeatureSelector, createSelector} from "@ngrx/store";
 import * as fromProject from './project.reducer';
 import * as fromFrontPage from './front-page.reducer';
+import * as fromSkillsPage from './skills.reducer';
+import * as fromProjectDetailPage from './project-detail-page.reducer';
 import {Project} from "../models/project.view-model";
 
 export interface State {
   project: fromProject.State,
-  frontPage: fromFrontPage.State
+  frontPage: fromFrontPage.State,
+  skillsPage: fromSkillsPage.State,
+  projectDetailPage: fromProjectDetailPage.State
 }
 
 export const getPortfolioState = createFeatureSelector<State>('portfolio');
@@ -24,6 +28,16 @@ export const getFrontPageState = createSelector(
 export const getProjectsState = createSelector(
   getProjectState,
   fromProject.getProjectsState
+);
+
+export const getSkillsPageState = createSelector(
+  getPortfolioState,
+  (state: State) => state.skillsPage
+);
+
+export const getProjectDetailPageState = createSelector(
+  getPortfolioState,
+  (state: State) => state.projectDetailPage
 );
 
 export const getProjectsLoadingState = createSelector(

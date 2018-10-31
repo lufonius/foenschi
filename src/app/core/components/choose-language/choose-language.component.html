@@ -1,0 +1,16 @@
+<div class="lf-choose-language-background"></div>
+<div class="lf-choose-language-background-overlay" fxLayout="column" fxLayoutAlign="center center">
+  <div class="lf-choose-language-title" fxLayout="row" fxLayoutAlign="center center">
+    <span>What do you speak?</span>
+  </div>
+  <div class="lf-choose-language-flags-container" fxLayout="row" fxLayoutAlign="center center">
+    <div
+      *ngFor="let language of languages"
+      class="flag-icon lf-flag"
+      (click)="setSelectedLanguage(language.name);"
+      [style.backgroundImage]="getBackgroundImageStyle(language.imageUrl)">
+
+    </div>
+  </div>
+</div>
+

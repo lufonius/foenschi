@@ -1,0 +1,101 @@
+@import '../../../../variables';
+@import '../../../../theme';
+
+.lf-skills-lt-md {
+  padding: $lf-page-padding;
+  padding-top: $lf-navbar-thickness-mobile + $lf-page-padding;
+}
+
+.lf-skills-gt-sm {
+  padding: $lf-page-padding;
+  padding-right: $lf-navbar-thickness-desktop + $lf-page-padding;
+}
+
+.lf-skills-heading {
+  @include lf-page-heading-layout();
+  @include lf-page-heading-theme($app-theme);
+}
+
+.lf-skills-subsection-group {
+  font-size: 20px;
+  margin-bottom: 16px;
+
+}
+
+.lf-skills-grid-item {
+
+  position: relative;
+  padding: 16px;
+  box-sizing: border-box;
+
+
+  .lf-skills-grid-item-content {
+    overflow: hidden;
+    max-height: 100%;
+    width: 100%;
+    letter-spacing: 2px;
+    padding: 8px;
+
+    .lf-skills-grid-item-heading {
+      margin-bottom: 8px;
+
+      h3 {
+
+        display: inline;
+        margin-right: 12px;
+        font-size: 24px;
+        font-weight: normal;
+      }
+
+      span {
+        transform: scale(0.75);
+        font-size: 24px;
+        margin-right: 3px;
+      }
+    }
+
+    .lf-skills-grid-item-chip-container {
+      margin-bottom: 8px;
+
+      .lf-skills-grid-item-chip {
+
+        width: 100px;
+        text-align: center;
+        padding: 4px;
+        margin-right: 4px;
+
+        span {
+
+        }
+      }
+    }
+
+    .lf-skills-grid-item-description {
+
+    }
+  }
+}
+
+.lf-skills-grid-item:first-child {
+  padding-left: 0px;
+}
+
+@media screen and (min-width: 960px) {
+
+  .lf-skills-grid-item:nth-child(3n+1) {
+    padding-left: 0px;
+  }
+}
+
+
+@media screen and (max-width: 959px) {
+  .lf-skills-grid-item:nth-child(2n+1) {
+    padding-left: 0px;
+  }
+}
+
+@media screen and (max-width: 599px) {
+  .lf-skills-grid-item {
+    padding-left: 0px;
+  }
+}

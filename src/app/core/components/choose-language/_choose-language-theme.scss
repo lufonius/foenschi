@@ -1,11 +1,13 @@
+@import '~@angular/material/theming';
+
 @mixin lf-choose-language-theme($theme) {
+  $foreground: map-get($theme, foreground);
+  $text: mat-color($foreground, text);
+
 
   .lf-choose-language-title {
-    color: white;
+    color: $text;
   }
 
-  .lf-choose-language-background-overlay {
-    background: rgba(120,120,120,0.4);
-  }
 
 }

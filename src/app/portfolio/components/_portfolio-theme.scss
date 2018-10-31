@@ -3,6 +3,8 @@
 @import './project/_project-theme.scss';
 @import './section-layout/_section-layout-theme.scss';
 @import './subsection/_subsection-theme.scss';
+@import './skills/_skills-theme.scss';
+@import './project-detail/_project-detail-theme.scss';
 
 @mixin lf-portfolio-theme($theme) {
   @include lf-about-me-theme($theme);
@@ -10,4 +12,6 @@
   @include lf-project-theme($theme);
   @include lf-section-layout-theme($theme);
   @include lf-subsection-theme($theme);
+  @include lf-skills-theme($theme);
+  @include lf-project-detail-theme($theme);
 }

@@ -3,6 +3,8 @@
 @import './quick-nav/_quick-nav-theme.scss';
 @import './navbar/_navbar-theme.scss';
 @import './burger/_burger-theme.scss';
+@import './loading-overlay/_loading-overlay-theme';
+@import './choose-language/_choose-language-theme';
 
 @mixin lf-core-theme($theme) {
   @include lf-navigation-theme($theme);
@@ -10,4 +12,6 @@
   @include lf-quick-nav-theme($theme);
   @include lf-navbar-theme($theme);
   @include lf-burger-theme($theme);
+  @include lf-loading-overlay-theme($theme);
+  @include lf-choose-language-theme($theme);
 }

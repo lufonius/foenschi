@@ -1,2 +1,36 @@
+@import '~@angular/material/theming';
+
 $lf-navbar-thickness-desktop: 70px;
 $lf-navbar-thickness-mobile: 70px;
+
+$lf-page-padding: 16px;
+
+@mixin lf-page-heading-layout() {
+  margin-bottom: 32px;
+
+  h1 {
+    font-weight: lighter;
+    font-size: 30px;
+    margin-top: 0px;
+  }
+
+  h2 {
+    font-weight: normal;
+    font-size: 20px;
+    margin-bottom: 0px;
+  }
+}
+
+@mixin lf-page-heading-theme($theme) {
+  $foreground: map-get($theme, foreground);
+  $primary: mat-color(map-get($theme, primary));
+  $text: mat-color($foreground, text);
+
+  h1 {
+    color: $text;
+  }
+
+  h2 {
+    color: $primary;
+  }
+}

@@ -11,5 +11,6 @@ import {BaseSectionPosition} from "../base-section-position";
 export class AboutMeComponent extends BaseSectionPosition {
 
   @Input() subsections: AboutMeSubsection[] = [];
+  @Input() currentLanguage: string = null;
 
 }

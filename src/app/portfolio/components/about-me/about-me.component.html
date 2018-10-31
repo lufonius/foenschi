@@ -6,7 +6,8 @@
   [isLastSection]="isLastSection"
   [background]="background"
   [title]="title"
-  [subtitle]="subtitle">
+  [subtitle]="subtitle"
+  [placeInOrder]="placeInOrder">
   <div
     class="lf-about-me-container"
     ngClass.lt-md="lf-about-me-container-lt-md"
@@ -17,7 +18,14 @@
       ngClass.lt-md="lf-about-me-subsection-container-lt-md"
       ngClass.gt-sm="lf-about-me-subsection-container-gt-sm"
       fxLayout="column">
-      <lf-subsection *ngFor="let subsection of subsections" fxFlex="1 1 auto" [title]="subsection.title" [description]="subsection.description"></lf-subsection>
+      <lf-subsection
+        *ngFor="let subsection of subsections"
+        fxFlex="1 1 auto"
+        [title]="subsection.title"
+        [description]="subsection.description"
+        [route]="subsection.route"
+        [currentLanguage]="currentLanguage"
+      ></lf-subsection>
     </div>
   </div>
 </lf-section-layout>

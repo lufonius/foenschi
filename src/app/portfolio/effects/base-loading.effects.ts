@@ -15,6 +15,8 @@ import {
   LoadProjectsAction, ProjectActionTypes, ProjectsLoadFailureAction,
   ProjectsLoadSuccessAction
 } from "../actions/project.actions";
+import {LoadSkillsPageAction, SkillsPageActionTypes} from "../actions/skills.actions";
+import {ProjectDetailPageActionTypes} from "../actions/project-detail-page.actions";
 
 @Injectable()
 export class BaseLoadingEffects {
@@ -25,7 +27,9 @@ export class BaseLoadingEffects {
   generalizeLoadAction$: Observable<Action> = this.actions$.pipe(
     ofType(
       FrontPageActionTypes.LoadFrontPage,
-      ProjectActionTypes.LoadProjects
+      ProjectActionTypes.LoadProjects,
+      SkillsPageActionTypes.LoadSkillsPage,
+      ProjectDetailPageActionTypes.LoadProjectDetailPage
     ),
     map((loadAction: LoadFrontPageAction | LoadProjectsAction) =>
       new SetLoadAction(loadAction.request))
@@ -35,7 +39,9 @@ export class BaseLoadingEffects {
   generalizeLoadSuccessAction$: Observable<Action> = this.actions$.pipe(
     ofType(
       FrontPageActionTypes.FrontPageLoadSuccess,
-      ProjectActionTypes.ProjectsLoadSuccess
+      ProjectActionTypes.ProjectsLoadSuccess,
+      SkillsPageActionTypes.SkillsPageLoadSuccess,
+      ProjectDetailPageActionTypes.ProjectDetailPageLoadSuccess
     ),
     map((loadSuccessAction: FrontPageLoadSuccessAction | ProjectsLoadSuccessAction) =>
       new SetLoadSuccessAction(loadSuccessAction.request))
@@ -45,7 +51,9 @@ export class BaseLoadingEffects {
   generalizeLoadFailureAction$: Observable<Action> = this.actions$.pipe(
     ofType(
       FrontPageActionTypes.FrontPageLoadFailure,
-      ProjectActionTypes.ProjectsLoadFailure
+      ProjectActionTypes.ProjectsLoadFailure,
+      SkillsPageActionTypes.SkillsPageLoadFailure,
+      ProjectDetailPageActionTypes.ProjectDetailPageLoadFailure
     ),
     map((loadFailureAction: FrontPageLoadFailureAction | ProjectsLoadFailureAction) =>
       new SetLoadFailureAction(loadFailureAction.request))

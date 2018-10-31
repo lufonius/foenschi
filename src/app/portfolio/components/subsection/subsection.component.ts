@@ -1,4 +1,5 @@
 import {Component, Input} from '@angular/core';
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'lf-subsection',
@@ -8,4 +9,14 @@ import {Component, Input} from '@angular/core';
 export class SubsectionComponent {
   @Input() title: string = "";
   @Input() description: string = "";
+  @Input() route: string = '';
+  @Input() currentLanguage: string = null;
+
+  navigate(route: string) {
+    this.router.navigate([`${this.currentLanguage}/${route}`]);
+  }
+
+  constructor(public router: Router) {
+
+  }
 }

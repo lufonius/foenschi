@@ -1,13 +1,24 @@
+@import '~@angular/material/theming';
+
 @mixin lf-quick-nav-theme($theme) {
+  $foreground: map-get($theme, foreground);
+  $primary: mat-color(map-get($theme, primary));
+  $text: mat-color($foreground, text);
+  $secondary-text: mat-color($foreground, secondary-text);
+
   .lf-stroke {
+    background-color: $text;
+
     .lf-ball {
-      background-color: #962f2d;
+      background-color: $primary;
     }
   }
 
   .lf-item {
+    color: $text;
+
     &.active {
-      color: #962f2d;
+      color: $primary;
     }
   }
 

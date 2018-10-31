@@ -1,5 +1,9 @@
+@import '~@angular/material/theming';
+
 @mixin lf-logo-theme($theme) {
+  $primary: mat-color(map-get($theme, primary));
+
   .lf-logo {
-    fill: white;
+    fill: $primary;
   }
 }

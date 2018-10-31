@@ -1,3 +1,70 @@
-@mixin lf-section-layout-theme($theme) {
+@import '~@angular/material/theming';
 
+@mixin lf-section-layout-theme($theme) {
+  $foreground: map-get($theme, foreground);
+  $primary: mat-color(map-get($theme, primary));
+  $text: mat-color($foreground, text);
+  $background: map-get($theme, background);
+  $dialog: mat-color($background, dialog);
+  $appbar: mat-color($background, app-bar);
+  $secondary-text: mat-color($foreground, secondary-text);
+
+  .lf-stepper-container {
+
+    button mat-icon {
+      color: $text;
+    }
+
+    button[disabled] mat-icon {
+      color: $secondary-text;
+    }
+
+    .lf-stepper-divider {
+      background-color: $text;
+    }
+
+  }
+
+  .lf-section-header-space {
+    background: $appbar;
+  }
+
+
+  .lf-section-content-container {
+    background: $dialog;
+
+    .lf-section-content {
+      background: $dialog;
+
+      .lf-section-content-overlay {
+
+        .lf-section-content-overlay-title {
+
+          h1 {
+            color: $text;
+          }
+
+          h2 {
+            color: $primary;
+          }
+        }
+      }
+    }
+  }
+
+  .lf-section-header-overlay {
+    h2 {
+      color: $primary;
+    }
+
+    h1 {
+      color: $text;
+    }
+  }
+
+  .lf-section-images {
+    .lf-section-images-overlay {
+      background-color: rgba(255,255,255,0.3);
+    }
+  }
 }

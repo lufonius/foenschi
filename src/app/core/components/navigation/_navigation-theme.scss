@@ -1,17 +1,27 @@
+@import '~@angular/material/theming';
+
 @mixin lf-navigation-theme($theme) {
+  $foreground: map-get($theme, foreground);
+  $primary: mat-color(map-get($theme, primary));
+  $text: mat-color(map-get($theme, primary), default-contrast);
+  $secondary-text: mat-color($foreground, secondary-text);
+
   .lf-navigation {
-    background-color: #962f2d;
+    background-color: $primary;
 
     .lf-navigation-container {
       .lf-navigation-element-divider {
-        border-bottom: 1px solid #e3e3e3;
+        border-bottom-color: $text;
       }
     }
 
     .lf-navigation-header-container {
+      .lf-navigation-header-title span {
+        color: $text;
+      }
 
       .lf-navigation-header-dismiss mat-icon, .lf-navigation-header-back mat-icon {
-        color: white;
+        color: $text;
       }
     }
   }

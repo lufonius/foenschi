@@ -1,0 +1,31 @@
+<div class="lf-project-detail" ngClass.lt-md="lf-project-detail-lt-md">
+  <div class="lf-project-detail-heading" *ngIf="projectDetailPage">
+    <h2>{{projectDetailPage.project.subtitle}}</h2>
+    <h1>{{projectDetailPage.project.title}}</h1>
+  </div>
+  <div class="lf-project-detail-primary-description">
+    <p>{{projectDetailPage.project.primaryDescription}}</p>
+  </div>
+  <div *ngFor="let block of order(projectDetailPage.project.blocks)" class="lf-project-detail-block">
+    <h2>{{block.title}}</h2>
+    <div fxLayout.lt-md="column" fxLayout.gt-sm="row">
+      <div fxFlex.gt-sm="1 1 50%" fxFlex.lt-md="1 1 100%" class="lf-project-detail-block-image" [style.background-image]="getBackgroundStyle(block.imageUrl)"></div>
+
+      <div
+        fxFlex.gt-sm="1 1 50%"
+        fxFlex.lt-md="1 1 100%"
+        fxLayoutAlign="start center"
+        class="lf-project-detail-block-description"
+      ngClass.lt-md="lf-project-detail-block-description-lt-md">
+        <span>{{block.description}}</span>
+      </div>
+    </div>
+  </div>
+  <div class="lf-project-detail-file-title" *ngIf="projectDetailPage.project.files.length > 0">
+    <h2>{{projectDetailPage.file.title}}</h2>
+  </div>
+  <div *ngFor="let file of projectDetailPage.project.files" class="lf-project-detail-files">
+    <span>{{file.title}}&nbsp;|&nbsp;</span>
+    <a [href]="file.downloadUrl">{{projectDetailPage.file.download}}</a>
+  </div>
+</div>

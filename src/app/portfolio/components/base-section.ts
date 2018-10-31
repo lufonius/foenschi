@@ -20,6 +20,8 @@ export class BaseSection {
   @Input() subtitle: string = "";
   @Input() background: string = "";
 
+  @Input() placeInOrder: string = null;
+
   @Output() goToNextSection: EventEmitter<void> = new EventEmitter<void>();
   @Output() goToPreviousSection: EventEmitter<void> = new EventEmitter<void>();
 

@@ -20,17 +20,15 @@
     font-size: 40px;
     width: auto;
     height: auto;
-    color: #555555;
   }
 
   button[disabled] mat-icon {
-    color: #939393;
+
   }
 
   .lf-stepper-divider {
     width: 20px;
     height: 1px;
-    background-color: #555555;
   }
 
 }
@@ -45,8 +43,13 @@
       left: 0;
       right: 0;
       bottom: 0;
-      background-color: rgba(255, 255, 255, 0.8);
       padding: 16px;
+
+      .lf-section-content-overlay-counter {
+        position: absolute;
+        color: rgba(0,0,0,0.03);
+        font-size: 50vh;
+      }
 
       &.lf-section-content-overlay-lt-md {
         padding-top: ($lf-navbar-thickness-mobile + 16px);
@@ -57,13 +60,11 @@
 
         h1 {
           font-weight: lighter;
-          color: #555555;
           font-size: 30px;
           margin-top: 0px;
         }
 
         h2 {
-          color: #962f2d;
           font-weight: normal;
           font-size: 20px;
           margin-bottom: 0px;
@@ -82,7 +83,7 @@
   padding: 16px;
 
   .lf-section-header-overlay-content {
-    margin-left: 16px;
+
   }
 
   h1 {
@@ -98,7 +99,6 @@
     /*letter-spacing: 6px;*/
     font-weight: lighter;
     margin-bottom: 4px;
-    color: #962f2d;
   }
 }
 

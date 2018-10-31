@@ -1,3 +1,30 @@
+@import '~@angular/material/theming';
+
 @mixin lf-subsection-theme($theme) {
+  $foreground: map-get($theme, foreground);
+  $primary: mat-color(map-get($theme, primary));
+  $text: mat-color($foreground, text);
+  $secondary-text: mat-color($foreground, secondary-text);
+
+  .lf-about-me-subsection {
+
+    .lf-subsection-title {
+      span {
+        color: $primary;
+      }
+
+      mat-icon {
+        color: $primary;
+      }
+    }
+
+    .lf-subsection-description {
+      border-top-color: $secondary-text;
+
+      span {
+        color: $secondary-text
+      }
+    }
+  }
 
 }

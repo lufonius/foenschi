@@ -1,0 +1,10 @@
+@import '~@angular/material/theming';
+
+@mixin lf-loading-overlay-theme($theme) {
+  $background: map-get($theme, background);
+  $dialog: mat-color($background, dialog);
+
+  .lf-loading-overlay {
+    background-color: $dialog;
+  }
+}

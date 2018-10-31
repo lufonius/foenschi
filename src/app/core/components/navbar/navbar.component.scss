@@ -1,0 +1,64 @@
+@import '../../../../variables';
+
+.lf-layout-hidden {
+  visibility: hidden;
+  max-height: 0px;
+  overflow: hidden;
+}
+
+.lf-navbar, .lf-navbar-minimal, .lf-bottom-navbar {
+  position: fixed;
+  display: flex;
+  z-index: 1;
+}
+
+.lf-bottom-navbar {
+  bottom: 0;
+  right: 0;
+  left: 0;
+  height: $lf-navbar-thickness-mobile;
+}
+
+.lf-navbar, .lf-navbar-minimal {
+
+  .lf-navbar-logo{
+    width: 130px;
+  }
+
+  .lf-navbar-fill {
+    width:100%;
+  }
+}
+
+.lf-navbar-spacing {
+  height: 16px;
+  width: 100%;
+}
+
+.lf-navbar-lt-md, .lf-navbar-minimal {
+  right: 0px;
+  left: 0px;
+  top: 0px;
+  height: $lf-navbar-thickness-mobile;
+  padding-top: 0px;
+  padding-right: 24px;
+  padding-left: 16px;
+}
+
+.lf-navbar-gt-sm {
+  right: 0px;
+  top: 0px;
+  bottom: 0px;
+  width: $lf-navbar-thickness-desktop;
+  padding-top: 16px;
+}
+
+.lf-navbar-minimal {
+  .lf-navbar-burger {
+    margin-left: 16px;
+  }
+}
+
+lf-burger {
+  height: min-content;
+}

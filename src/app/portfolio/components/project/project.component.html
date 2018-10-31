@@ -7,7 +7,8 @@
   [showBackground]="false"
   [background]="background"
   [title]="title"
-  [subtitle]="subtitle">
+  [subtitle]="subtitle"
+  [placeInOrder]="placeInOrder">
 
 <div class="lf-project-tabs" fxLayout="row" fxLayoutAlign="start center">
   <ng-container *ngFor="let projectSection of projectSections; let i = index">
@@ -33,10 +34,10 @@
         </p>
       </div>
       <div class="lf-project-tab-content-read-more" fxLayoutAlign="end center">
-        <!--<button mat-button color="primary">
+        <a mat-button color="primary" (click)="navigate(activeProjectSection.id)">
           <span>Read more</span>
           <mat-icon>keyboard_arrow_right</mat-icon>
-        </button>-->
+        </a>
       </div>
     </div>
   </div>

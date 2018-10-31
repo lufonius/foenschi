@@ -1,15 +1,22 @@
 <lf-loading-overlay *ngIf="isSomethingLoading$ | async"></lf-loading-overlay>
 
-<lf-navbar>
-  <lf-navbar-left>
+<!--pass mode: minimal (minimal version on desktop)-->
+<lf-navbar [mode]="navbarType$ | async" [showQuickNav]="showQuickNav$ | async">
+
+
+  <lf-navbar-logo>
     <lf-logo></lf-logo>
-  </lf-navbar-left>
-  <lf-navbar-right>
+  </lf-navbar-logo>
+
+  <!--Background only visible on front-page-->
+  <lf-navbar-burger>
     <lf-burger
       [backgroundColor]="navigationBarContentColor"
       (onBurgerClick)="toggleNavVisibility()"
     ></lf-burger>
-  </lf-navbar-right>
+  </lf-navbar-burger>
+
+  <!--Show only on front-page-->
   <lf-navbar-quick-nav>
     <lf-quick-nav
       [sectionScreenCoverage]="scrollService.sectionScreenCoverage$ | async"

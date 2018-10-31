@@ -1,0 +1,41 @@
+<div ngClass.gt-sm="lf-skills-gt-sm" ngClass.lt-md="lf-skills-lt-md" *ngIf="skillsPage">
+  <div class="lf-skills-heading" *ngIf="skillsPage.heading">
+    <h2>{{skillsPage.heading.subtitle}}</h2>
+    <h1>{{skillsPage.heading.title}}</h1>
+  </div>
+  <div fxLayout="column" *ngIf="skillsPage.groups">
+    <div *ngFor="let skillGroup of objectAsArray(skillsPage.groups)">
+    <div class="lf-skills-subsection-group">
+      <span>{{skillGroup.title}}</span>
+    </div>
+    <div
+      fxLayout="row wrap"
+      fxFlexAlign="start">
+      <div
+        *ngFor="let skill of skillGroup.skills"
+        class="lf-skills-grid-item"
+        fxFlex.gt-sm="0 0 33.33%"
+        fxFlex.lt-md="0 0 50%"
+        fxFlex.xs="0 0 100%">
+        <div class="lf-skills-grid-item-content">
+          <div class="lf-skills-grid-item-heading">
+            <h3>{{skill.title}}</h3>
+            <span [ngClass]="{'lf-skills-grid-item-heading-level-indicator': skill.level >= 1}">•</span>
+            <span [ngClass]="{'lf-skills-grid-item-heading-level-indicator': skill.level >= 2}">•</span>
+            <span [ngClass]="{'lf-skills-grid-item-heading-level-indicator': skill.level >= 3}">•</span>
+            <span [ngClass]="{'lf-skills-grid-item-heading-level-indicator': skill.level >= 4}">•</span>
+          </div>
+          <div class="lf-skills-grid-item-chip-container" fxLayout="row">
+            <div *ngFor="let label of skill.labels" class="lf-skills-grid-item-chip">
+              <span>{{label}}</span>
+            </div>
+          </div>
+          <div class="lf-skills-grid-item-description">
+            {{skill.description}}
+          </div>
+        </div>
+      </div>
+    </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,46 @@
+@import '~@angular/material/theming';
+@import '../../../../variables';
+
+@mixin lf-project-detail-theme($theme) {
+  $foreground: map-get($theme, foreground);
+  $background: map-get($theme, background);
+  $statusbar: mat-color($background, status-bar);
+  $dialog: mat-color($background, dialog);
+  $appbar: mat-color($background, app-bar);
+  $primary: mat-color(map-get($theme, primary));
+  $text: mat-color($foreground, text);
+  $secondary-text: mat-color($foreground, secondary-text);
+
+  .lf-project-detail {
+
+    .lf-project-detail-heading {
+      @include lf-page-heading-theme($theme);
+    }
+
+    .lf-project-detail-primary-description {
+      p {
+        color: $text;
+      }
+    }
+
+    .lf-project-detail-block, .lf-project-detail-file-title {
+
+      h2 {
+        color: $primary;
+      }
+    }
+
+    .lf-project-detail-files {
+      span, a {
+        color: $text;
+      }
+    }
+
+    .lf-project-detail-block {
+      .lf-project-detail-block-description {
+        color: $text;
+      }
+    }
+  }
+
+}

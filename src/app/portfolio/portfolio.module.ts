@@ -30,7 +30,17 @@ import { ScrollOffsetPercentageDirective } from "./directives/scroll-offset-perc
 import { PORTFOLIO_ROUTES } from "./portfolio.routes";
 import { SkillsComponent } from './components/skills/skills.component';
 import { SkillsPageComponent } from './containers/skills-page.component';
-import {BaseLoadingEffects} from "./effects/base-loading.effects";
+import { BaseLoadingEffects } from "./effects/base-loading.effects";
+
+import * as fromSkillsPage from './reducers/skills.reducer';
+import {SkillsPageEffects} from "./effects/skills.effects";
+import {SkillsPageService} from "./services/skills-page.service";
+import { ProjectDetailComponent } from './components/project-detail/project-detail.component';
+import { ProjectDetailPageComponent } from './containers/project-detail-page.component';
+
+import * as fromProjectDetailPage from './reducers/project-detail-page.reducer';
+import {ProjectDetailPageEffects} from "./effects/project-detail-page.effects";
+import { ResumeComponent } from './components/resume/resume.component';
 
 
 
@@ -40,11 +50,15 @@ import {BaseLoadingEffects} from "./effects/base-loading.effects";
     RouterModule.forChild(PORTFOLIO_ROUTES),
     StoreModule.forFeature('portfolio', {
       project: fromProject.reducer,
-      frontPage: fromFrontPage.reducer
+      frontPage: fromFrontPage.reducer,
+      skillsPage:fromSkillsPage.reducer,
+      projectDetailPage: fromProjectDetailPage.reducer
     }),
     EffectsModule.forFeature([
       ProjectEffects,
       FrontPageEffects,
+      SkillsPageEffects,
+      ProjectDetailPageEffects,
       BaseLoadingEffects
     ]),
     SharedModule
@@ -61,13 +75,19 @@ import {BaseLoadingEffects} from "./effects/base-loading.effects";
     ScreenCoverageDirective,
     ScrollOffsetPercentageDirective,
     SkillsComponent,
-    SkillsPageComponent
+    SkillsPageComponent,
+    ProjectDetailComponent,
+    ProjectDetailPageComponent,
+    ResumeComponent
   ],
   providers : [
     FrontPageService,
     FrontPageEffects,
     ProjectService,
     ProjectEffects,
+    SkillsPageService,
+    SkillsPageEffects,
+    ProjectDetailPageEffects,
     BaseLoadingEffects
   ]
 })

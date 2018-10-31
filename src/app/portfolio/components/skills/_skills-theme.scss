@@ -1,0 +1,55 @@
+@import '~@angular/material/theming';
+
+@mixin lf-skills-theme($theme) {
+  $foreground: map-get($theme, foreground);
+  $background: map-get($theme, background);
+  $statusbar: mat-color($background, status-bar);
+  $dialog: mat-color($background, dialog);
+  $appbar: mat-color($background, app-bar);
+  $primary: mat-color(map-get($theme, primary));
+  $text: mat-color($foreground, text);
+  $secondary-text: mat-color($foreground, secondary-text);
+
+  .lf-skills-subsection-group {
+    color: $secondary-text;
+  }
+
+  .lf-skills-gt-sm, .lf-skills-lt-md {
+    background: $dialog;
+  }
+
+
+  .lf-skills-grid-item {
+    .lf-skills-grid-item-content {
+      background-color: $appbar;
+
+      .lf-skills-grid-item-heading {
+        h3 {
+          color: $primary;
+          margin-right: 4px;
+        }
+
+        span {
+          color: $statusbar;
+        }
+
+        .lf-skills-grid-item-heading-level-indicator {
+          color: $primary;
+        }
+      }
+
+      .lf-skills-grid-item-chip {
+        background-color: $statusbar;
+
+        span {
+          color: $secondary-text;
+        }
+      }
+
+      .lf-skills-grid-item-description {
+        color: $secondary-text;
+      }
+    }
+  }
+
+}

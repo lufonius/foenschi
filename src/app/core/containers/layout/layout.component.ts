@@ -20,8 +20,9 @@ import {
 } from "../../actions/layout.actions";
 import { State } from "../../reducers/index";
 import {
-  combineLatest,
-  Observable
+  BehaviorSubject,
+  combineLatest, merge,
+  Observable, of
 } from "rxjs/index";
 import * as fromRoot from '../../reducers/index';
 import { Subject } from 'rxjs';
@@ -42,7 +43,9 @@ import {
 import { NavigationItemAdapter } from "../../models/navigation-item-adapter.view-model";
 import {NavigationService} from "../../services/navigation.service";
 import {ScrollService} from "../../services/scroll.service";
-import {Router} from "@angular/router";
+import {ActivationEnd, ActivationStart, Event, NavigationStart, Router} from "@angular/router";
+import {mergeMap, shareReplay} from "rxjs/internal/operators";
+import {flatMap} from "tslint/lib/utils";
 
 @Component({
   selector: 'lf-layout',
@@ -62,6 +65,8 @@ export class LayoutComponent {
   private currentPageScrollYOffset$: Observable<number>;
   private currentLanguageState$: Observable<string>;
   private isSomethingLoading$: Observable<boolean>;
+  private navbarType$: BehaviorSubject<string>;
+  private showQuickNav$: BehaviorSubject<boolean>;
 
 
   constructor(
@@ -88,6 +93,23 @@ export class LayoutComponent {
     this.setIsMobileMediaQuery();
 
     this.store.dispatch(new LoadNavigationAction());
+
+    this.navbarType$ = new BehaviorSubject<string>(null);
+    this.showQuickNav$ = new BehaviorSubject<boolean>(false);
+
+    this.router.events.pipe(
+      filter(event => event instanceof ActivationEnd && event.snapshot.children.length == 0),
+      map((event: ActivationEnd) => {
+        let navbarType = (event.snapshot.data['navbarType']) ? event.snapshot.data['navbarType'] : 'normal';
+        let showQuickNav = (event.snapshot.data['showQuickNav']) ? event.snapshot.data['showQuickNav'] : false;
+
+        return { navbarType, showQuickNav };
+      })
+    ).subscribe(navbarSettings => {
+      console.log(navbarSettings);
+      this.navbarType$.next(navbarSettings.navbarType);
+      this.showQuickNav$.next(navbarSettings.showQuickNav);
+    });
   }
 
   @HostListener('window:scroll', ['$event']) onScroll() {

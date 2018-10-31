@@ -1,0 +1,59 @@
+@import '../../../../variables';
+
+.lf-project-detail-lt-md {
+  padding-top: 8px + $lf-navbar-thickness-mobile!important;
+}
+
+.lf-project-detail {
+  max-width: 600px;
+  padding: 8px;
+
+  .lf-project-detail-heading {
+    @include lf-page-heading-layout();
+    margin-bottom: 32px;
+  }
+
+  .lf-project-detail-primary-description {
+    p {
+
+    }
+  }
+
+  .lf-project-detail-block, .lf-project-detail-file-title {
+
+    h2 {
+      font-weight: normal;
+      font-size: 20px;
+      margin-bottom: 0px;
+      margin-bottom: 8px;
+    }
+  }
+
+  .lf-project-detail-files {
+    span {
+
+    }
+     a {
+
+     }
+  }
+
+  .lf-project-detail-block {
+
+    .lf-project-detail-block-image {
+      height: 200px;
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center center;
+    }
+
+    .lf-project-detail-block-description {
+      box-sizing: border-box;
+      padding: 8px;
+    }
+
+    .lf-project-detail-block-description-lt-md {
+      padding-left: 0px;
+    }
+  }
+}
