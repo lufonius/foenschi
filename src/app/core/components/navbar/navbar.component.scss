@@ -21,8 +21,12 @@
 
 .lf-navbar, .lf-navbar-minimal {
 
-  .lf-navbar-logo{
+  .lf-navbar-logo {
     width: 130px;
+  }
+
+  .lf-navbar-logo-lt-md {
+    width: 200px!important;
   }
 
   .lf-navbar-fill {
@@ -54,6 +58,7 @@
 }
 
 .lf-navbar-minimal {
+
   .lf-navbar-burger {
     margin-left: 16px;
   }

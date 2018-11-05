@@ -8,14 +8,14 @@ import {SectionScrollOffsetPercentageModel} from "../models/section-scroll-offse
 @Injectable()
 export class ScrollService {
 
-  private sectionScreenCoverage: SectionScreenCoverage = {
+  public sectionScreenCoverage: SectionScreenCoverage = {
     aboutMeSection: -1,
     contactSection: -1,
     entrySection: -1,
     projectSection: -1
   };
 
-  private sectionScrollOffsetPercentage: SectionScrollOffsetPercentageModel = {
+  public sectionScrollOffsetPercentage: SectionScrollOffsetPercentageModel = {
     aboutMeSection: -1,
     contactSection: -1,
     entrySection: -1,

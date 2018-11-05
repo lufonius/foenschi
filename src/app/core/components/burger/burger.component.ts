@@ -12,10 +12,10 @@ import {
 })
 export class BurgerComponent {
 
-  @Output() onBurgerClick = new EventEmitter();
+  @Output() onBurgerClick = new EventEmitter<{x: number, y: number}>();
   @Input() backgroundColor: string = 'rgba(255,255,255,1)';
 
-  burgerClicked() {
-    this.onBurgerClick.emit();
+  burgerClicked(event) {
+    this.onBurgerClick.emit(event);
   }
 }

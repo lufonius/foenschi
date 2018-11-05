@@ -10,7 +10,7 @@ import {State} from "../../core/reducers/index";
 import {select, Store} from "@ngrx/store";
 import {Observable, of, Subject} from "rxjs/index";
 import * as fromRoot from '../../core/reducers/index';
-import {catchError, combineLatest, filter, map, mergeMap} from "rxjs/internal/operators";
+import {catchError, combineLatest, filter, map, mergeMap} from "rxjs/operators";
 import {SetLoadAction, SetLoadSuccessAction} from "../../core/actions/base-loading.actions";
 
 
@@ -18,9 +18,9 @@ import {SetLoadAction, SetLoadSuccessAction} from "../../core/actions/base-loadi
 export class FrontPageEffects {
 
   constructor(
-    private actions$: Actions,
-    private frontPageService: FrontPageService,
-    private store: Store<State>) {
+    public actions$: Actions,
+    public frontPageService: FrontPageService,
+    public store: Store<State>) {
 
   }
 

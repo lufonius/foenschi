@@ -17,11 +17,12 @@ import {
 } from "../actions/project.actions";
 import {LoadSkillsPageAction, SkillsPageActionTypes} from "../actions/skills.actions";
 import {ProjectDetailPageActionTypes} from "../actions/project-detail-page.actions";
+import {ResumePageActionTypes} from "../actions/resume-page.actions";
 
 @Injectable()
 export class BaseLoadingEffects {
 
-  constructor(private actions$: Actions) {}
+  constructor(public actions$: Actions) {}
 
   @Effect()
   generalizeLoadAction$: Observable<Action> = this.actions$.pipe(
@@ -29,7 +30,8 @@ export class BaseLoadingEffects {
       FrontPageActionTypes.LoadFrontPage,
       ProjectActionTypes.LoadProjects,
       SkillsPageActionTypes.LoadSkillsPage,
-      ProjectDetailPageActionTypes.LoadProjectDetailPage
+      ProjectDetailPageActionTypes.LoadProjectDetailPage,
+      ResumePageActionTypes.LoadResumePage
     ),
     map((loadAction: LoadFrontPageAction | LoadProjectsAction) =>
       new SetLoadAction(loadAction.request))
@@ -41,7 +43,8 @@ export class BaseLoadingEffects {
       FrontPageActionTypes.FrontPageLoadSuccess,
       ProjectActionTypes.ProjectsLoadSuccess,
       SkillsPageActionTypes.SkillsPageLoadSuccess,
-      ProjectDetailPageActionTypes.ProjectDetailPageLoadSuccess
+      ProjectDetailPageActionTypes.ProjectDetailPageLoadSuccess,
+      ResumePageActionTypes.ResumePageLoadSuccess
     ),
     map((loadSuccessAction: FrontPageLoadSuccessAction | ProjectsLoadSuccessAction) =>
       new SetLoadSuccessAction(loadSuccessAction.request))
@@ -53,7 +56,8 @@ export class BaseLoadingEffects {
       FrontPageActionTypes.FrontPageLoadFailure,
       ProjectActionTypes.ProjectsLoadFailure,
       SkillsPageActionTypes.SkillsPageLoadFailure,
-      ProjectDetailPageActionTypes.ProjectDetailPageLoadFailure
+      ProjectDetailPageActionTypes.ProjectDetailPageLoadFailure,
+      ResumePageActionTypes.ResumePageLoadFailure
     ),
     map((loadFailureAction: FrontPageLoadFailureAction | ProjectsLoadFailureAction) =>
       new SetLoadFailureAction(loadFailureAction.request))

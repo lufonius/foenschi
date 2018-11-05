@@ -37,6 +37,8 @@ import {CheckLanguageGuardService} from "./services/check-language-guard.service
 import { NavbarComponent } from './components/navbar/navbar.component';
 import {CheckCurrentLanguageGuardService} from "./services/check-current-language-guard.service";
 import {BaseLoadingEffects} from "./effects/base-loading.effect";
+import { LanguageListComponent } from './components/language-list/language-list.component';
+import { PageChangeAnimationComponent } from './components/page-change-animation/page-change-animation.component';
 
 
 
@@ -67,7 +69,9 @@ import {BaseLoadingEffects} from "./effects/base-loading.effect";
     LoadingOverlayComponent,
     ChooseLanguageComponent,
     ChooseLanguagePageComponent,
-    NavbarComponent
+    NavbarComponent,
+    LanguageListComponent,
+    PageChangeAnimationComponent
   ],
   exports: [
     LayoutComponent

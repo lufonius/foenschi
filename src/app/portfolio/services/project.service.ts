@@ -12,13 +12,13 @@ import {ProjectDetailPage} from "../models/project-detail-page.view-model";
 })
 export class ProjectService {
 
-  constructor(private db: AngularFirestore) { }
+  constructor(public db: AngularFirestore) { }
 
   public getProjects(language: string, projectId?: string): Observable<Project[] | Project> {
     let projects$ = this.db
       .collection('languages')
       .doc(language)
-      .collection('project');
+      .collection('project', ref => ref.orderBy('order', 'asc'));
 
     if(projectId) {
       return <any>projects$.doc(projectId).valueChanges();

@@ -41,6 +41,10 @@ import { ProjectDetailPageComponent } from './containers/project-detail-page.com
 import * as fromProjectDetailPage from './reducers/project-detail-page.reducer';
 import {ProjectDetailPageEffects} from "./effects/project-detail-page.effects";
 import { ResumeComponent } from './components/resume/resume.component';
+import { ResumePageComponent } from './containers/resume-page.component';
+import {ResumePageEffects} from "./effects/resume-page.effects";
+import {ResumePageService} from "./services/resume-page.service";
+import * as fromResumePage from './reducers/resume-page.reducer';
 
 
 
@@ -52,13 +56,15 @@ import { ResumeComponent } from './components/resume/resume.component';
       project: fromProject.reducer,
       frontPage: fromFrontPage.reducer,
       skillsPage:fromSkillsPage.reducer,
-      projectDetailPage: fromProjectDetailPage.reducer
+      projectDetailPage: fromProjectDetailPage.reducer,
+      resumePage: fromResumePage.reducer
     }),
     EffectsModule.forFeature([
       ProjectEffects,
       FrontPageEffects,
       SkillsPageEffects,
       ProjectDetailPageEffects,
+      ResumePageEffects,
       BaseLoadingEffects
     ]),
     SharedModule
@@ -78,7 +84,8 @@ import { ResumeComponent } from './components/resume/resume.component';
     SkillsPageComponent,
     ProjectDetailComponent,
     ProjectDetailPageComponent,
-    ResumeComponent
+    ResumeComponent,
+    ResumePageComponent
   ],
   providers : [
     FrontPageService,
@@ -88,6 +95,8 @@ import { ResumeComponent } from './components/resume/resume.component';
     SkillsPageService,
     SkillsPageEffects,
     ProjectDetailPageEffects,
+    ResumePageEffects,
+    ResumePageService,
     BaseLoadingEffects
   ]
 })

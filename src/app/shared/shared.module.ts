@@ -5,35 +5,32 @@ import {
   MatIconModule,
   MatInputModule,
   MatProgressSpinnerModule,
-  MatRippleModule,
-  MatTabsModule
+  MatRippleModule
 } from "@angular/material";
 import { LogoComponent } from './components/logo/logo.component';
 import { NotYetImplementedComponent } from './components/not-yet-implemented/not-yet-implemented.component';
 import {RouterModule} from "@angular/router";
-
-const IMPORT_EXPORT = [
-  FlexLayoutModule,
-  RouterModule
-];
-
-const MATERIAL_MODULES = [
-  MatButtonModule,
-  MatIconModule,
-  MatTabsModule,
-  MatRippleModule,
-  MatInputModule,
-  MatProgressSpinnerModule
-];
+import {CommonModule} from "@angular/common";
 
 @NgModule({
   imports: [
-    ...IMPORT_EXPORT,
-    ...MATERIAL_MODULES
+    CommonModule,
+    RouterModule,
+    FlexLayoutModule,
+    MatButtonModule,
+    MatIconModule,
+    MatRippleModule,
+    MatInputModule,
+    MatProgressSpinnerModule
   ],
   exports: [
-    ...IMPORT_EXPORT,
-    ...MATERIAL_MODULES,
+    FlexLayoutModule,
+    RouterModule,
+    MatButtonModule,
+    MatIconModule,
+    MatRippleModule,
+    MatInputModule,
+    MatProgressSpinnerModule,
     LogoComponent,
     NotYetImplementedComponent
   ],

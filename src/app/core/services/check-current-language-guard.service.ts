@@ -10,9 +10,9 @@ import {map, tap, filter} from "rxjs/operators";
 @Injectable()
 export class CheckCurrentLanguageGuardService implements CanActivate {
 
-  private currentLanguageState$: Observable<string>;
+  public currentLanguageState$: Observable<string>;
 
-  constructor(private store: Store<fromRoot.State>, private router: Router) {
+  constructor(public store: Store<fromRoot.State>, public router: Router) {
     this.currentLanguageState$ = store.pipe(select(fromRoot.getCurrentLanguageState));
   }
 

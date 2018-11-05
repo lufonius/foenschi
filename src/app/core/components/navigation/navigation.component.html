@@ -1,8 +1,10 @@
 <div
   class="lf-navigation"
-  [@visibility]="visibilityState">
-
-  <div class="lf-navigation-header-container" *ngIf="!isMobileMediaQuery" fxLayout="row">
+  [@visibility]="visibilityState"
+  [style.transform-origin]="getTransformOriginStyle(transformOrigin.x, transformOrigin.y)"
+>
+  <div ngClass.gt-sm="lf-navigation-strawler-gt-sm">
+  <div ngClass.lt-md="lf-navigation-header-container-lt-md" class="lf-navigation-header-container" *ngIf="!isMobileMediaQuery" fxLayout="row">
     <div fxLayoutAlign.gt-sm="end" class="lf-navigation-header-title" fxFlex="1 1 auto">
       <span>{{title}}</span>
     </div>
@@ -13,89 +15,93 @@
     </div>
   </div>
 
-  <div class="lf-navigation-container" fxLayoutAlign.gt-sm="end" fxLayout="row" [@navigationLevels]="currentNavigationLevel">
+  <div class="lf-navigation-container" ngClass.lt-md="lf-navigation-container-lt-md" ngClass.gt-sm="lf-navigation-container-gt-sm" fxLayoutAlign.gt-sm="end" [@navigationLevels]="currentNavigationLevel">
+      <div class="lf-navigation-first-level"
+        ngClass.lt-md="lf-navigation-first-level-lt-md">
 
-    <div
-      class="lf-navigation-first-level"
-      ngClass.lt-md="lf-navigation-first-level-lt-md">
+        <div class="lf-navigation-header-container" ngClass.lt-md="lf-navigation-header-container-lt-md" *ngIf="isMobileMediaQuery" fxLayout="row">
 
-      <div class="lf-navigation-header-container" *ngIf="isMobileMediaQuery" fxLayout="row">
+          <div class="lf-navigation-header-title" fxFlex="1 1 auto">
+            <span fxHide.xs="true">{{title}}</span>
+          </div>
+          <div class="lf-navigation-header-dismiss">
+            <lf-close
+              [@closeVisibility]="visibilityState"
+              (closeClicked)="closeNavigation()"></lf-close>
 
-        <div class="lf-navigation-header-title" fxFlex="1 1 auto">
-          <span>{{title}}</span>
+          </div>
         </div>
-        <div class="lf-navigation-header-dismiss">
-          <lf-close
-            [@closeVisibility]="visibilityState"
-            (closeClicked)="closeNavigation()"></lf-close>
 
-        </div>
-      </div>
+        <div class="lf-navigation-element-divider"></div>
 
-      <div class="lf-navigation-element-divider"></div>
-
-      <ng-container *ngFor="let navigationItem of navigationItems">
-        <div>
-          <lf-navigation-element
-            [hasChildren]="navigationItem.hasChildren"
-            [isActive]="navigationItem.isActive"
-            [title]="navigationItem.title"
-            [subtitle]="navigationItem.subtitle"
-            [route]="navigationItem.route"
-            (navigationElementClicked)="activeNavigationItemChange(navigationItem);">
-
-          </lf-navigation-element>
-          <div class="lf-navigation-element-divider"></div>
-        </div>
-      </ng-container>
-
-    </div>
-
-    <div
-      ngClass.gt-sm="lf-navigation-second-level-gt-sm"
-      ngClass.lt-md="lf-navigation-second-level-lt-md">
-
-      <div
-        class="lf-navigation-header-container"
-        *ngIf="isMobileMediaQuery"
-        fxLayout="row">
-        <div
-          class="lf-navigation-header-back"
-          (click)="back()">
-          <mat-icon>arrow_back</mat-icon>
-        </div>
-        <div class="lf-navigation-header-title"
-             fxFlex="1 1 auto">
-          <span>{{navigationHeaderTitle}}</span>
-        </div>
-        <div class="lf-navigation-header-dismiss">
-          <lf-close
-            [@closeVisibility]="visibilityState"
-            (closeClicked)="closeNavigation()"></lf-close>
-        </div>
-      </div>
-
-      <div class="lf-navigation-element-divider"></div>
-      <ng-container *ngFor="let navigationItem of navigationItems">
-        <ng-container *ngIf="navigationItem.id === activeNavigationItemId">
-          <ng-container *ngFor="let navigationChildItem of navigationItem.children">
+        <div ngClass.lt-md="lf-navigation-element-container-lt-md">
+          <ng-container *ngFor="let navigationItem of navigationItems">
             <div>
               <lf-navigation-element
-                [hasChildren]="navigationChildItem.hasChildren"
-                [isActive]="navigationChildItem.isActive"
-                [title]="navigationChildItem.title"
-                [subtitle]="navigationChildItem.subtitle"
-                [route]="navigationChildItem.route"
-                (navigationElementClicked)="activeNavigationItemChange(navigationChildItem);">
+                [hasChildren]="navigationItem.hasChildren"
+                [isActive]="navigationItem.isActive"
+                [title]="navigationItem.title"
+                [subtitle]="navigationItem.subtitle"
+                [route]="navigationItem.route"
+                (navigationElementClicked)="activeNavigationItemChange(navigationItem);">
+
               </lf-navigation-element>
               <div class="lf-navigation-element-divider"></div>
             </div>
           </ng-container>
+        </div>
+
+      </div>
+
+      <div ngClass.gt-sm="lf-navigation-second-level-gt-sm"
+        ngClass.lt-md="lf-navigation-second-level-lt-md">
+
+        <div
+          class="lf-navigation-header-container"
+          ngClass.lt-md="lf-navigation-header-container-lt-md"
+          *ngIf="isMobileMediaQuery"
+          fxLayout="row">
+          <div
+            class="lf-navigation-header-back"
+            (click)="back()">
+            <mat-icon>arrow_back</mat-icon>
+          </div>
+          <div class="lf-navigation-header-title" fxLayoutAlign="start center"
+               fxFlex="1 1 auto">
+            <span>{{navigationHeaderTitle}}</span>
+          </div>
+          <div class="lf-navigation-header-dismiss">
+            <lf-close
+              [@closeVisibility]="visibilityState"
+              (closeClicked)="closeNavigation()"></lf-close>
+          </div>
+        </div>
+
+        <div ngClass.lt-md="lf-navigation-element-container-lt-md">
+          <ng-container *ngFor="let navigationItem of navigationItems; let i = index">
+          <ng-container *ngIf="navigationItem.id === activeNavigationItemId">
+            <div [style.margin-top]="getMarginTopStyle(i)" class="lf-navigation-element-divider"></div>
+            <ng-container *ngFor="let navigationChildItem of navigationItem.children">
+              <div>
+                <lf-navigation-element
+                  [hasChildren]="navigationChildItem.hasChildren"
+                  [isActive]="navigationChildItem.isActive"
+                  [title]="navigationChildItem.title"
+                  [subtitle]="navigationChildItem.subtitle"
+                  [route]="navigationChildItem.route"
+                  (navigationElementClicked)="activeNavigationItemChange(navigationChildItem);">
+                </lf-navigation-element>
+                <div class="lf-navigation-element-divider"></div>
+              </div>
+            </ng-container>
+          </ng-container>
         </ng-container>
-      </ng-container>
-
-    </div>
-
+        </div>
+      </div>
   </div>
 
+  <div class="lf-navigation-footer" fxLayoutAlign="start center">
+    <ng-content select="lf-navigation-footer"></ng-content>
+  </div>
+  </div>
 </div>

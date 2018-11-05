@@ -14,12 +14,13 @@ import {
   SetAboutMeSectionPositionAction,
   SetContactSectionPositionAction,
   SetEntrySectionPositionAction,
-  SetProjectsSectionPositionAction
+  SetProjectsSectionPositionAction, SetQuickNavTitlesAction
 } from "../../core/actions/layout.actions";
-import {filter, map, mergeMap, withLatestFrom} from "rxjs/internal/operators";
+import {filter, map, mergeMap, withLatestFrom} from "rxjs/operators";
 import {ProjectService} from "../services/project.service";
 import {ScrollService} from "../../core/services/scroll.service";
 import {EntrySection} from "../models/entry-section.view-model";
+import {current} from "codelyzer/util/syntaxKind";
 
 @Component({
   selector: 'lf-front-page',
@@ -99,6 +100,8 @@ import {EntrySection} from "../models/entry-section.view-model";
     [subjectPlaceholder]="(contactSectionState$ | async).form.subjectPlaceholder"
     [messagePlaceholder]="(contactSectionState$ | async).form.messagePlaceholder"
     [submitButtonText]="(contactSectionState$ | async).form.submitButtonText"
+    [warning]="(contactSectionState$ | async).warning"
+    [email]="(contactSectionState$ | async).email"
     placeInOrder="03"
     ></lf-contact>
   `,
@@ -112,25 +115,21 @@ import {EntrySection} from "../models/entry-section.view-model";
 })
 export class FrontPageComponent {
 
-  private projectsState$: Observable<Project[]>;
-  private activeProjectState$: Observable<Project>;
-  private projectsLoadingState$: Observable<boolean>;
-
-  private entrySectionState$: Observable<EntrySection>;
-  private aboutMeSectionState$: Observable<AboutMeSubsection>;
-  private aboutMeSubsectionState$: Observable<AboutMeSubsection[]>;
-  private projectsSectionState$: Observable<ProjectsSection>;
-  private contactSectionState$: Observable<ContactSection>;
-
-  private currentLanguage$: Observable<string>;
-
-  private sectionPositionsState$: Observable<fromLayout.SectionPositionsState>;
-
-  private moveToSection$: Subject<(sectionPositions) => {x: number, y: number}> = new Subject();
+  public projectsState$: Observable<Project[]>;
+  public activeProjectState$: Observable<Project>;
+  public projectsLoadingState$: Observable<boolean>;
+  public entrySectionState$: Observable<EntrySection>;
+  public aboutMeSectionState$: Observable<AboutMeSubsection>;
+  public aboutMeSubsectionState$: Observable<AboutMeSubsection[]>;
+  public projectsSectionState$: Observable<ProjectsSection>;
+  public contactSectionState$: Observable<ContactSection>;
+  public currentLanguage$: Observable<string>;
+  public sectionPositionsState$: Observable<fromLayout.SectionPositionsState>;
+  public moveToSection$: Subject<(sectionPositions) => {x: number, y: number}> = new Subject();
 
   constructor(
-    private store: Store<any>,
-    private scrollService: ScrollService
+    public store: Store<any>,
+    public scrollService: ScrollService
   ) {
 
     this.projectsLoadingState$ = this.store.pipe(select(fromPortfolio.getProjectsLoadingState));
@@ -141,23 +140,51 @@ export class FrontPageComponent {
     this.aboutMeSubsectionState$ = this.store.pipe(select(fromPortfolio.getAboutMeSectionSubsectionState));
     this.projectsSectionState$ = this.store.pipe(select(fromPortfolio.getProjectSectionState));
     this.contactSectionState$ = this.store.pipe(select(fromPortfolio.getContactSectionState));
+    this.currentLanguage$ = this.store.pipe(select(fromRoot.getCurrentLanguageState));
+
     this.sectionPositionsState$ = this.store.pipe(
       select(fromRoot.getSectionPositionsState),
       filter(value => !!value)
     );
-    this.currentLanguage$ = this.store.pipe(select(fromRoot.getCurrentLanguageState));
+
 
     this.store.dispatch(new LoadProjectsAction());
     this.store.dispatch(new LoadFrontPageAction());
 
     this.setInitialActiveProjectId();
+    this.registerScrollToSectionOnChange();
+    this.registerQuickNavTitlesOnChange();
+    this.registerCurrentSectionOnChange();
+  }
 
+  registerCurrentSectionOnChange() {
+    this.store.pipe(select(fromPortfolio.getCurrentSectionState))
+      .subscribe(currentSectionState => {
+        switch(currentSectionState) {
+          case 'about-me': { this.goToAboutMeSection(); break; }
+          case 'contact': { this.goToContactSection(); break; }
+          case 'projects': { this.goToProjectSection(); break; }
+          case 'entry': { this.goToEntrySection(); break; }
+        }
+      });
+  }
+
+  registerQuickNavTitlesOnChange() {
+    this.store.pipe(select(fromPortfolio.getQuickNavTitles))
+      .subscribe(quickNavTitles =>
+        this.store.dispatch(new SetQuickNavTitlesAction({ quickNavTitles: quickNavTitles }))
+      );
+  }
+
+  registerScrollToSectionOnChange() {
+    // a stream of functions. when you want to go to a new section, pass a strategy which is gonna return he section position
     this.moveToSection$
       .pipe(
         withLatestFrom(
+          //der letzte wert von sectionpositionstate
           this.sectionPositionsState$,
           (accessor, sectionPositions) => { return { sectionPositions, accessor } }
-          ),
+        ),
         filter(obj => !!(obj.accessor(obj.sectionPositions))),
         map(obj => obj.accessor(obj.sectionPositions))
       )
@@ -179,6 +206,10 @@ export class FrontPageComponent {
     });
   }
 
+  activeProjectSectionIdChanged(id: string) {
+    this.store.dispatch(new SetActiveProjectIdAction({ id }));
+  }
+
   setAboutMeSectionPosition(position: {x: number, y: number}) {
    this.store.dispatch(new SetAboutMeSectionPositionAction({ position }));
   }
@@ -193,10 +224,6 @@ export class FrontPageComponent {
 
   setContactSectionPosition(position: {x: number, y: number}) {
     this.store.dispatch(new SetContactSectionPositionAction({ position }));
-  }
-
-  activeProjectSectionIdChanged(id: string) {
-    this.store.dispatch(new SetActiveProjectIdAction({ id }));
   }
 
   goToEntrySection() {

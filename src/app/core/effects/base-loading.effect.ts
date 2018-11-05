@@ -22,7 +22,7 @@ import {LanguageActionTypes, LoadAvailableLanguagesAction} from "../actions/lang
 @Injectable()
 export class BaseLoadingEffects {
 
-  constructor(private actions$: Actions) {}
+  constructor(public actions$: Actions) {}
 
   //when a load action is being received, it transforms it into another, generalized action
   //made this way because another module most likely has to load ressources aswell,

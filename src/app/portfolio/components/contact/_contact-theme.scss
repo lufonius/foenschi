@@ -1,0 +1,14 @@
+@import '~@angular/material/theming';
+
+@mixin lf-contact-theme($theme) {
+  $foreground: map-get($theme, foreground);
+  $primary: mat-color(map-get($theme, primary));
+  $text: mat-color($foreground, text);
+  $secondary-text: mat-color($foreground, secondary-text);
+
+  .lf-contact-info {
+    background-color: $primary;
+    color: mat-color(map-get($theme, primary), default-contrast);
+  }
+
+}

@@ -1,0 +1,60 @@
+@import '~@angular/material/theming';
+@import '../../../../variables';
+
+@mixin lf-resume-theme($theme) {
+  $foreground: map-get($theme, foreground);
+  $primary: mat-color(map-get($theme, primary));
+  $text: mat-color($foreground, text);
+  $background: map-get($theme, background);
+  $dialog: mat-color($background, dialog);
+  $appbar: mat-color($background, app-bar);
+  $secondary-text: mat-color($foreground, secondary-text);
+
+  .lf-resume {
+    .lf-resume-personal {
+      background-color: $appbar;
+
+      .lf-resume-personal-profile-picture-container {
+        .lf-resume-personal-profile-picture {
+          border-color: $primary;
+        }
+      }
+
+      .lf-resume-personal-info {
+        .lf-resume-personal-info-row {
+          h5 {
+            color: $primary;
+          }
+
+          h4 {
+            color: $text;
+          }
+        }
+      }
+    }
+
+    .lf-resume-history {
+      @include lf-page-heading-theme($theme);
+
+      .lf-resume-history-step {
+        margin-bottom: 32px;
+
+        .lf-resume-history-step-year {
+          border-left-color: $primary;
+          color: $primary;
+        }
+
+        .lf-resume-history-step-info {
+          h4 {
+            color: $primary;
+          }
+
+          h5 {
+            color: $text;
+          }
+        }
+      }
+    }
+  }
+
+}

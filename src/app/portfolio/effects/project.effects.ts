@@ -31,9 +31,9 @@ import {SetLoadAction} from "../../core/actions/base-loading.actions";
 export class ProjectEffects {
 
   constructor(
-    private actions$: Actions,
-    private projectService: ProjectService,
-    private store: Store<State>
+    public actions$: Actions,
+    public projectService: ProjectService,
+    public store: Store<State>
   ) {
 
   }
@@ -59,7 +59,7 @@ export class ProjectEffects {
         map((projects) => {
             return {
               action: <LoadProjectsAction>obj.action,
-              projects
+              projects: <Project[]>projects
             }
           }
         )

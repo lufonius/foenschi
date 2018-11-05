@@ -4,16 +4,18 @@ import {
   FrontPageActionTypes,
   FrontPageLoadSuccessAction, SetActiveProjectIdAction
 } from "../actions/front-page.actions";
+import {LayoutActionTypes, SetCurrentFrontPageSectionAction} from "../../core/actions/layout.actions";
 
 
 export interface State extends FrontPage {}
 
 export const initialState: State = {
-
+  currentSection: 'entry',
   entrySection: {
     title: "",
     subtitle: "",
     saying: "",
+    navTitle: "",
     background: "",
     nextSectionText: ""
   },
@@ -21,18 +23,23 @@ export const initialState: State = {
     title: "About me",
     subtitle: "some subtitle",
     background: "",
+    navTitle: "",
     subsections: []
   },
   projectsSection:{
     title: "Projects",
     subtitle: "What I've done",
     background: "",
+    navTitle: "",
     activeProjectId: null
   },
   contactSection: {
     title: "Get in touch",
     subtitle: "without touching",
+    navTitle: "",
     background: "",
+    warning:"",
+    email: "",
     form: {
       emailPlaceholder: "EMail",
       messagePlaceholder: "Your message",
@@ -83,6 +90,17 @@ export function reducer(state = initialState, action: Action): State {
       return clonedState;
     }
 
+    case LayoutActionTypes.setCurrentFrontPageSection: {
+      const currentSection = (<SetCurrentFrontPageSectionAction>action).payload.currentFrontPageSection;
+
+      let clonedState = clone(state);
+
+      clonedState.currentSection = currentSection;
+
+      return clonedState;
+
+    }
+
     default:
       return state;
   }
@@ -125,3 +143,14 @@ export const getContactSectionFormState = (state: State) => {
 export const getAboutMeSectionSubsectionState = (state: State) => {
   return getAboutMeSectionState(state).subsections;
 }
+
+export const getNavTitlesState = (state: State) => {
+  return {
+    aboutme: getAboutMeSectionState(state).navTitle,
+    contact: getContactSectionState(state).navTitle,
+    entry: getEntrySectionState(state).navTitle,
+    projects: getProjectsSectionState(state).navTitle
+  };
+};
+
+export const getCurrentSectionState = (state: State) => state.currentSection;

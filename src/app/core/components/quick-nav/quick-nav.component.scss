@@ -29,6 +29,16 @@
 
 .lf-item {
   padding: 16px;
+  padding-left: 8px;
+  padding-right: 8px;
   font-weight: bold;
   cursor: pointer;
+
+  small {
+    font-weight: lighter;
+  }
+
+  &.active {
+    transform: scale(1.2);
+  }
 }

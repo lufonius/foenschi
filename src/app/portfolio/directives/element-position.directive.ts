@@ -5,7 +5,7 @@ export class ElementPositionDirective {
 
   @Output() sectionPosition: EventEmitter<{x: number, y: number}> = new EventEmitter<{x: number, y: number}>();
 
-  constructor(private element: ElementRef) {}
+  constructor(public element: ElementRef) {}
 
   ngAfterViewInit() {
     let x: number = this.element.nativeElement.offsetLeft;

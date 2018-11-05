@@ -10,6 +10,7 @@ import {
   trigger
 } from "@angular/animations";
 import { NavigationItemAdapter } from "../../models/navigation-item-adapter.view-model";
+import {Language} from "../../models/language.model";
 
 const EASE_IN_OUT_CIRC = 'cubic-bezier(0.075, 0.82, 0.165, 1)';
 const EASE_IN_OUT_BACK = "cubic-bezier(0.68, -0.55, 0.265, 1.55)";
@@ -24,28 +25,23 @@ const EASE_IN_OUT_BACK = "cubic-bezier(0.68, -0.55, 0.265, 1.55)";
   animations: [
     trigger('visibility', [
       state('visible', style({
-        top: '0px',
-        bottom: '0px',
-        width: '100%',
-        left: '0%'
+        transform: 'scale(1)'
       })),
       state('invisible', style({
-        top: '-100vh',
-        bottom: 'unset',
-        width: '0%',
-        left: '100%'
+        transform: 'scale(0)'
+
       })),
       transition('visible => invisible', [
         query('@closeVisibility', [
           animateChild()
-        ]),
+        ], { optional: true }),
         animate(`200ms ${EASE_IN_OUT_CIRC}`),
       ]),
       transition('invisible => visible', [
         animate(`200ms ${EASE_IN_OUT_CIRC}`),
         query('@closeVisibility', [
           animateChild()
-        ])
+        ], { optional: true })
       ])
     ]),
     trigger('navigationLevels', [
@@ -73,16 +69,17 @@ const EASE_IN_OUT_BACK = "cubic-bezier(0.68, -0.55, 0.265, 1.55)";
   ]
 })
 export class NavigationComponent {
-  private visibilityState: 'visible' | 'invisible' = 'invisible';
-  private isVisible: boolean = false;
+  public visibilityState: 'visible' | 'invisible' = 'invisible';
+  public isVisible: boolean = false;
 
-  private currentNavigationLevel: 'first' | 'second' = 'first';
+  public currentNavigationLevel: 'first' | 'second' = 'first';
 
-  private activeNavigationItemId: string = null;
+  public activeNavigationItemId: string = null;
 
-  private navigationHeaderTitle: string = "";
+  public navigationHeaderTitle: string = "";
 
   @Input() currentLanguage: string = null;
+  @Input() availableLanguages: Language[] = [];
 
   @Input() set visible(isVisible: boolean) {
     if(isVisible === true) {
@@ -123,6 +120,7 @@ export class NavigationComponent {
   @Input() isMobileMediaQuery: boolean = false;
 
   @Input() title: string = "";
+  @Input() transformOrigin: {x: number, y: number} = { x: 0, y: 0 };
 
   @Output() activeNavigationItemChanged: EventEmitter<NavigationItemAdapter>
     = new EventEmitter<NavigationItemAdapter>();
@@ -156,5 +154,17 @@ export class NavigationComponent {
 
   closeNavigation() {
     this.navigationClosed.emit();
+  }
+
+  getMarginTopStyle(index: number) {
+    if(!this.isMobileMediaQuery) {
+      return `${index * 151}px`;
+    }
+
+    return '0px';
+  }
+
+  getTransformOriginStyle(x: number, y: number) {
+    return `${x}px ${y}px`;
   }
 }

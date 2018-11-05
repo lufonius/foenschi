@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { AngularFirestore } from "angularfire2/firestore";
+import {AngularFirestore, QuerySnapshot} from "angularfire2/firestore";
 import {FrontPage} from "../models/front-page.view-model";
-import {Observable} from "rxjs/index";
+import {from, Observable, Subject} from "rxjs/index";
 import {map, } from "rxjs/operators";
 import * as _ from 'lodash';
 

@@ -6,7 +6,7 @@ import { AppComponent } from './app.component';
 
 import { CoreModule } from './core/core.module';
 import { PortfolioModule } from './portfolio/portfolio.module';
-import { SharedModule } from "./shared";
+import { SharedModule } from "./shared/shared.module";
 import { NavigationEffects } from "./core/effects/navigation.effects";
 import {RouterModule} from "@angular/router";
 

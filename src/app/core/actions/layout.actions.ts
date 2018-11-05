@@ -10,7 +10,10 @@ export enum LayoutActionTypes {
   setIsMobileMediaQuery = '[Layout] setIsMobileMediaQuery',
   setNavigationBarHeight = '[Layout] setNavigationBarHeight',
   setCurrentPageScrollYOffset = '[Layout] setCurrentPageScrollYOffset',
-  addLoadingRessourceToQueue = '[Layout] addLoadingRessourceToQueue'
+  addLoadingRessourceToQueue = '[Layout] addLoadingRessourceToQueue',
+  setQuickNavTitles = '[Layout] setQuickNavTitles',
+  setCurrentFrontPageSection = '[Layout] setCurrentFrontPageSection',
+  setNavigationTransformOrigin = '[Layout] setNavigationTransformOrigin'
 }
 
 export class SetNavigationVisibileAction implements Action {
@@ -69,6 +72,24 @@ export class AddLoadingRessourceToQueue implements Action {
   readonly type = LayoutActionTypes.addLoadingRessourceToQueue;
 
   constructor(public payload: { loading: boolean, id: string }) {}
+}
+
+export class SetQuickNavTitlesAction implements Action {
+  readonly type = LayoutActionTypes.setQuickNavTitles;
+
+  constructor(public payload: { quickNavTitles: { aboutme: string, entry: string, contact: string, projects: string } }) {}
+}
+
+export class SetCurrentFrontPageSectionAction implements Action {
+  readonly type = LayoutActionTypes.setCurrentFrontPageSection;
+
+  constructor(public payload: { currentFrontPageSection: 'about-me' | 'entry' | 'contact' | 'projects' }) {}
+}
+
+export class SetNavigationTransformOriginAction implements Action {
+  readonly type = LayoutActionTypes.setNavigationTransformOrigin;
+
+  constructor(public payload: { transformOrigin: { x: number, y: number } }) {}
 }
 
 

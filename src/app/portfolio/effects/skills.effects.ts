@@ -10,7 +10,7 @@ import {State} from "../../core/reducers/index";
 import {select, Store} from "@ngrx/store";
 import {Observable, of, Subject} from "rxjs/index";
 import * as fromRoot from '../../core/reducers/index';
-import {catchError, combineLatest, filter, map, mergeMap} from "rxjs/internal/operators";
+import {catchError, combineLatest, filter, map, mergeMap} from "rxjs/operators";
 import {SetLoadAction, SetLoadSuccessAction} from "../../core/actions/base-loading.actions";
 
 
@@ -18,9 +18,9 @@ import {SetLoadAction, SetLoadSuccessAction} from "../../core/actions/base-loadi
 export class SkillsPageEffects {
 
   constructor(
-    private actions$: Actions,
-    private skillsPageService: SkillsPageService,
-    private store: Store<State>) {
+    public actions$: Actions,
+    public skillsPageService: SkillsPageService,
+    public store: Store<State>) {
 
   }
 

@@ -34,4 +34,6 @@ export class ProjectComponent extends BaseSectionPosition {
   navigate(projectId: string) {
     this.router.navigate([`${this.currentLanguage}/portfolio/projects/${projectId}`]);
   }
+
+
 }

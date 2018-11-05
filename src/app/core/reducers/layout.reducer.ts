@@ -8,7 +8,7 @@ import {
   SetNavigationBarHeightAction,
   SetProjectsSectionPositionAction,
   SetCurrentPageScrollYOffsetAction,
-  SetEntrySectionPositionAction
+  SetEntrySectionPositionAction, SetQuickNavTitlesAction, SetNavigationTransformOriginAction
 } from "../actions/layout.actions";
 import * as _ from 'lodash';
 import {BaseLoadingActionTypes, SetLoadAction} from "../actions/base-loading.actions";
@@ -27,6 +27,8 @@ export interface State {
   sectionPositions: SectionPositionsState;
   navigationBarHeight: number;
   loadingList: {[id: string]: { loading: boolean, id: string }};
+  quickNavTitles: {aboutme: string, contact: string, projects: string, entry: string};
+  navigationTransformOrigin: { x: number, y: number };
 }
 
 export const initialState: State = {
@@ -35,7 +37,9 @@ export const initialState: State = {
   sectionPositions: null,
   navigationBarHeight: 0,
   currentPageScrollYOffset: 0,
-  loadingList: {}
+  loadingList: {},
+  quickNavTitles: null,
+  navigationTransformOrigin: { x: 0, y: 0 }
 };
 
 export function reducer(state = initialState, action: Action): State {
@@ -163,6 +167,30 @@ export function reducer(state = initialState, action: Action): State {
       }
     }
 
+    case LayoutActionTypes.setQuickNavTitles: {
+      let quickNavTitles = (<SetQuickNavTitlesAction>action).payload.quickNavTitles;
+
+      return {
+        ...state,
+        sectionPositions: {
+          ...state.sectionPositions
+        },
+        quickNavTitles: quickNavTitles
+      }
+    }
+
+    case LayoutActionTypes.setNavigationTransformOrigin: {
+      const transformOrigin = (<SetNavigationTransformOriginAction>action).payload.transformOrigin;
+
+      return {
+        ...state,
+        sectionPositions: {
+          ...state.sectionPositions
+        },
+        navigationTransformOrigin: transformOrigin
+      }
+    }
+
     default:
       return state;
   }
@@ -174,3 +202,5 @@ export const getNavigationBarHeightState = (state: State) => state.navigationBar
 export const getCurrentPageScrollYOffsetState = (state: State) => state.currentPageScrollYOffset;
 export const getSectionPositions = (state: State) => state.sectionPositions;
 export const getLoadingList = (state: State) => state.loadingList;
+export const getQuickNavTitles = (state: State) => state.quickNavTitles;
+export const getNavigationTransformOriginState = (state: State) => state.navigationTransformOrigin;

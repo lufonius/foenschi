@@ -1,15 +1,20 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
+import {ResumeHistoryStep} from "../../models/resume-history-step.view-model";
+import {ResumePersonalInfo} from "../../models/resume-personal-info.view-model";
 
 @Component({
-  selector: 'app-resume',
+  selector: 'lf-resume',
   templateUrl: './resume.component.html',
-  styleUrls: ['./resume.component.css']
+  styleUrls: ['./resume.component.scss']
 })
-export class ResumeComponent implements OnInit {
+export class ResumeComponent {
 
-  constructor() { }
+  @Input() history: ResumeHistoryStep[] = [];
+  @Input() personalInfo: ResumePersonalInfo = null;
+  @Input() heading: { title: string, subtitle: string } = null;
 
-  ngOnInit() {
+  getBackgroundImageStyle(imageUrl: string) {
+    return `url(${imageUrl})`;
   }
 
 }

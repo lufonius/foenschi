@@ -10,9 +10,10 @@ import {MatButtonModule} from "@angular/material";
 })
 export class AppComponent implements OnInit {
 
-  constructor(private store: Store<any>) { }
+  constructor(public store: Store<any>) {  }
 
   ngOnInit() {
+
   }
 
 }

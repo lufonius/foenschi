@@ -15,9 +15,9 @@ import {filter} from "rxjs/operators";
 })
 export class ChooseLanguagePageComponent {
 
-  private availableLanguages$: Observable<Language[]>;
+  public availableLanguages$: Observable<Language[]>;
 
-  constructor(private store: Store<State>, private router: Router) {
+  constructor(public store: Store<State>, public router: Router) {
    this.availableLanguages$ = this.store.pipe(select(fromRoot.getAvailableLanguagesState));
   }
 

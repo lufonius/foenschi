@@ -1,7 +1,7 @@
 import {Action, INIT} from "@ngrx/store";
 import * as fromRoot from './';
 
-export const localStorageMetaReducer = reducer => {
+export function localStorageMetaReducer(reducer) {
   return (oldState, action: Action) => {
 
     if(action.type === INIT) {

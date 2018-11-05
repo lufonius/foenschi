@@ -1,10 +1,15 @@
 
-<!--Refactor!-->
-<div fxLayout.lt-xs="row" fxLayout.gt-sm="column" class="lf-quick-nav">
+
+<div fxLayout.lt-xs="row" fxLayout.gt-sm="column" class="lf-quick-nav" *ngIf="quickNavTitles">
   <div
+    fxLayout="column"
     fxLayoutAlign="center center"
     class="lf-item"
-    [ngClass]="{'active': sectionScreenCoverage.entrySection > 50}">00</div>
+    [ngClass]="{'active': sectionScreenCoverage.entrySection > 50}"
+    (click)="goToSection('entry')">
+    <small>{{quickNavTitles.entry}}</small>
+    <span>00</span>
+  </div>
   <div fxLayoutAlign="center center">
     <div class="lf-stroke" ngClass.lt-md="lf-stroke-lt-md" ngClass.gt-sm="lf-stroke-gt-sm">
       <div
@@ -15,8 +20,12 @@
       </div>
     </div>
   </div>
-  <div fxLayoutAlign="center center" class="lf-item"
-       [ngClass]="{'active': sectionScreenCoverage.aboutMeSection > 50}">01</div>
+  <div fxLayout="column" fxLayoutAlign="center center" class="lf-item"
+       [ngClass]="{'active': sectionScreenCoverage.aboutMeSection > 50}"
+       (click)="goToSection('about-me')">
+    <small>{{quickNavTitles.aboutme}}</small>
+    <span>01</span>
+  </div>
   <div fxLayoutAlign="center center">
     <div class="lf-stroke" ngClass.lt-md="lf-stroke-lt-md" ngClass.gt-sm="lf-stroke-gt-sm">
       <div
@@ -27,8 +36,12 @@
       </div>
     </div>
   </div>
-  <div fxLayoutAlign="center center" class="lf-item"
-       [ngClass]="{'active': sectionScreenCoverage.projectSection > 50}">02</div>
+  <div fxLayout="column" fxLayoutAlign="center center" class="lf-item"
+       [ngClass]="{'active': sectionScreenCoverage.projectSection > 50}"
+       (click)="goToSection('projects')">
+    <small>{{quickNavTitles.projects}}</small>
+    <span>02</span>
+  </div>
   <div fxLayoutAlign="center center">
     <div class="lf-stroke" ngClass.lt-md="lf-stroke-lt-md" ngClass.gt-sm="lf-stroke-gt-sm">
       <div
@@ -39,6 +52,10 @@
       </div>
     </div>
   </div>
-  <div fxLayoutAlign="center center" class="lf-item"
-       [ngClass]="{'active': sectionScreenCoverage.contactSection > 50}">03</div>
+  <div fxLayout="column" fxLayoutAlign="center center" class="lf-item"
+       [ngClass]="{'active': sectionScreenCoverage.contactSection > 50}"
+       (click)="goToSection('contact')">
+    <small>{{quickNavTitles.contact}}</small>
+    <span>03</span>
+  </div>
 </div>

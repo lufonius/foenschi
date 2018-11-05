@@ -112,3 +112,12 @@ export const getIsSomethingLoading = createSelector(
   }
 );
 
+export const getQuickNavTitles = createSelector(
+  getLayoutState,
+  fromLayout.getQuickNavTitles
+);
+
+export const getNavigationTransformOriginState = createSelector(
+  getLayoutState,
+  fromLayout.getNavigationTransformOriginState
+);

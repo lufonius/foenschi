@@ -45,7 +45,7 @@ export class SetLoadSuccessAction {
   readonly type = BaseLoadingActionTypes.SetLoadSuccess;
 
   constructor(public payload: { loading: boolean, id: string }) {
-    console.log("SetLoadSuccessAction",this.payload.id);
+
   }
 }
 

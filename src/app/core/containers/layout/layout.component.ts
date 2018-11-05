@@ -12,9 +12,10 @@ import {
   Store
 } from "@ngrx/store";
 import {
+  SetCurrentFrontPageSectionAction,
   SetCurrentPageScrollYOffsetAction,
   SetMediaQueryAction,
-  SetNavigationBarHeightAction,
+  SetNavigationBarHeightAction, SetNavigationTransformOriginAction,
   SetNavigationVisibileAction,
   ToggleNavigationVisibilityAction
 } from "../../actions/layout.actions";
@@ -35,17 +36,14 @@ import {
   MediaChange,
   ObservableMedia
 } from "@angular/flex-layout";
-import { last } from "rxjs/operators";
 import {
   LoadNavigationAction,
   SetActiveNavigationViewModelAction
 } from "../../actions/navigation.actions";
 import { NavigationItemAdapter } from "../../models/navigation-item-adapter.view-model";
-import {NavigationService} from "../../services/navigation.service";
 import {ScrollService} from "../../services/scroll.service";
-import {ActivationEnd, ActivationStart, Event, NavigationStart, Router} from "@angular/router";
-import {mergeMap, shareReplay} from "rxjs/internal/operators";
-import {flatMap} from "tslint/lib/utils";
+import {ActivatedRoute, ActivationEnd, Router} from "@angular/router";
+import {Language} from "../../models/language.model";
 
 @Component({
   selector: 'lf-layout',
@@ -55,25 +53,28 @@ import {flatMap} from "tslint/lib/utils";
 })
 export class LayoutComponent {
 
-  private navigationVisibleState$: Observable<boolean>;
-  private navigationItemsState$: Observable<NavigationItemAdapter[]>;
-  private navigationTitleState$: Observable<string>;
-  private activeNavigationItemState$: Observable<NavigationItemAdapter>;
-  private aboutMeSectionPositionState$: Observable<{x: number, y: number}>;
-  private isMobileMediaQueryState$: Observable<boolean>;
-  private scrollYOffset$: Subject<number>;
-  private currentPageScrollYOffset$: Observable<number>;
-  private currentLanguageState$: Observable<string>;
-  private isSomethingLoading$: Observable<boolean>;
-  private navbarType$: BehaviorSubject<string>;
-  private showQuickNav$: BehaviorSubject<boolean>;
+  public navigationVisibleState$: Observable<boolean>;
+  public navigationItemsState$: Observable<NavigationItemAdapter[]>;
+  public navigationTitleState$: Observable<string>;
+  public activeNavigationItemState$: Observable<NavigationItemAdapter>;
+  public aboutMeSectionPositionState$: Observable<{x: number, y: number}>;
+  public isMobileMediaQueryState$: Observable<boolean>;
+  public scrollYOffset$: Subject<number>;
+  public currentPageScrollYOffset$: Observable<number>;
+  public currentLanguageState$: Observable<string>;
+  public availableLanguagesState$: Observable<Language[]>;
+  public isSomethingLoading$: Observable<boolean>;
+  public navbarType$: BehaviorSubject<string>;
+  public showQuickNav$: BehaviorSubject<boolean>;
+  public quickNavTitlesState$: Observable<{aboutme: string, contact: string, projects: string, entry: string}>;
 
+  public navigationTransformOriginState$: Observable<{ x:number, y: number }>;
 
   constructor(
-    private store: Store<State>,
-    private mediaQuery$: ObservableMedia,
-    private scrollService: ScrollService,
-    private router: Router
+    public store: Store<State>,
+    public mediaQuery$: ObservableMedia,
+    public scrollService: ScrollService,
+    public router: Router
   ) {
     this.navigationVisibleState$ = store.pipe(select(fromRoot.getNavigationVisibleState));
     this.navigationItemsState$ = store.pipe(select(fromRoot.getNavigationItemsState));
@@ -88,11 +89,13 @@ export class LayoutComponent {
     this.isMobileMediaQueryState$ = store.pipe(select(fromRoot.getIsMobileMediaQueryState));
     this.currentLanguageState$ = store.pipe(select(fromRoot.getCurrentLanguageState));
     this.isSomethingLoading$ = store.pipe(select(fromRoot.getIsSomethingLoading));
+    this.quickNavTitlesState$ = store.pipe(select(fromRoot.getQuickNavTitles));
     this.scrollYOffset$ = new Subject();
+    this.navigationTransformOriginState$ = store.pipe(select(fromRoot.getNavigationTransformOriginState));
+    this.availableLanguagesState$ = store.pipe(select(fromRoot.getAvailableLanguagesState));
 
     this.setIsMobileMediaQuery();
-
-    this.store.dispatch(new LoadNavigationAction());
+    this.loadNavigation();
 
     this.navbarType$ = new BehaviorSubject<string>(null);
     this.showQuickNav$ = new BehaviorSubject<boolean>(false);
@@ -106,7 +109,6 @@ export class LayoutComponent {
         return { navbarType, showQuickNav };
       })
     ).subscribe(navbarSettings => {
-      console.log(navbarSettings);
       this.navbarType$.next(navbarSettings.navbarType);
       this.showQuickNav$.next(navbarSettings.showQuickNav);
     });
@@ -114,6 +116,10 @@ export class LayoutComponent {
 
   @HostListener('window:scroll', ['$event']) onScroll() {
     this.scrollYOffset$.next(window.pageYOffset);
+  }
+
+  loadNavigation() {
+    this.store.dispatch(new LoadNavigationAction());
   }
 
   setIsMobileMediaQuery() {
@@ -129,7 +135,11 @@ export class LayoutComponent {
     });
   }
 
-  toggleNavVisibility() {
+  toggleNavVisibility(event) {
+    this.store.dispatch(new SetNavigationTransformOriginAction({ transformOrigin: {
+        x: event.clientX,
+        y: event.clientY
+      }}));
     this.store.dispatch(new ToggleNavigationVisibilityAction());
   }
 
@@ -146,4 +156,15 @@ export class LayoutComponent {
       this.router.navigate([`${routeParts.currentLanguage}/${routeParts.route}`]);
     }
   }
+
+  goToSection(section: 'about-me' | 'contact' | 'entry' | 'projects') {
+    this.store.dispatch(new SetCurrentFrontPageSectionAction({ currentFrontPageSection: section }));
+  }
+
+  navigateToChooseLanguage() {
+    this.closeNavigation();
+    this.router.navigate(['/choose-language']);
+  }
+
+
 }

@@ -1,4 +1,4 @@
-import {Component, ElementRef, Input, OnInit} from '@angular/core';
+import {Component, ElementRef, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {BaseSectionPosition} from "../base-section-position";
 
 @Component({
@@ -13,4 +13,5 @@ export class EntryComponent extends BaseSectionPosition {
   getBackgroundUrl() {
     return `url(${this.background})`;
   }
+
 }

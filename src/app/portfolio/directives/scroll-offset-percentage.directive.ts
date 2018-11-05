@@ -4,11 +4,11 @@ import {Directive, ElementRef, EventEmitter, HostListener, Output} from '@angula
 export class ScrollOffsetPercentageDirective {
   @Output() scrollOffsetPercentage: EventEmitter<number> = new EventEmitter<number>();
 
-  private position: {x: number, y: number} = {x: 0, y: 0};
-  private dimension: {width: number, height: number} = {width: 0, height: 0};
-  private screenDimension: {width: number, height: number} = {width: 0, height: 0};
+  public position: {x: number, y: number} = {x: 0, y: 0};
+  public dimension: {width: number, height: number} = {width: 0, height: 0};
+  public screenDimension: {width: number, height: number} = {width: 0, height: 0};
 
-  constructor(private element: ElementRef) {
+  constructor(public element: ElementRef) {
 
   }
 

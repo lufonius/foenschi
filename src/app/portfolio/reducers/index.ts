@@ -4,13 +4,15 @@ import * as fromProject from './project.reducer';
 import * as fromFrontPage from './front-page.reducer';
 import * as fromSkillsPage from './skills.reducer';
 import * as fromProjectDetailPage from './project-detail-page.reducer';
+import * as fromResumePage from './resume-page.reducer';
 import {Project} from "../models/project.view-model";
 
 export interface State {
   project: fromProject.State,
   frontPage: fromFrontPage.State,
   skillsPage: fromSkillsPage.State,
-  projectDetailPage: fromProjectDetailPage.State
+  projectDetailPage: fromProjectDetailPage.State,
+  resumePage: fromResumePage.State
 }
 
 export const getPortfolioState = createFeatureSelector<State>('portfolio');
@@ -38,6 +40,11 @@ export const getSkillsPageState = createSelector(
 export const getProjectDetailPageState = createSelector(
   getPortfolioState,
   (state: State) => state.projectDetailPage
+);
+
+export const getResumePageState = createSelector(
+  getPortfolioState,
+  (state: State) => state.resumePage
 );
 
 export const getProjectsLoadingState = createSelector(
@@ -92,4 +99,29 @@ export const getProjectSectionActiveProjectState = createSelector(
 
     return null;
   }
+);
+
+export const getResumePagePersonalInfoState = createSelector(
+  getResumePageState,
+  fromResumePage.getResumePagePersonalInfoState
+);
+
+export const getResumePageHistoryState = createSelector(
+  getResumePageState,
+  fromResumePage.getResumePageHistoryState
+);
+
+export const getResumePageHeadingState = createSelector(
+  getResumePageState,
+  fromResumePage.getResumePageHeadingState
+);
+
+export const getQuickNavTitles = createSelector(
+  getFrontPageState,
+  fromFrontPage.getNavTitlesState
+);
+
+export const getCurrentSectionState = createSelector(
+  getFrontPageState,
+  fromFrontPage.getCurrentSectionState
 );

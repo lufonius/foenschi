@@ -1,4 +1,4 @@
-import {Component, ElementRef, Input, OnInit} from '@angular/core';
+import {Component, ElementRef, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import { BaseSection } from "../base-section";
 import {BaseSectionPosition} from "../base-section-position";
 
@@ -14,4 +14,8 @@ export class ContactComponent extends BaseSectionPosition {
   @Input() emailPlaceholder: string = "";
   @Input() messagePlaceholder: string = "";
   @Input() submitButtonText: string = "";
+  @Input() warning: string = "";
+  @Input() email: string = "";
+
+
 }

@@ -25,8 +25,6 @@
 
   .lf-subsection-description {
     width: 100%;
-    border-top-width: 1px;
-    border-top-style: solid;
     margin-top: 4px;
     padding-top: 4px;
     padding-bottom: 4px;
@@ -39,7 +37,13 @@
     }
   }
 
+  .lf-subsection-description-lt-md span {
+    font-weight: 300!important;
+  }
+
   .lf-subsection-description-gt-sm {
     margin-top: 12px;
+    border-top-width: 1px;
+    border-top-style: solid;
   }
 }

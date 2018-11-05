@@ -1,0 +1,99 @@
+@import '../../../../variables';
+
+.lf-resume-xs, .lf-resume-sm {
+  margin-top: $lf-navbar-thickness-mobile;
+}
+
+.lf-resume-xs {
+  padding-right: 0px!important;
+}
+
+.lf-resume {
+  padding: 8px;
+  padding-left: 0px;
+  padding-top: 0px;
+
+  .lf-resume-personal-gt-xs {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+  }
+
+  .lf-resume-personal-sm {
+    top: $lf-navbar-thickness-mobile!important;
+  }
+
+  .lf-resume-personal {
+    padding: 32px;
+
+    .lf-resume-personal-profile-picture-container {
+      width: 100%;
+
+      .lf-resume-personal-profile-picture {
+        height: 190px;
+        width: 190px;
+        border-radius: 50%;
+        border-size: 6px;
+        border-style: solid;
+
+        background-position: center center;
+        background-size: cover;
+        background-repeat: no-repeat;
+      }
+    }
+
+    .lf-resume-personal-info {
+      .lf-resume-personal-info-row {
+        h5 {
+          font-weight: 300;
+          font-size: 16px;
+          margin-bottom: 4px;
+        }
+
+        h4 {
+          font-weight: normal;
+          font-size: 18px;
+          margin-top: 0px;
+        }
+      }
+    }
+  }
+
+  .lf-resume-history-gt-xs {
+    padding-left: 270px!important;
+  }
+
+  .lf-resume-history {
+    @include lf-page-heading-layout();
+    padding-left: 16px;
+    padding-right: 16px;
+
+    .lf-resume-history-step {
+      .lf-resume-history-step-year {
+        border-left-width: 6px;
+        border-left-style: solid;
+        padding-left: 4px;
+        margin-right: 32px;
+        max-width: 100px;
+        min-width: 100px;
+      }
+
+
+
+      .lf-resume-history-step-info {
+        h4 {
+          margin: 0px;
+          margin-bottom: 4px;
+          font-weight: normal;
+
+        }
+
+        h5 {
+          margin: 0px;
+          font-size:15px;
+          font-weight: 300;
+        }
+      }
+    }
+  }
+}

@@ -5,6 +5,7 @@ import {Observable} from "rxjs/index";
 import {Project} from "../models/project.view-model";
 import {LoadProjectDetailPageAction} from "../actions/project-detail-page.actions";
 import {ActivatedRoute} from "@angular/router";
+import {ProjectDetailPage} from "../models/project-detail-page.view-model";
 
 @Component({
   selector: 'lf-project-detail-page',
@@ -14,13 +15,11 @@ import {ActivatedRoute} from "@angular/router";
 })
 export class ProjectDetailPageComponent implements OnInit {
 
-  public projectDetailPageState$: Observable<Project>;
+  public projectDetailPageState$: Observable<ProjectDetailPage>;
   public projectExists: boolean = false;
 
   constructor(public store: Store<fromRoot.State>, public activatedRoute: ActivatedRoute) {
     this.projectDetailPageState$ = this.store.select(fromRoot.getProjectDetailPageState);
-
-    this.projectDetailPageState$.subscribe(e => console.log(e));
   }
 
   ngOnInit() {

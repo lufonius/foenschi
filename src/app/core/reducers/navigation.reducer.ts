@@ -39,7 +39,7 @@ export function reducer(state = initialState, action: Action): State {
         ...state,
         navigationItems: navigationViewModelItems,
         navigationItemsIndex: index,
-        navigationTitle: navigationTitle 
+        navigationTitle: navigationTitle
       }
     }
 
@@ -65,7 +65,7 @@ export function reducer(state = initialState, action: Action): State {
 }
 
 //passing index as a reference parameter is a bit messy, but it makes it much easier,
-//otherwise the recursive function has to return the partial indexes too, a new type has to be make etc.
+//otherwise the recursive function has to return the partial indexes too, a new type has to be made etc.
 const generateNavigationViewModel
   = (navigationModelItems: NavigationItem[], index: NavigationViewModelIndex): NavigationItemAdapter[] => {
   let navigationViewModelItems: NavigationItemAdapter[] = [];

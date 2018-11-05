@@ -1,10 +1,12 @@
 @import './about-me/_about-me-theme.scss';
 @import './entry/_entry-theme.scss';
 @import './project/_project-theme.scss';
+@import './contact/_contact-theme.scss';
 @import './section-layout/_section-layout-theme.scss';
 @import './subsection/_subsection-theme.scss';
 @import './skills/_skills-theme.scss';
 @import './project-detail/_project-detail-theme.scss';
+@import './resume/_resume-theme.scss';
 
 @mixin lf-portfolio-theme($theme) {
   @include lf-about-me-theme($theme);
@@ -14,4 +16,6 @@
   @include lf-subsection-theme($theme);
   @include lf-skills-theme($theme);
   @include lf-project-detail-theme($theme);
+  @include lf-resume-theme($theme);
+  @include lf-contact-theme($theme);
 }

@@ -1,3 +1,35 @@
-<p>
-  resume works!
-</p>
+<div
+  fxLayout.gt-xs="row"
+  fxLayout.xs="column"
+  ngClass.xs="lf-resume-xs"
+  ngClass.sm="lf-resume-sm"
+  class="lf-resume">
+  <div fxLayout="column" [ngClass.xs]="{'lf-resume-personal-gt-xs': false}" ngClass.sm="lf-resume-personal-sm" class="lf-resume-personal lf-resume-personal-gt-xs">
+    <div fxLayoutAlign="center center" class="lf-resume-personal-profile-picture-container">
+      <div
+        *ngIf="personalInfo"
+        class="lf-resume-personal-profile-picture"
+        [style.background-image]="getBackgroundImageStyle(personalInfo.imageUrl)"
+      ></div>
+    </div>
+    <div class="lf-resume-personal-info" *ngIf="personalInfo">
+      <div *ngFor="let field of personalInfo.fields" class="lf-resume-personal-info-row">
+        <h5>{{field.fieldName}}</h5>
+        <h4>{{field.value}}</h4>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="heading && history" ngClass.gt-xs="lf-resume-history-gt-xs" class="lf-resume-history">
+    <h2>{{heading.subtitle}}</h2>
+    <h1>{{heading.title}}</h1>
+    <div *ngFor="let step of history" fxLayout="row" class="lf-resume-history-step">
+      <div class="lf-resume-history-step-year">
+        <span>{{step.year}}</span>
+      </div>
+      <div class="lf-resume-history-step-info">
+        <h4>{{step.title}} | <small>{{step.duration}}</small></h4>
+        <h5>{{step.description}}</h5>
+      </div>
+    </div>
+  </div>
+</div>

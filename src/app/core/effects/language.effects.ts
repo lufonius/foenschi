@@ -14,7 +14,7 @@ import {LanguagesService} from "../services/languages.service";
 @Injectable()
 export class LanguageEffects {
 
-  constructor(private actions$: Actions, private languagesService: LanguagesService) {}
+  constructor(public actions$: Actions, public languagesService: LanguagesService) {}
 
   @Effect()
   getAvailableLanguages$: Observable<Action> = this.actions$.pipe(
@@ -35,7 +35,7 @@ export class LanguageEffects {
   );
 
   //made this way because its better for debugging
-  @Effect()
+ @Effect()
   getAvailableLanguagesOnInit$: Observable<Action> = this.actions$.pipe(
     ofType(ROOT_EFFECTS_INIT),
     map(() => new LoadAvailableLanguagesAction())

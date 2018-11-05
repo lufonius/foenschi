@@ -5,22 +5,37 @@ lf-close {
   position: fixed;
   min-height: 100vh;
   top: 0;
-  overflow-y: scroll;
-  overflow-x: hidden;
   left: 0px;
   right: 0px;
   z-index: 1000;
 
+  .lf-navigation-strawler-gt-sm {
+    height: 100vh;
+    overflow-y: scroll;
+  }
+
+  .lf-navigation-container-gt-sm { min-height: calc(100vh - 174px); }
+
   .lf-navigation-container {
+    max-height: none!important;
 
     .lf-navigation-first-level-lt-md, .lf-navigation-second-level-lt-md {
       min-width: 100%;
+      .lf-navigation-header-container{
+        .lf-navigation-header-title {
+          span {
+            font-size: 30px!important;
+          }
+        }
+      }
     }
 
-    .lf-navigation-element-divider {
-      width: 100%;
-      border-bottom-width: 1px;
-      border-bottom-style: solid;
+
+
+    .lf-navigation-element-container-lt-md {
+      max-height: calc(100vh - 140px);
+      min-height: calc(100vh - 140px);
+      overflow-y: scroll;
     }
 
     .lf-navigation-second-level-gt-sm {
@@ -29,10 +44,17 @@ lf-close {
 
   }
 
+
+  .lf-navigation-header-container-lt-md {
+    padding-bottom: 16px!important;
+  }
+
   .lf-navigation-header-container {
-    margin: 16px;
-    margin-bottom: 50px;
+    padding: 16px;
+    padding-bottom: 50px;
+    box-sizing: unset!important;
     overflow: hidden;
+    max-height: 58px;
 
     .lf-navigation-header-title span {
       font-size: 50px;
@@ -50,5 +72,17 @@ lf-close {
     .lf-navigation-header-back {
       margin-right: 16px;
     }
+  }
+
+  .lf-navigation-element-divider {
+    width: 100%;
+    border-bottom-width: 1px;
+    border-bottom-style: solid;
+  }
+
+  .lf-navigation-footer {
+    padding-left: 16px;
+    height: 50px;
+    width: 100%;
   }
 }

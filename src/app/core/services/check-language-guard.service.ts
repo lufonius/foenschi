@@ -5,13 +5,13 @@ import {select, Store} from "@ngrx/store";
 import {Observable} from "rxjs/index";
 import {Language} from "../models/language.model";
 import * as fromRoot from '../reducers';
-import {filter, find, map, tap} from "rxjs/internal/operators";
+import {filter, find, map, tap} from "rxjs/operators";
 import {SetCurrentLanguageAction} from "../actions/language.actions";
 
 @Injectable()
 export class CheckLanguageGuardService implements CanActivate {
 
-  private availableLanguages$: Observable<Language[]>;
+  public availableLanguages$: Observable<Language[]>;
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> {
     const paramLanguage = route.params.language;
@@ -36,7 +36,7 @@ export class CheckLanguageGuardService implements CanActivate {
     return obs;
   }
 
- constructor(private store: Store<State>, private router: Router) {
+ constructor(public store: Store<State>, public router: Router) {
     this.availableLanguages$ = this.store.pipe(select(fromRoot.getAvailableLanguagesState));
  }
 }

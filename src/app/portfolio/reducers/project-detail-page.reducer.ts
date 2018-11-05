@@ -19,7 +19,7 @@ export const initialState: State = {
     secondaryDescription: 'secondary description',
     files: [
       {
-        downloadUrl: 'google.ch',
+        download: 'google.ch',
         title: 'ipa.zip'
       }
     ],
@@ -27,7 +27,8 @@ export const initialState: State = {
       {
         description: 'description',
         imageUrl: '',
-        title: 'title'
+        title: 'title',
+        order: 0
       }
     ]
   },

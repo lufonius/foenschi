@@ -2,7 +2,8 @@
 
 @mixin lf-choose-language-theme($theme) {
   $foreground: map-get($theme, foreground);
-  $text: mat-color($foreground, text);
+  $primary: map-get($theme, primary);
+  $text: mat-color($primary, default-contrast);
 
 
   .lf-choose-language-title {

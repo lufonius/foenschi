@@ -10,12 +10,12 @@
     background-color: $primary;
 
     .lf-navigation-container {
-      .lf-navigation-element-divider {
-        border-bottom-color: $text;
-      }
+
     }
 
     .lf-navigation-header-container {
+
+
       .lf-navigation-header-title span {
         color: $text;
       }
@@ -23,6 +23,14 @@
       .lf-navigation-header-dismiss mat-icon, .lf-navigation-header-back mat-icon {
         color: $text;
       }
+    }
+
+    .lf-navigation-element-divider {
+      border-bottom-color: $text;
+    }
+
+    .lf-navigation-footer {
+      color: $text;
     }
   }
 }

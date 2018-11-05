@@ -5,14 +5,14 @@
 
 
   <lf-navbar-logo>
-    <lf-logo></lf-logo>
+    <lf-logo [currentLanguage]="currentLanguageState$ | async"></lf-logo>
   </lf-navbar-logo>
 
   <!--Background only visible on front-page-->
   <lf-navbar-burger>
     <lf-burger
       [backgroundColor]="navigationBarContentColor"
-      (onBurgerClick)="toggleNavVisibility()"
+      (onBurgerClick)="toggleNavVisibility($event)"
     ></lf-burger>
   </lf-navbar-burger>
 
@@ -21,6 +21,8 @@
     <lf-quick-nav
       [sectionScreenCoverage]="scrollService.sectionScreenCoverage$ | async"
       [sectionScrollOffsetPercentage]="scrollService.sectionScrollOffsetPercentage$ | async"
+      [quickNavTitles]="quickNavTitlesState$ | async"
+      (currentSectionChange)="goToSection($event)"
       fxHide="false"
       fxHide.lt-md="true"></lf-quick-nav>
   </lf-navbar-quick-nav>
@@ -33,10 +35,18 @@
   [isMobileMediaQuery]="isMobileMediaQueryState$ | async"
   [activeNavigationItem]="activeNavigationItemState$ | async"
   [currentLanguage]="currentLanguageState$ | async"
+  [transformOrigin]="navigationTransformOriginState$ | async"
   (activeNavigationItemChanged)="activeNavigationItemChanged($event)"
   (navigationClosed)="closeNavigation()"
   (routeChanged)="routeChange($event)"
-></lf-navigation>
+>
+  <lf-navigation-footer>
+    <a mat-button (click)="navigateToChooseLanguage()">
+      Change language
+      <mat-icon>keyboard_arrow_right</mat-icon>
+    </a>
+  </lf-navigation-footer>
+</lf-navigation>
 
 
 <router-outlet></router-outlet>

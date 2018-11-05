@@ -16,7 +16,7 @@ import {SkillsPage} from "../models/skills-page.view-model";
 export class SkillsPageComponent implements OnInit {
   public skillsPageState$: Observable<SkillsPage>;
 
- constructor(private store: Store<fromRoot.State>) {
+ constructor(public store: Store<fromRoot.State>) {
    this.skillsPageState$ = this.store.select(fromRoot.getSkillsPageState);
  }
 

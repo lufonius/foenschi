@@ -6,7 +6,7 @@ import {AngularFirestoreModule} from "angularfire2/firestore";
 import {environment} from "../../../environments/environment";
 import {SkillsPageService} from "./skills-page.service";
 
-fdescribe('ProjectService', () => {
+describe('ProjectService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [

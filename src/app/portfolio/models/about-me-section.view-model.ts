@@ -1,8 +1,6 @@
 import { AboutMeSubsection } from "./about-me-subsection.view-model";
+import {BaseSection} from "./base-section.view-model";
 
-export interface AboutMeSection {
-  title: string;
-  subtitle: string;
-  background: string;
+export interface AboutMeSection extends BaseSection {
   subsections: AboutMeSubsection[];
 }

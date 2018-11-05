@@ -8,9 +8,9 @@ import {BaseSectionPosition} from "../base-section-position";
   templateUrl: './about-me.component.html',
   styleUrls: ['./about-me.component.scss']
 })
+
 export class AboutMeComponent extends BaseSectionPosition {
 
   @Input() subsections: AboutMeSubsection[] = [];
   @Input() currentLanguage: string = null;
-
 }
