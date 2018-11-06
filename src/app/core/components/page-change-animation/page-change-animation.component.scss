@@ -1,0 +1,61 @@
+.lf-page-change-animation {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  z-index: 2000;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .lf-circle {
+    border-radius: 50%;
+    border-style: solid;
+    position: absolute;
+  }
+  #lf-circle-0 {
+    border-color: indianred;
+    z-index: 2001;
+
+  }
+
+  #lf-circle-1 {
+    border-color: darken(indianred, 2);
+    z-index: 2002;
+  }
+
+  #lf-circle-2 {
+    border-color: darken(indianred, 4);
+    z-index: 2003;
+  }
+  #lf-circle-3 {
+    border-color: darken(indianred, 6);
+    z-index: 2004;
+  }
+  #lf-circle-4 {
+    border-color: darken(indianred, 8);
+    z-index: 2005;
+  }
+  #lf-circle-5 {
+    border-color: darken(indianred, 10);
+    z-index: 2006;
+  }
+  #lf-circle-6 {
+    border-color: darken(indianred, 12);
+    z-index: 2007;
+  }
+  #lf-circle-7 {
+    border-color: darken(indianred, 14);
+    z-index: 2008;
+  }
+  #lf-circle-8 {
+    border-color: darken(indianred, 16);
+    z-index: 2009;
+  }
+  #lf-circle-9 {
+    border-color: darken(indianred, 18);
+    z-index: 2010;
+  }
+}

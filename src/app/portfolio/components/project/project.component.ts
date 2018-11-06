@@ -1,4 +1,5 @@
 import {
+  ChangeDetectionStrategy,
   Component, ElementRef,
   EventEmitter,
   Input,
@@ -12,7 +13,8 @@ import {Router} from "@angular/router";
 @Component({
   selector: 'lf-project',
   templateUrl: './project.component.html',
-  styleUrls: ['./project.component.scss']
+  styleUrls: ['./project.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ProjectComponent extends BaseSectionPosition {
 

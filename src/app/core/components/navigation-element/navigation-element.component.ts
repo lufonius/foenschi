@@ -1,9 +1,10 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 
 @Component({
   selector: 'lf-navigation-element',
   templateUrl: './navigation-element.component.html',
-  styleUrls: ['./navigation-element.component.scss']
+  styleUrls: ['./navigation-element.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class NavigationElementComponent {
 

@@ -1,4 +1,7 @@
-import {Component, EventEmitter, Input, OnInit, Output, ViewEncapsulation} from '@angular/core';
+import {
+  ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output,
+  ViewEncapsulation
+} from '@angular/core';
 import {SectionScreenCoverage} from "../../models/section-screen-coverage.model";
 import {SectionScrollOffsetPercentageModel} from "../../models/section-scroll-offset-percentage.model";
 
@@ -6,7 +9,8 @@ import {SectionScrollOffsetPercentageModel} from "../../models/section-scroll-of
   selector: 'lf-quick-nav',
   templateUrl: './quick-nav.component.html',
   styleUrls: [ './quick-nav.component.scss' ],
-  encapsulation: ViewEncapsulation.None
+  encapsulation: ViewEncapsulation.None,
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class QuickNavComponent {
   @Input() sectionScreenCoverage: SectionScreenCoverage = {};

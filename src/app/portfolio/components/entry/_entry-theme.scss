@@ -1,5 +1,10 @@
 @import '~@angular/material/theming';
 
 @mixin lf-entry-theme($theme) {
+  $primary: mat-color(map-get($theme, primary));
 
+  .lf-entry-next-section:hover {
+    color: $primary;
+    border-color: $primary!important;
+  }
 }

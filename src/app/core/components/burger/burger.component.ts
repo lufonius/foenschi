@@ -1,4 +1,5 @@
 import {
+  ChangeDetectionStrategy,
   Component,
   EventEmitter, Input,
   Output, ViewEncapsulation
@@ -8,12 +9,12 @@ import {
   selector: 'lf-burger',
   templateUrl: './burger.component.html',
   styleUrls: ['./burger.component.scss'],
-  encapsulation: ViewEncapsulation.None
+  encapsulation: ViewEncapsulation.None,
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class BurgerComponent {
 
   @Output() onBurgerClick = new EventEmitter<{x: number, y: number}>();
-  @Input() backgroundColor: string = 'rgba(255,255,255,1)';
 
   burgerClicked(event) {
     this.onBurgerClick.emit(event);

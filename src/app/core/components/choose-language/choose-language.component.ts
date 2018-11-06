@@ -1,10 +1,11 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {Language} from "../../models/language.model";
 
 @Component({
   selector: 'lf-choose-language',
   templateUrl: './choose-language.component.html',
-  styleUrls: ['./choose-language.component.scss']
+  styleUrls: ['./choose-language.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ChooseLanguageComponent implements OnInit {
 

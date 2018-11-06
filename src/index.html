@@ -10,8 +10,55 @@
 
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
         rel="stylesheet">
+  <style>
+
+    * {
+      font-family: 'Helvetica';
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .lf-background {
+      position: absolute;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      right: 0;
+
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: bottom left;
+      background-image: url("https://firebasestorage.googleapis.com/v0/b/foenschi.appspot.com/o/choose-language-background.jpg?alt=media&token=975b50ef-b24e-4812-8231-54ccffeef1ad");
+    }
+
+    .lf-background-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      right: 0;
+      background: rgba(0,0,0,0.4);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .lf-background-overlay div {
+      margin-bottom: 16px;
+      color: white;
+      font-size: 20px;
+      font-weight: normal;
+    }
+
+  </style>
 </head>
 <body>
-  <lf-app></lf-app>
+  <lf-app>
+    <div class="lf-background"></div>
+    <div class="lf-background-overlay">
+      <div>Loading stuff to load other stuff.</div>
+      <div>Laden, um anderes zu laden.</div>
+    </div>
+  </lf-app>
 </body>
 </html>

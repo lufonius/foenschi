@@ -1,0 +1,4 @@
+<div *ngFor="let language of languages" (click)="languageClick(language)" class="lf-language-container" fxLayoutAlign="center center" fxLayout="row">
+  <div class="flag-icon lf-flag" [style.backgroundImage]="getBackgroundImageStyle(language.imageUrl)"></div>
+  <span>{{language.description}}</span>
+</div>

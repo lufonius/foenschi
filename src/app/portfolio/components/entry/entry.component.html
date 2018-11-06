@@ -26,9 +26,9 @@
       <div
         class="lf-entry-next-section"
         fxLayout="column"
-        fxLayoutAlign="center center">
+        fxLayoutAlign="center center"
+        (click)="emitGoToNextSection()">
         <span>{{nextSectionText}}</span>
-        <button mat-icon-button (click)="emitGoToNextSection()"><mat-icon>keyboard_arrow_down</mat-icon></button>
       </div>
     </span>
   </div>

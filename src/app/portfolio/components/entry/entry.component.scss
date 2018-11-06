@@ -88,15 +88,13 @@
     }
 
     .lf-entry-next-section {
-      font-weight: lighter;
+      font-weight: normal;
+      border: 2px solid white;
+      padding: 6px;
+      cursor: pointer;
 
       span {
         font-size: 20px;
-      }
-
-      mat-icon {
-        margin-top: 10px;
-        font-size: 30px;
       }
     }
   }

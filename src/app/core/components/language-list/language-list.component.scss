@@ -1,0 +1,32 @@
+.lf-language-container {
+  span {
+    font-size: 20px;
+  }
+}
+
+.flag-icon {
+  background-size: contain;
+  background-position: 50%;
+  background-repeat: no-repeat;
+  position: relative;
+  display: inline-block;
+  width: 1.33333333em;
+  line-height: 1em;
+}
+
+.flag-icon:before {
+  content: "\00a0";
+}
+
+.lf-flag {
+  width: 2em;
+  line-height: 2em;
+  margin: 16px;
+  margin-left: 0px;
+  transition: transform 200ms;
+  cursor: pointer;
+
+  &:hover {
+    transform: scale(1.2);
+  }
+}
