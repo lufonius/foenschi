@@ -1,19 +1,69 @@
-<div class="lf-project-detail" ngClass.lt-md="lf-project-detail-lt-md">
-  <div class="lf-project-detail-heading" *ngIf="projectDetailPage">
-    <h2>{{projectDetailPage.project.subtitle}}</h2>
-    <h1>{{projectDetailPage.project.title}}</h1>
+<div
+  class="lf-project-detail-gallery-controls"
+  ngClass.lt-md="lf-project-detail-gallery-controls-lt-md"
+  fxLayout="row"
+  *ngIf="activeProjectBlock && projectDetailPage"
+  [@pageStateControls]="pageState"
+>
+  <lf-gallery-controls
+    [projectBlocks]="projectDetailPage.project.blocks"
+    [activeBlock]="activeProjectBlock"
+    [zoom]="zoom"
+    (zoomChange)="zoomChanged($event)"
+    (closeClicked)="closeGallery()"
+    (activeBlockChange)="activeProjectBlockChanged($event)"
+  ></lf-gallery-controls>
+</div>
+
+  <div class="lf-project-detail-background-overlay" [@pageStateOverlay]="pageState"></div>
+  <div class="lf-project-detail-background"
+       [@pageStateGallery]="pageState"
+       *ngIf="projectDetailPage.project.blocks[0]"
+       ngClass.lt-md="lf-project-detail-background-lt-md">
+
+
+
+    <div
+      class="lf-project-detail-background-strawler"
+      ngClass.lt-md="lf-project-detail-background-strawler-lt-md">
+
+      <ng-container *ngFor="let block of projectDetailPage.project.blocks">
+      <img
+        [style.zoom]="zoom + '%'"
+        *ngIf="activeProjectBlock"
+        [src]="block.imageUrl"
+        [hidden]="activeProjectBlock.id !== block.id"/>
+      </ng-container>
+    </div>
   </div>
-  <div class="lf-project-detail-primary-description">
+  <div class="lf-project-detail" [@pageStateWrapper]="pageState" ngClass.lt-md="lf-project-detail-lt-md">
+  <div class="lf-project-detail-container" [@pageStateInfo]="pageState">
+  <div class="lf-project-detail-heading">
+    <h2 [@pageStateInfo]="pageState">{{projectDetailPage.project.subtitle}}</h2>
+    <h1 [@pageStateInfo]="pageState">{{projectDetailPage.project.title}}</h1>
+  </div>
+  <div class="lf-project-detail-primary-description" >
     <p>{{projectDetailPage.project.primaryDescription}}</p>
   </div>
-  <div *ngFor="let block of order(projectDetailPage.project.blocks)" class="lf-project-detail-block">
-    <h2>{{block.title}}</h2>
-    <div fxLayout.lt-md="column" fxLayout.gt-sm="row">
-      <div fxFlex.gt-sm="1 1 50%" fxFlex.lt-md="1 1 100%" class="lf-project-detail-block-image" [style.background-image]="getBackgroundStyle(block.imageUrl)"></div>
-
+  <div
+    *ngFor="let block of order(projectDetailPage.project.blocks)"
+    class="lf-project-detail-block"
+    fxFlex="1 1 100%"
+  >
+    <div fxLayout="row" fxLayoutAlign="start center">
+      <h2 class="lf-animation-state-info" [@pageStateInfo]="pageState">{{block.title}}</h2>
       <div
-        fxFlex.gt-sm="1 1 50%"
-        fxFlex.lt-md="1 1 100%"
+        class="lf-project-detail-block-show-image"
+        [@pageStateInfo]="pageState"
+        (click)="pageStateChanged('gallery'); activeProjectBlockChanged(block)"
+        *ngIf="hasImage(block.imageUrl)"
+        >
+        Show image
+      </div>
+    </div>
+    <div fxLayout.lt-md="column" fxLayout.gt-sm="row">
+      <div
+        [@pageStateInfo]="pageState"
         fxLayoutAlign="start center"
         class="lf-project-detail-block-description"
       ngClass.lt-md="lf-project-detail-block-description-lt-md">
@@ -25,7 +75,8 @@
     <h2>{{projectDetailPage.file.title}}</h2>
   </div>
   <div *ngFor="let file of projectDetailPage.project.files" class="lf-project-detail-files">
-    <span>{{file.title}}&nbsp;|&nbsp;</span>
-    <a [href]="file.downloadUrl">{{projectDetailPage.file.download}}</a>
+    <span [@pageStateInfo]="pageState">{{file.title}}&nbsp;|&nbsp;</span>
+    <a [href]="file.downloadUrl" [@pageStateInfo]="pageState">{{projectDetailPage.file.download}}</a>
   </div>
+</div>
 </div>

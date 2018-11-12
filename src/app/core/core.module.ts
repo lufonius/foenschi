@@ -25,7 +25,6 @@ import { BurgerComponent } from './components/burger/burger.component';
 import { LayoutComponent } from './containers/layout/layout.component';
 import { QuickNavComponent } from './components/quick-nav/quick-nav.component';
 import { NavigationElementComponent } from './components/navigation-element/navigation-element.component';
-import { CloseComponent } from './components/close/close.component';
 import { LoadingOverlayComponent } from './components/loading-overlay/loading-overlay.component';
 import {NavigationService} from "./services/navigation.service";
 import {ScrollService} from "./services/scroll.service";
@@ -56,7 +55,7 @@ import { PageChangeAnimationComponent } from './components/page-change-animation
     }),
     !environment.production ? StoreDevtoolsModule.instrument() : [],
     AngularFireModule.initializeApp(environment.firebase),
-    AngularFirestoreModule
+    AngularFirestoreModule.enablePersistence()
   ],
   schemas: [ NO_ERRORS_SCHEMA ],
   declarations: [
@@ -65,7 +64,6 @@ import { PageChangeAnimationComponent } from './components/page-change-animation
     LayoutComponent,
     QuickNavComponent,
     NavigationElementComponent,
-    CloseComponent,
     LoadingOverlayComponent,
     ChooseLanguageComponent,
     ChooseLanguagePageComponent,

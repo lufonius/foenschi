@@ -33,7 +33,7 @@ export class ProjectService {
       .doc(language)
       .collection('project')
       .doc(projectId)
-      .collection('blocks')
+      .collection('blocks', ref => ref.orderBy('order'))
       .valueChanges();
   }
 
@@ -47,7 +47,7 @@ export class ProjectService {
       .valueChanges();
   }
 
-  public getProjectDetailPage(language: string, projectName: string): Observable<ProjectDetailPage> {
+  public getProjectDetailPage(language: string, projectName: string): Observable<Partial<ProjectDetailPage>> {
     const projects$ = this.getProjects(language, projectName);
     const blocks$ = this.getBlocksForProject(language, projectName);
     const files$ = this.getFilesForProject(language, projectName);

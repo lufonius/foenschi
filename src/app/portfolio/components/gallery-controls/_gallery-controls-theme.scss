@@ -1,0 +1,65 @@
+@import '~@angular/material/theming';
+
+@mixin lf-gallery-controls-theme($theme) {
+  $foreground: map-get($theme, foreground);
+  $background: map-get($theme, background);
+  $statusbar: mat-color($background, status-bar);
+  $dialog: mat-color($background, dialog);
+  $appbar: mat-color($background, app-bar);
+  $primary: mat-color(map-get($theme, primary));
+  $text: mat-color($foreground, text);
+  $secondary-text: mat-color($foreground, secondary-text);
+
+  .lf-project-detail-close {
+    background-color: opacify($dialog, 0.9);
+
+    mat-icon {
+      color: $primary;
+    }
+  }
+
+  .lf-project-detail-zoom {
+    background-color: opacify($dialog, 0.9);
+  }
+
+  .lf-project-detail-switch-lt-md {
+    background-color: $dialog!important;
+  }
+
+  .lf-project-detail-switch-heading {
+
+    span {
+      color: $primary;
+    }
+  }
+
+  .lf-project-detail-switch {
+    background-color: opacify($dialog, 0.9);
+
+
+
+
+    .lf-project-detail-switch-container {
+
+      .lf-project-detail-switch-circle {
+
+        mat-icon {
+          color: $primary!important;
+        }
+
+        &.lf-full {
+          background-color: $primary;
+        }
+
+        &.lf-empty:hover {
+          background-color: $primary;
+        }
+
+        &.lf-empty, &.lf-full {
+          border-color: $primary;
+        }
+      }
+    }
+  }
+
+}

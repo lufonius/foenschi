@@ -37,9 +37,21 @@
     }
 
     .lf-project-detail-block {
+      .lf-project-detail-block-show-image {
+        color: $primary;
+        border-color: $primary;
+      }
+
       .lf-project-detail-block-description {
         color: $text;
+        border-left-color: $primary;
       }
+    }
+  }
+
+  .lf-project-detail-background {
+    .lf-project-detail-background-strawler {
+      background-color: $dialog;
     }
   }
 

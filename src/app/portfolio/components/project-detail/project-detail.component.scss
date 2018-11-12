@@ -1,59 +1,134 @@
 @import '../../../../variables';
 
+.lf-project-detail-gallery-controls-lt-md {
+  top:0px!important;
+  left: 0px!important;
+}
+
+.lf-project-detail-gallery-controls {
+  position: fixed;
+  top: 8px;
+  left: 8px;
+  width: fit-content;
+  height: fit-content;
+  z-index: 8;
+
+
+}
+
 .lf-project-detail-lt-md {
   padding-top: 8px + $lf-navbar-thickness-mobile!important;
 }
 
+.lf-project-detail-background-overlay {
+  position: fixed;
+  top: -10px;
+  bottom: -10px;
+  left: -10px;
+  right: -10px;
+  z-index: -1;
+}
+
+.lf-project-detail-background-lt-md {
+  margin-top: $lf-navbar-thickness-mobile;
+}
+
+.lf-project-detail-background {
+  position: absolute;
+  top: -10px;
+  bottom: -10px;
+  left: -10px;
+  right: -10px;
+  z-index: -2;
+
+  .lf-project-detail-background-strawler-lt-md {
+
+    overflow: hidden;
+
+    img {
+      margin-top: 0!important;
+      width: 100%;
+    }
+  }
+
+  .lf-project-detail-background-strawler {
+    overflow: scroll;
+    height: 100%;
+    width: 100%;
+
+    img {
+      margin-top: $lf-navbar-thickness-desktop;
+    }
+  }
+
+}
+
+
 .lf-project-detail {
-  max-width: 600px;
-  padding: 8px;
 
-  .lf-project-detail-heading {
-    @include lf-page-heading-layout();
-    margin-bottom: 32px;
-  }
+  .lf-project-detail-container {
+    max-width: 600px;
+    padding: 16px;
 
-  .lf-project-detail-primary-description {
-    p {
-
-    }
-  }
-
-  .lf-project-detail-block, .lf-project-detail-file-title {
-
-    h2 {
-      font-weight: normal;
-      font-size: 20px;
-      margin-bottom: 0px;
-      margin-bottom: 8px;
-    }
-  }
-
-  .lf-project-detail-files {
-    span {
-
-    }
-     a {
-
-     }
-  }
-
-  .lf-project-detail-block {
-
-    .lf-project-detail-block-image {
-      min-height: 200px;
-      background-size: cover;
-      background-repeat: no-repeat;
-      background-position: center center;
+    .lf-project-detail-heading {
+      @include lf-page-heading-layout();
+      margin-bottom: 32px;
     }
 
-    .lf-project-detail-block-description {
-      box-sizing: border-box;
-      padding: 8px;
+    .lf-project-detail-primary-description {
+      p {
+        text-align: justify;
+        letter-spacing: 1px;
+        font-size: 18px;
+      }
     }
 
-    .lf-project-detail-block-description-lt-md {
-      padding-left: 0px;
+    .lf-project-detail-block, .lf-project-detail-file-title {
+
+      h2 {
+        font-weight: normal;
+        font-size: 20px;
+        margin-bottom: 0px;
+        margin-bottom: 16px;
+      }
+    }
+
+    .lf-project-detail-files {
+      span {
+
+      }
+      a {
+
+      }
+    }
+
+    .lf-project-detail-block {
+      margin-top: 64px;
+
+      .lf-project-detail-block-show-image {
+        padding: 8px;
+        border-style: solid;
+        border-width: 2px;
+        width: fit-content;
+        margin-left: 16px;
+        letter-spacing: 1px;
+        cursor: pointer;
+      }
+
+      .lf-project-detail-block-description {
+        box-sizing: border-box;
+        padding: 8px;
+        padding-top: 0px;
+        font-size: 17px;
+        text-align: justify;
+        letter-spacing: 1px;
+        border-left-width: 4px;
+        border-left-style: solid;
+      }
+
+      .lf-project-detail-block-description-lt-md {
+
+      }
     }
   }
 }
