@@ -1,0 +1,53 @@
+<div fxLayout="row">
+  <div
+    class="lf-project-detail-switch"
+    ngClass.lt-md="lf-project-detail-switch-lt-md"
+    fxLayoutAlign="center center"
+    fxLayout="row"
+  fxFlex="0 0 auto">
+    <div class="lf-project-detail-switcher-stepper" fxLayoutAlign="center center" fxFlex="1 1 auto">
+      <button mat-icon-button color="primary" (click)="previousBlock()" [disabled]="isActiveBlockFirst(activeBlock)">
+        <mat-icon>keyboard_arrow_left</mat-icon>
+      </button>
+    </div>
+    <div fxFlex="1 1 auto">
+      <div
+        class="lf-project-detail-switch-heading"
+        fxLayoutAlign="center center"
+        fxHide="true"
+        fxShow.gt-sm="true">
+        <span>{{activeBlock.title}}</span>
+      </div>
+      <div class="lf-project-detail-switch-container" fxLayoutAlign="center center" fxLayout="row">
+        <div *ngFor="let block of projectBlocks"
+          class="lf-project-detail-switch-circle"
+          [ngClass]="{'lf-empty': block.id !== activeBlock.id, 'lf-full': block.id === activeBlock.id}"
+        (click)="goToBlock(block)">
+
+        </div>
+      </div>
+    </div>
+    <div class="lf-project-detail-switcher-stepper" fxLayoutAlign="center center" fxFlex="1 1 auto">
+      <button mat-icon-button color="primary" (click)="nextBlock()" [disabled]="isActiveBlockLatest(activeBlock)">
+        <mat-icon>keyboard_arrow_right</mat-icon>
+      </button>
+    </div>
+  </div>
+
+  <div
+    class="lf-project-detail-zoom"
+    ngClass.lt-md="lf-project-detail-zoom-lt-md"
+    fxLayoutAlign="center center" >
+    <mat-slider fxHide="true" fxShow.gt-sm="true" max="200" min="10" step="1" thumbLabel="true" color="primary" value="100" [(ngModel)]="zoom" (ngModelChange)="zoomChanged()"></mat-slider>
+    <div fxHide="true" fxShow.lt-md="true" class="lf-project-detail-switch-heading">
+      <span>{{activeBlock.title}}</span>
+    </div>
+  </div>
+
+  <div
+    class="lf-project-detail-close"
+    ngClass.lt-md="lf-project-detail-close-lt-md"
+    fxLayoutAlign="center center">
+    <lf-close (closeClicked)="close()"></lf-close>
+  </div>
+</div>

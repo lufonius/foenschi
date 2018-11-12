@@ -7,6 +7,7 @@
 @import './skills/_skills-theme.scss';
 @import './project-detail/_project-detail-theme.scss';
 @import './resume/_resume-theme.scss';
+@import './gallery-controls/_gallery-controls-theme.scss';
 
 @mixin lf-portfolio-theme($theme) {
   @include lf-about-me-theme($theme);
@@ -18,4 +19,5 @@
   @include lf-project-detail-theme($theme);
   @include lf-resume-theme($theme);
   @include lf-contact-theme($theme);
+  @include lf-gallery-controls-theme($theme);
 }

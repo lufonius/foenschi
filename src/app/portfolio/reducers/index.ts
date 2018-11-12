@@ -125,3 +125,13 @@ export const getCurrentSectionState = createSelector(
   getFrontPageState,
   fromFrontPage.getCurrentSectionState
 );
+
+export const getProjectDetailPagePageState = createSelector(
+  getProjectDetailPageState,
+  fromProjectDetailPage.getProjectDetailPagePageState
+);
+
+export const getActiveProjectBlock = createSelector(
+  getProjectDetailPageState,
+  fromProjectDetailPage.getActiveProjectBlock
+);

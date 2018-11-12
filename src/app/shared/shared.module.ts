@@ -5,18 +5,22 @@ import {
   MatIconModule,
   MatInputModule,
   MatProgressSpinnerModule,
-  MatRippleModule
+  MatRippleModule, MatSliderModule
 } from "@angular/material";
 import { LogoComponent } from './components/logo/logo.component';
 import { NotYetImplementedComponent } from './components/not-yet-implemented/not-yet-implemented.component';
 import {RouterModule} from "@angular/router";
 import {CommonModule} from "@angular/common";
+import { CloseComponent } from './components/close/close.component';
+import {FormsModule} from "@angular/forms";
 
 @NgModule({
   imports: [
     CommonModule,
+    FormsModule,
     RouterModule,
     FlexLayoutModule,
+    MatSliderModule,
     MatButtonModule,
     MatIconModule,
     MatRippleModule,
@@ -25,17 +29,21 @@ import {CommonModule} from "@angular/common";
   ],
   exports: [
     FlexLayoutModule,
+    FormsModule,
     RouterModule,
+    MatSliderModule,
     MatButtonModule,
     MatIconModule,
     MatRippleModule,
     MatInputModule,
     MatProgressSpinnerModule,
     LogoComponent,
-    NotYetImplementedComponent
+    NotYetImplementedComponent,
+    CloseComponent
   ],
   declarations: [
     LogoComponent,
+    CloseComponent,
     NotYetImplementedComponent
   ]
 })

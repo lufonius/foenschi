@@ -45,6 +45,7 @@ import { ResumePageComponent } from './containers/resume-page.component';
 import {ResumePageEffects} from "./effects/resume-page.effects";
 import {ResumePageService} from "./services/resume-page.service";
 import * as fromResumePage from './reducers/resume-page.reducer';
+import { GalleryControlsComponent } from './components/gallery-controls/gallery-controls.component';
 
 
 
@@ -85,7 +86,8 @@ import * as fromResumePage from './reducers/resume-page.reducer';
     ProjectDetailComponent,
     ProjectDetailPageComponent,
     ResumeComponent,
-    ResumePageComponent
+    ResumePageComponent,
+    GalleryControlsComponent
   ],
   providers : [
     FrontPageService,
