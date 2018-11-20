@@ -5,6 +5,8 @@
 @import './burger/_burger-theme.scss';
 @import './loading-overlay/_loading-overlay-theme';
 @import './choose-language/_choose-language-theme';
+@import './private-policy/_private-policy-theme';
+@import './footer/_footer-theme';
 
 @mixin lf-core-theme($theme) {
   @include lf-navigation-theme($theme);
@@ -14,4 +16,6 @@
   @include lf-burger-theme($theme);
   @include lf-loading-overlay-theme($theme);
   @include lf-choose-language-theme($theme);
+  @include lf-footer-theme($theme);
+  @include lf-private-policy-theme($theme);
 }

@@ -13,6 +13,7 @@ import { LayoutComponent } from "./core/containers/layout/layout.component";
 import {ChooseLanguagePageComponent} from "./core/containers/choose-language-page/choose-language-page.component";
 import {CheckLanguageGuardService} from "./core/services/check-language-guard.service";
 import {CheckCurrentLanguageGuardService} from "./core/services/check-current-language-guard.service";
+import {PrivatePolicyPageComponent} from "./core/containers/private-policy-page.component";
 
 @NgModule({
   declarations: [
@@ -46,6 +47,19 @@ import {CheckCurrentLanguageGuardService} from "./core/services/check-current-la
         path: ':language',
         redirectTo: ':language/portfolio/front',
         pathMatch: 'full'
+      },
+      {
+        path: ':language/private-policy',
+        component: LayoutComponent,
+        children: [
+          {
+            path: '',
+            component: PrivatePolicyPageComponent
+          }
+        ],
+        data: {
+          navbarType: 'minimal'
+        }
       }
     ]),
     CoreModule,

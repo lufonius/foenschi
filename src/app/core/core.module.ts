@@ -38,6 +38,9 @@ import {CheckCurrentLanguageGuardService} from "./services/check-current-languag
 import {BaseLoadingEffects} from "./effects/base-loading.effect";
 import { LanguageListComponent } from './components/language-list/language-list.component';
 import { PageChangeAnimationComponent } from './components/page-change-animation/page-change-animation.component';
+import {PrivatePolicyComponent} from "./components/private-policy/private-policy.component";
+import {PrivatePolicyPageComponent} from "./containers/private-policy-page.component";
+import {FooterComponent} from "./components/footer/footer.component";
 
 
 
@@ -69,7 +72,10 @@ import { PageChangeAnimationComponent } from './components/page-change-animation
     ChooseLanguagePageComponent,
     NavbarComponent,
     LanguageListComponent,
-    PageChangeAnimationComponent
+    PageChangeAnimationComponent,
+    PrivatePolicyComponent,
+    PrivatePolicyPageComponent,
+    FooterComponent
   ],
   exports: [
     LayoutComponent

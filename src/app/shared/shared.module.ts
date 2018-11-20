@@ -3,9 +3,9 @@ import { FlexLayoutModule } from "@angular/flex-layout";
 import {
   MatButtonModule,
   MatIconModule,
-  MatInputModule,
+  MatInputModule, MatOptionModule,
   MatProgressSpinnerModule,
-  MatRippleModule, MatSliderModule
+  MatRippleModule, MatSelectModule, MatSliderModule
 } from "@angular/material";
 import { LogoComponent } from './components/logo/logo.component';
 import { NotYetImplementedComponent } from './components/not-yet-implemented/not-yet-implemented.component';
@@ -20,6 +20,8 @@ import {FormsModule} from "@angular/forms";
     FormsModule,
     RouterModule,
     FlexLayoutModule,
+    MatOptionModule,
+    MatSelectModule,
     MatSliderModule,
     MatButtonModule,
     MatIconModule,
@@ -31,6 +33,8 @@ import {FormsModule} from "@angular/forms";
     FlexLayoutModule,
     FormsModule,
     RouterModule,
+    MatOptionModule,
+    MatSelectModule,
     MatSliderModule,
     MatButtonModule,
     MatIconModule,

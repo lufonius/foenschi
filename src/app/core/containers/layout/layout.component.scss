@@ -1,0 +1,8 @@
+/*to push the footer down*/
+.lf-router-outlet-lt-md {
+  min-height: calc(100vh - 46px);
+}
+
+.lf-router-outlet-gt-sm {
+  min-height: 100vh;
+}

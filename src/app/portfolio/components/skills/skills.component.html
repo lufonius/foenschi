@@ -3,6 +3,15 @@
     <h2>{{skillsPage.heading.subtitle}}</h2>
     <h1>{{skillsPage.heading.title}}</h1>
   </div>
+  <div>
+    <mat-form-field class="lf-skills-filter-form-field" ngClass.lt-md="lf-skills-filter-form-field-lt-md">
+      <mat-select [placeholder]="skillsPage.heading.filterPlaceholder" [(value)]="selectedLabels" multiple>
+        <mat-option *ngFor="let label of labels" [value]="label">
+          {{label}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
   <div fxLayout="column" *ngIf="skillsPage.groups">
     <div *ngFor="let skillGroup of objectAsArray(skillsPage.groups)">
     <div class="lf-skills-subsection-group">
@@ -12,7 +21,8 @@
       fxLayout="row wrap"
       fxFlexAlign="start">
       <div
-        *ngFor="let skill of skillGroup.skills"
+        *ngFor="let skill of skillGroup.skills | lfSkillsFilterPipe:selectedLabels"
+        @flyInOut
         class="lf-skills-grid-item"
         fxFlex.gt-sm="0 0 33.33%"
         fxFlex.sm="0 0 50%"

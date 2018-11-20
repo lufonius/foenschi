@@ -1,0 +1,35 @@
+@import '../../../../variables';
+
+.lf-private-policy-lt-md {
+  padding-top: $lf-navbar-thickness-mobile + 16px!important;
+}
+
+.lf-private-policy {
+  padding: 16px;
+  max-width: 600px;
+
+  .lf-private-policy-heading {
+    @include lf-page-heading-layout();
+
+    h2 {
+      margin-top: 0px;
+    }
+  }
+
+  div {
+    h2 {
+      margin-top: 32px;
+      font-size: 18px;
+    }
+
+    h3 {
+      margin-top: 16px;
+      font-size: 16px;
+    }
+
+    p {
+      margin-top: 8px;
+      font-size: 14px;
+    }
+  }
+}

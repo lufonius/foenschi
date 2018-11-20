@@ -1,0 +1,31 @@
+@import '~@angular/material/theming';
+@import '../../../../variables';
+
+@mixin lf-private-policy-theme($theme) {
+  $foreground: map-get($theme, foreground);
+  $primary: mat-color(map-get($theme, primary));
+  $text: mat-color(map-get($theme, primary), default-contrast);
+  $secondary-text: mat-color($foreground, secondary-text);
+
+  .lf-private-policy {
+    padding: 16px;
+
+    .lf-private-policy-heading {
+      @include lf-page-heading-theme($theme);
+    }
+
+    div {
+      h2 {
+
+      }
+
+      h3 {
+
+      }
+
+      p {
+
+      }
+    }
+  }
+}

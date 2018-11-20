@@ -14,7 +14,7 @@ export interface State extends SkillsPage {}
 
 
 export const initialState: State = {
-  heading: { title: "jklahsdf", subtitle: "asdfasd" },
+  heading: { title: "jklahsdf", subtitle: "asdfasd", filterPlaceholder: '' },
   groups: {
     "technicalSkills": {
       title: "Technische Fähigkeiten",

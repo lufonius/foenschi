@@ -46,6 +46,7 @@ import {ResumePageEffects} from "./effects/resume-page.effects";
 import {ResumePageService} from "./services/resume-page.service";
 import * as fromResumePage from './reducers/resume-page.reducer';
 import { GalleryControlsComponent } from './components/gallery-controls/gallery-controls.component';
+import {SkillsFilterPipe} from "./components/skills/skills-filter.pipe";
 
 
 
@@ -87,7 +88,8 @@ import { GalleryControlsComponent } from './components/gallery-controls/gallery-
     ProjectDetailPageComponent,
     ResumeComponent,
     ResumePageComponent,
-    GalleryControlsComponent
+    GalleryControlsComponent,
+    SkillsFilterPipe
   ],
   providers : [
     FrontPageService,

@@ -47,6 +47,9 @@
   </lf-navigation-footer>
 </lf-navigation>
 
+<div ngClass.lt-md="lf-router-outlet-lt-md" ngClass.gt-sm="lf-router-outlet-gt-sm">
+  <router-outlet></router-outlet>
+</div>
 
-<router-outlet></router-outlet>
+<lf-footer [currentLanguage]="currentLanguageState$ | async"></lf-footer>
 
