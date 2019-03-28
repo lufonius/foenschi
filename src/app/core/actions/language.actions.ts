@@ -12,8 +12,7 @@ export enum LanguageActionTypes {
 export class SetCurrentLanguageAction implements Action {
   readonly type = LanguageActionTypes.SetCurrentLanguage;
 
-  constructor(public payload: { language: string }) {
-  }
+  constructor(public payload: { language: string }) {}
 }
 
 export class LoadAvailableLanguagesAction extends SetLoad implements Action {
