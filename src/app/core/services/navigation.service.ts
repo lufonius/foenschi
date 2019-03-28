@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { AngularFirestore } from "angularfire2/firestore";
+import { AngularFirestore } from "@angular/fire/firestore";
 import { map } from "rxjs/operators";
 import {NavigationItem} from "../models/navigation-item.model";
 import {Observable, Subject} from "rxjs/index";

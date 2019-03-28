@@ -20,7 +20,6 @@ import {filter, map, mergeMap, withLatestFrom} from "rxjs/operators";
 import {ProjectService} from "../services/project.service";
 import {ScrollService} from "../../core/services/scroll.service";
 import {EntrySection} from "../models/entry-section.view-model";
-import {current} from "codelyzer/util/syntaxKind";
 
 @Component({
   selector: 'lf-front-page',

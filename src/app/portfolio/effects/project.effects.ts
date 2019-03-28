@@ -44,6 +44,8 @@ export class ProjectEffects {
     ofType(ProjectActionTypes.LoadProjects),
     combineLatest(
       //only emit if there is a 'real' value
+      // TODO: That's a data dependency ... check if there's another way to solve this
+      // and the effect looks horrible
       this.store.pipe(select(fromRoot.getCurrentLanguageState)).pipe(
         filter(currentLanguage => !!currentLanguage)
       ),

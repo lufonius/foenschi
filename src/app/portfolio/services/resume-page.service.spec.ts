@@ -1,8 +1,8 @@
 import { TestBed, inject } from '@angular/core/testing';
 
 import { SkillsPageService } from './skills-page.service';
-import {AngularFireModule} from "angularfire2";
-import {AngularFirestore, AngularFirestoreModule, CollectionReference, DocumentReference} from "angularfire2/firestore";
+import {AngularFireModule} from "@angular/fire";
+import {AngularFirestore, AngularFirestoreModule, CollectionReference, DocumentReference} from "@angular/fire/firestore";
 import { environment } from "../../../environments/environment";
 import {ResumePageService} from "./resume-page.service";
 

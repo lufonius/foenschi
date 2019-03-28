@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { AngularFirestore } from "angularfire2/firestore";
+import { AngularFirestore } from "@angular/fire/firestore";
 import {Project} from "../models/project.view-model";
 import { Observable, from} from "rxjs";
 import {ProjectBlock} from "../models/project-block.view-model";

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {AngularFirestore, QuerySnapshot} from "angularfire2/firestore";
+import {AngularFirestore, QuerySnapshot} from "@angular/fire/firestore";
 import {FrontPage} from "../models/front-page.view-model";
 import {from, Observable, Subject} from "rxjs/index";
 import {map, } from "rxjs/operators";

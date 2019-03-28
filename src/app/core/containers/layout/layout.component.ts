@@ -34,7 +34,7 @@ import {
 } from 'rxjs/operators';
 import {
   MediaChange,
-  ObservableMedia
+  MediaObserver
 } from "@angular/flex-layout";
 import {
   LoadNavigationAction,
@@ -72,7 +72,7 @@ export class LayoutComponent {
 
   constructor(
     public store: Store<State>,
-    public mediaQuery$: ObservableMedia,
+    public mediaQuery$: MediaObserver,
     public scrollService: ScrollService,
     public router: Router
   ) {
@@ -123,7 +123,7 @@ export class LayoutComponent {
   }
 
   setIsMobileMediaQuery() {
-    this.mediaQuery$.subscribe((mediaQueryChange: MediaChange) => {
+    this.mediaQuery$.asObservable().subscribe(() => {
       let isXSMediaQueryActive: boolean = this.mediaQuery$.isActive('xs');
       let isSMMediaQueryActive: boolean = this.mediaQuery$.isActive('sm');
 
