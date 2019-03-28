@@ -8,7 +8,7 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "prettier": "prettier --single-quote --print-width 120 --arrow-parens always --write \"**/*.ts\""
+    "prettier": "prettier --single-quote --print-width 120 --arrow-parens always --write \"*/**/*.ts\""
   },
   "husky": {
     "hooks": {
