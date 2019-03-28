@@ -40,48 +40,48 @@ import { PrivatePolicyPageComponent } from './containers/private-policy-page.com
 import { FooterComponent } from './components/footer/footer.component';
 
 @NgModule({
-	imports: [
-		RouterModule,
-		CommonModule,
-		SharedModule,
-		StoreModule.forRoot(reducers, {
-			metaReducers
-		}),
-		EffectsModule.forRoot([NavigationEffects, LanguageEffects, BaseLoadingEffects]),
-		StoreRouterConnectingModule.forRoot({
-			stateKey: 'router'
-		}),
-		!environment.production ? StoreDevtoolsModule.instrument() : [],
-		AngularFireModule.initializeApp(environment.firebase),
-		AngularFirestoreModule.enablePersistence()
-	],
-	schemas: [NO_ERRORS_SCHEMA],
-	declarations: [
-		NavigationComponent,
-		BurgerComponent,
-		LayoutComponent,
-		QuickNavComponent,
-		NavigationElementComponent,
-		LoadingOverlayComponent,
-		ChooseLanguageComponent,
-		ChooseLanguagePageComponent,
-		NavbarComponent,
-		LanguageListComponent,
-		PageChangeAnimationComponent,
-		PrivatePolicyComponent,
-		PrivatePolicyPageComponent,
-		FooterComponent
-	],
-	exports: [LayoutComponent],
-	providers: [
-		NavigationEffects,
-		NavigationService,
-		LanguageEffects,
-		LanguagesService,
-		BaseLoadingEffects,
-		CheckLanguageGuardService,
-		CheckCurrentLanguageGuardService,
-		ScrollService
-	]
+  imports: [
+    RouterModule,
+    CommonModule,
+    SharedModule,
+    StoreModule.forRoot(reducers, {
+      metaReducers
+    }),
+    EffectsModule.forRoot([NavigationEffects, LanguageEffects, BaseLoadingEffects]),
+    StoreRouterConnectingModule.forRoot({
+      stateKey: 'router'
+    }),
+    !environment.production ? StoreDevtoolsModule.instrument() : [],
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFirestoreModule.enablePersistence()
+  ],
+  schemas: [NO_ERRORS_SCHEMA],
+  declarations: [
+    NavigationComponent,
+    BurgerComponent,
+    LayoutComponent,
+    QuickNavComponent,
+    NavigationElementComponent,
+    LoadingOverlayComponent,
+    ChooseLanguageComponent,
+    ChooseLanguagePageComponent,
+    NavbarComponent,
+    LanguageListComponent,
+    PageChangeAnimationComponent,
+    PrivatePolicyComponent,
+    PrivatePolicyPageComponent,
+    FooterComponent
+  ],
+  exports: [LayoutComponent],
+  providers: [
+    NavigationEffects,
+    NavigationService,
+    LanguageEffects,
+    LanguagesService,
+    BaseLoadingEffects,
+    CheckLanguageGuardService,
+    CheckCurrentLanguageGuardService,
+    ScrollService
+  ]
 })
 export class CoreModule {}

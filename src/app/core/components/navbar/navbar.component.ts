@@ -1,16 +1,18 @@
-import { ChangeDetectionStrategy, Component, Input, OnInit, ViewContainerRef } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
 
 @Component({
-	selector: 'lf-navbar',
-	templateUrl: './navbar.component.html',
-	styleUrls: ['./navbar.component.scss'],
-	changeDetection: ChangeDetectionStrategy.OnPush
+  selector: 'lf-navbar',
+  templateUrl: './navbar.component.html',
+  styleUrls: ['./navbar.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class NavbarComponent implements OnInit {
-	@Input() mode: string = null;
-	@Input() showQuickNav: boolean = false;
+  @Input() mode: string = null;
+  @Input() showQuickNav: boolean = false;
 
-	constructor() {}
+  constructor() {
+  }
 
-	ngOnInit() {}
+  ngOnInit() {
+  }
 }

@@ -8,5 +8,5 @@ import * as functions from 'firebase-functions';
 // });
 
 export const getInTouch = functions.https.onRequest((request, response) => {
-	response.send(request.body);
+  response.send(request.body);
 });

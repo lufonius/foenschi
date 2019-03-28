@@ -1,13 +1,13 @@
-import { reducer, initialState } from './front-page.reducer';
+import { initialState, reducer } from './front-page.reducer';
 
 describe('FrontPage Reducer', () => {
-	describe('unknown action', () => {
-		it('should return the initial state', () => {
-			const action = {} as any;
+  describe('unknown action', () => {
+    it('should return the initial state', () => {
+      const action = {} as any;
 
-			const result = reducer(initialState, action);
+      const result = reducer(initialState, action);
 
-			expect(result).toBe(initialState);
-		});
-	});
+      expect(result).toBe(initialState);
+    });
+  });
 });

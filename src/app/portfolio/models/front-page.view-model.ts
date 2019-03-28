@@ -4,9 +4,9 @@ import { AboutMeSection } from './about-me-section.view-model';
 import { EntrySection } from './entry-section.view-model';
 
 export interface FrontPage {
-	currentSection: 'about-me' | 'entry' | 'contact' | 'projects';
-	entrySection: EntrySection;
-	aboutMeSection: AboutMeSection;
-	projectsSection: ProjectsSection;
-	contactSection: ContactSection;
+  currentSection: 'about-me' | 'entry' | 'contact' | 'projects';
+  entrySection: EntrySection;
+  aboutMeSection: AboutMeSection;
+  projectsSection: ProjectsSection;
+  contactSection: ContactSection;
 }

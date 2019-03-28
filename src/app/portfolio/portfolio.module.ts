@@ -49,57 +49,57 @@ import { GalleryControlsComponent } from './components/gallery-controls/gallery-
 import { SkillsFilterPipe } from './components/skills/skills-filter.pipe';
 
 @NgModule({
-	imports: [
-		CommonModule,
-		RouterModule.forChild(PORTFOLIO_ROUTES),
-		StoreModule.forFeature('portfolio', {
-			project: fromProject.reducer,
-			frontPage: fromFrontPage.reducer,
-			skillsPage: fromSkillsPage.reducer,
-			projectDetailPage: fromProjectDetailPage.reducer,
-			resumePage: fromResumePage.reducer
-		}),
-		EffectsModule.forFeature([
-			ProjectEffects,
-			FrontPageEffects,
-			SkillsPageEffects,
-			ProjectDetailPageEffects,
-			ResumePageEffects,
-			BaseLoadingEffects
-		]),
-		SharedModule
-	],
-	declarations: [
-		FrontPageComponent,
-		EntryComponent,
-		AboutMeComponent,
-		ContactComponent,
-		ProjectComponent,
-		SectionLayoutComponent,
-		SubsectionComponent,
-		ElementPositionDirective,
-		ScreenCoverageDirective,
-		ScrollOffsetPercentageDirective,
-		SkillsComponent,
-		SkillsPageComponent,
-		ProjectDetailComponent,
-		ProjectDetailPageComponent,
-		ResumeComponent,
-		ResumePageComponent,
-		GalleryControlsComponent,
-		SkillsFilterPipe
-	],
-	providers: [
-		FrontPageService,
-		FrontPageEffects,
-		ProjectService,
-		ProjectEffects,
-		SkillsPageService,
-		SkillsPageEffects,
-		ProjectDetailPageEffects,
-		ResumePageEffects,
-		ResumePageService,
-		BaseLoadingEffects
-	]
+  imports: [
+    CommonModule,
+    RouterModule.forChild(PORTFOLIO_ROUTES),
+    StoreModule.forFeature('portfolio', {
+      project: fromProject.reducer,
+      frontPage: fromFrontPage.reducer,
+      skillsPage: fromSkillsPage.reducer,
+      projectDetailPage: fromProjectDetailPage.reducer,
+      resumePage: fromResumePage.reducer
+    }),
+    EffectsModule.forFeature([
+      ProjectEffects,
+      FrontPageEffects,
+      SkillsPageEffects,
+      ProjectDetailPageEffects,
+      ResumePageEffects,
+      BaseLoadingEffects
+    ]),
+    SharedModule
+  ],
+  declarations: [
+    FrontPageComponent,
+    EntryComponent,
+    AboutMeComponent,
+    ContactComponent,
+    ProjectComponent,
+    SectionLayoutComponent,
+    SubsectionComponent,
+    ElementPositionDirective,
+    ScreenCoverageDirective,
+    ScrollOffsetPercentageDirective,
+    SkillsComponent,
+    SkillsPageComponent,
+    ProjectDetailComponent,
+    ProjectDetailPageComponent,
+    ResumeComponent,
+    ResumePageComponent,
+    GalleryControlsComponent,
+    SkillsFilterPipe
+  ],
+  providers: [
+    FrontPageService,
+    FrontPageEffects,
+    ProjectService,
+    ProjectEffects,
+    SkillsPageService,
+    SkillsPageEffects,
+    ProjectDetailPageEffects,
+    ResumePageEffects,
+    ResumePageService,
+    BaseLoadingEffects
+  ]
 })
 export class PortfolioModule {}

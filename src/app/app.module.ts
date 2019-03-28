@@ -16,54 +16,54 @@ import { CheckCurrentLanguageGuardService } from './core/services/check-current-
 import { PrivatePolicyPageComponent } from './core/containers/private-policy-page.component';
 
 @NgModule({
-	declarations: [AppComponent],
-	imports: [
-		BrowserModule,
-		BrowserAnimationsModule,
-		RouterModule.forRoot([
-			{
-				path: ':language/portfolio',
-				component: LayoutComponent,
-				loadChildren: './portfolio/portfolio.module#PortfolioModule',
-				canActivate: [CheckLanguageGuardService]
-			},
-			{
-				path: 'choose-language',
-				component: ChooseLanguagePageComponent,
-				pathMatch: 'full'
-			},
-			//attention here: when the route is empty and there's already a pagevisit and ergo a choosen
-			//language from beforehand, the site should switch automatically to the front page
-			//a meta-reducer gets the language from the local store and should save it into the state
-			{
-				path: '',
-				component: ChooseLanguagePageComponent,
-				pathMatch: 'full',
-				canActivate: [CheckCurrentLanguageGuardService]
-			},
-			{
-				path: ':language',
-				redirectTo: ':language/portfolio/front',
-				pathMatch: 'full'
-			},
-			{
-				path: ':language/private-policy',
-				component: LayoutComponent,
-				children: [
-					{
-						path: '',
-						component: PrivatePolicyPageComponent
-					}
-				],
-				data: {
-					navbarType: 'minimal'
-				}
-			}
-		]),
-		CoreModule,
-		SharedModule
-	],
-	providers: [NavigationEffects],
-	bootstrap: [AppComponent]
+  declarations: [AppComponent],
+  imports: [
+    BrowserModule,
+    BrowserAnimationsModule,
+    RouterModule.forRoot([
+      {
+        path: ':language/portfolio',
+        component: LayoutComponent,
+        loadChildren: './portfolio/portfolio.module#PortfolioModule',
+        canActivate: [CheckLanguageGuardService]
+      },
+      {
+        path: 'choose-language',
+        component: ChooseLanguagePageComponent,
+        pathMatch: 'full'
+      },
+      //attention here: when the route is empty and there's already a pagevisit and ergo a choosen
+      //language from beforehand, the site should switch automatically to the front page
+      //a meta-reducer gets the language from the local store and should save it into the state
+      {
+        path: '',
+        component: ChooseLanguagePageComponent,
+        pathMatch: 'full',
+        canActivate: [CheckCurrentLanguageGuardService]
+      },
+      {
+        path: ':language',
+        redirectTo: ':language/portfolio/front',
+        pathMatch: 'full'
+      },
+      {
+        path: ':language/private-policy',
+        component: LayoutComponent,
+        children: [
+          {
+            path: '',
+            component: PrivatePolicyPageComponent
+          }
+        ],
+        data: {
+          navbarType: 'minimal'
+        }
+      }
+    ]),
+    CoreModule,
+    SharedModule
+  ],
+  providers: [NavigationEffects],
+  bootstrap: [AppComponent]
 })
 export class AppModule {}

@@ -1,22 +1,22 @@
-import { TestBed, inject } from '@angular/core/testing';
+import { TestBed } from '@angular/core/testing';
 import { provideMockActions } from '@ngrx/effects/testing';
 import { Observable } from 'rxjs';
 
 import { NavigationEffects } from './navigation.effects';
 
 describe('NavigationService', () => {
-	let actions$: Observable<any>;
-	let effects: NavigationEffects;
+  let actions$: Observable<any>;
+  let effects: NavigationEffects;
 
-	beforeEach(() => {
-		TestBed.configureTestingModule({
-			providers: [NavigationEffects, provideMockActions(() => actions$)]
-		});
+  beforeEach(() => {
+    TestBed.configureTestingModule({
+      providers: [NavigationEffects, provideMockActions(() => actions$)]
+    });
 
-		effects = TestBed.get(NavigationEffects);
-	});
+    effects = TestBed.get(NavigationEffects);
+  });
 
-	it('should be created', () => {
-		expect(effects).toBeTruthy();
-	});
+  it('should be created', () => {
+    expect(effects).toBeTruthy();
+  });
 });

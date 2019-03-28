@@ -1,6 +1,6 @@
 export interface BaseSection {
-	title: string;
-	subtitle: string;
-	background?: string;
-	navTitle: string;
+  title: string;
+  subtitle: string;
+  background?: string;
+  navTitle: string;
 }

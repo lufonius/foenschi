@@ -1,17 +1,17 @@
-import { ChangeDetectionStrategy, Component, ElementRef, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { BaseSectionPosition } from '../base-section-position';
 
 @Component({
-	selector: 'lf-entry',
-	templateUrl: './entry.component.html',
-	styleUrls: ['./entry.component.scss'],
-	changeDetection: ChangeDetectionStrategy.OnPush
+  selector: 'lf-entry',
+  templateUrl: './entry.component.html',
+  styleUrls: ['./entry.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class EntryComponent extends BaseSectionPosition {
-	@Input() saying: string = '';
-	@Input() nextSectionText: string = '';
+  @Input() saying: string = '';
+  @Input() nextSectionText: string = '';
 
-	getBackgroundUrl() {
-		return `url(${this.background})`;
-	}
+  getBackgroundUrl() {
+    return `url(${this.background})`;
+  }
 }
