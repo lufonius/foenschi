@@ -13,7 +13,9 @@ export class QuickNavComponent {
   @Input() sectionScreenCoverage: SectionScreenCoverage = {};
   @Input() sectionScrollOffsetPercentage: SectionScrollOffsetPercentageModel = {};
   @Input() quickNavTitles: { aboutme: string; entry: string; contact: string; projects: string } = null;
-  @Output() currentSectionChange: EventEmitter<'about-me' | 'contact' | 'entry' | 'projects'> = new EventEmitter<'about-me' | 'contact' | 'entry' | 'projects'>();
+  @Output() currentSectionChange: EventEmitter<'about-me' | 'contact' | 'entry' | 'projects'> = new EventEmitter<
+    'about-me' | 'contact' | 'entry' | 'projects'
+  >();
 
   goToSection(section: 'about-me' | 'contact' | 'entry' | 'projects') {
     this.currentSectionChange.emit(section);

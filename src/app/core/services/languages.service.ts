@@ -5,8 +5,7 @@ import { Language } from '../models/language.model';
 
 @Injectable()
 export class LanguagesService {
-  constructor(public db: AngularFirestore) {
-  }
+  constructor(public db: AngularFirestore) {}
 
   getAvailableLanguages(): Observable<Language[]> {
     return <any>this.db.collection('availableLanguages').valueChanges();

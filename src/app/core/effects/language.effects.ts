@@ -13,8 +13,7 @@ import { LanguagesService } from '../services/languages.service';
 
 @Injectable()
 export class LanguageEffects {
-  constructor(public actions$: Actions, public languagesService: LanguagesService) {
-  }
+  constructor(public actions$: Actions, public languagesService: LanguagesService) {}
 
   @Effect()
   getAvailableLanguages$: Observable<Action> = this.actions$.pipe(

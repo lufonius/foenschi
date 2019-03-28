@@ -37,8 +37,7 @@ export class FrontPageLoadingAction implements Action {
 export class SetActiveProjectIdAction implements Action {
   readonly type = FrontPageActionTypes.SetActiveProjectIdAction;
 
-  constructor(public payload: { id: string }) {
-  }
+  constructor(public payload: { id: string }) {}
 }
 
 export type FrontPageActions =

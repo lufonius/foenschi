@@ -38,19 +38,16 @@ export class SetLoadFailure extends SetLoadSuccess {
 export class SetLoadAction {
   readonly type = BaseLoadingActionTypes.SetLoad;
 
-  constructor(public payload: { loading: boolean; id: string }) {
-  }
+  constructor(public payload: { loading: boolean; id: string }) {}
 }
 export class SetLoadSuccessAction {
   readonly type = BaseLoadingActionTypes.SetLoadSuccess;
 
-  constructor(public payload: { loading: boolean; id: string }) {
-  }
+  constructor(public payload: { loading: boolean; id: string }) {}
 }
 
 export class SetLoadFailureAction {
   readonly type = BaseLoadingActionTypes.SetLoadFailure;
 
-  constructor(public payload: { loading: boolean; id: string }) {
-  }
+  constructor(public payload: { loading: boolean; id: string }) {}
 }

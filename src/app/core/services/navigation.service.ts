@@ -5,8 +5,7 @@ import { Navigation } from '../models/navigation.model';
 
 @Injectable()
 export class NavigationService {
-  constructor(public db: AngularFirestore) {
-  }
+  constructor(public db: AngularFirestore) {}
 
   public getNavigation(language: string): Observable<Navigation> {
     return <any>this.db

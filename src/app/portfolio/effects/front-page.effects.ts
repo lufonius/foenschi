@@ -15,8 +15,7 @@ import { catchError, combineLatest, filter, map, mergeMap } from 'rxjs/operators
 
 @Injectable()
 export class FrontPageEffects {
-  constructor(public actions$: Actions, public frontPageService: FrontPageService, public store: Store<State>) {
-  }
+  constructor(public actions$: Actions, public frontPageService: FrontPageService, public store: Store<State>) {}
 
   @Effect()
   getFrontPageViewModel$ = this.actions$.pipe(

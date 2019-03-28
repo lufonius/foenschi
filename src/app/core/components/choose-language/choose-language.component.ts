@@ -11,11 +11,9 @@ export class ChooseLanguageComponent implements OnInit {
   @Output() languageSelected: EventEmitter<string> = new EventEmitter<string>();
   @Input() languages: Language[] = [];
 
-  constructor() {
-  }
+  constructor() {}
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   setSelectedLanguage(language: string) {
     this.languageSelected.emit(language);

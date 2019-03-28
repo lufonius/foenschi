@@ -123,7 +123,9 @@ export class NavigationComponent {
   @Input() title: string = '';
   @Input() transformOrigin: { x: number; y: number } = { x: 0, y: 0 };
 
-  @Output() activeNavigationItemChanged: EventEmitter<NavigationItemAdapter> = new EventEmitter<NavigationItemAdapter>();
+  @Output() activeNavigationItemChanged: EventEmitter<NavigationItemAdapter> = new EventEmitter<
+    NavigationItemAdapter
+  >();
 
   @Output() routeChanged: EventEmitter<{ route: string; currentLanguage: string }> = new EventEmitter<{
     route: string;

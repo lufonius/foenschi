@@ -1,5 +1,9 @@
 import { Action } from '@ngrx/store';
-import { LanguageActionTypes, LoadAvailableLanguagesSuccessAction, SetCurrentLanguageAction } from '../actions/language.actions';
+import {
+  LanguageActionTypes,
+  LoadAvailableLanguagesSuccessAction,
+  SetCurrentLanguageAction
+} from '../actions/language.actions';
 import { Language } from '../models/language.model';
 
 export interface State {

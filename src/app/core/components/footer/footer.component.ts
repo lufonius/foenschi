@@ -8,11 +8,9 @@ import { Component, Input, OnInit } from '@angular/core';
 export class FooterComponent implements OnInit {
   @Input() currentLanguage: string;
 
-  constructor() {
-  }
+  constructor() {}
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   getPrivatePolicyLink(language: string) {
     return `/${language}/private-policy`;

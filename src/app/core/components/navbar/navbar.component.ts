@@ -10,9 +10,7 @@ export class NavbarComponent implements OnInit {
   @Input() mode: string = null;
   @Input() showQuickNav: boolean = false;
 
-  constructor() {
-  }
+  constructor() {}
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 }

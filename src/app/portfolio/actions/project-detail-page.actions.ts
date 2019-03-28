@@ -43,15 +43,13 @@ export class ProjectDetailPageLoadingAction implements Action {
 export class ProjectDetailPageStateAction implements Action {
   readonly type = ProjectDetailPageActionTypes.SetPageState;
 
-  constructor(public payload: { state: 'gallery' | 'info' }) {
-  }
+  constructor(public payload: { state: 'gallery' | 'info' }) {}
 }
 
 export class SetActiveProjectBlockAction implements Action {
   readonly type = ProjectDetailPageActionTypes.SetActiveProjectBlock;
 
-  constructor(public payload: { activeBlock: ProjectBlock }) {
-  }
+  constructor(public payload: { activeBlock: ProjectBlock }) {}
 }
 
 export type ProjectDetailPageActions =

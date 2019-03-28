@@ -25,7 +25,9 @@ export class ScrollService {
     this.sectionScreenCoverage
   );
 
-  public sectionScrollOffsetPercentage$: BehaviorSubject<SectionScrollOffsetPercentageModel> = new BehaviorSubject<SectionScrollOffsetPercentageModel>(this.sectionScrollOffsetPercentage);
+  public sectionScrollOffsetPercentage$: BehaviorSubject<SectionScrollOffsetPercentageModel> = new BehaviorSubject<
+    SectionScrollOffsetPercentageModel
+  >(this.sectionScrollOffsetPercentage);
 
   public setSectionScreenCoverage(sectionScreenCoverage: SectionScreenCoverage) {
     this.sectionScreenCoverage = {

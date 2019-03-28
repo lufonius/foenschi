@@ -1,7 +1,11 @@
 import { Action } from '@ngrx/store';
 import { NavigationItemAdapter } from '../models/navigation-item-adapter.view-model';
 import { NavigationItem } from '../models/navigation-item.model';
-import { NavigationActionTypes, NavigationLoadSuccessAction, SetActiveNavigationViewModelAction } from '../actions/navigation.actions';
+import {
+  NavigationActionTypes,
+  NavigationLoadSuccessAction,
+  SetActiveNavigationViewModelAction
+} from '../actions/navigation.actions';
 import * as uuidv4 from 'uuid/v4';
 import * as _ from 'lodash';
 

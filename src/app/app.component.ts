@@ -8,9 +8,7 @@ import { Store } from '@ngrx/store';
   `
 })
 export class AppComponent implements OnInit {
-  constructor(public store: Store<any>) {
-  }
+  constructor(public store: Store<any>) {}
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 }

@@ -38,8 +38,7 @@ export class NavigationLoadFailureAction extends SetLoadFailure implements Actio
 export class SetActiveNavigationViewModelAction implements Action {
   readonly type = NavigationActionTypes.SetActiveNavigationViewModel;
 
-  constructor(public payload: { item: NavigationItemAdapter }) {
-  }
+  constructor(public payload: { item: NavigationItemAdapter }) {}
 }
 
 export type NavigationActions =

@@ -16,8 +16,7 @@ export class LoadProjectsAction extends SetLoad implements Action {
 export class ProjectsLoadingAction implements Action {
   readonly type = ProjectActionTypes.ProjectsLoading;
 
-  constructor(public payload: { loading: boolean }) {
-  }
+  constructor(public payload: { loading: boolean }) {}
 }
 
 export class ProjectsLoadSuccessAction extends SetLoadSuccess implements Action {

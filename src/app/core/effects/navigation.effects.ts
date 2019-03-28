@@ -15,8 +15,7 @@ import { NavigationService } from '../services/navigation.service';
 
 @Injectable()
 export class NavigationEffects {
-  constructor(public actions$: Actions, public store: Store<State>, public navigationService: NavigationService) {
-  }
+  constructor(public actions$: Actions, public store: Store<State>, public navigationService: NavigationService) {}
 
   @Effect()
   getNavigation$: Observable<Action> = this.actions$.pipe(
