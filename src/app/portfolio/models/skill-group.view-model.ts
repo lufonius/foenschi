@@ -1,6 +1,6 @@
-import { Skill } from "./skill.view-model";
+import { Skill } from './skill.view-model';
 
 export class SkillGroup {
-    title: string;
-    skills: Skill[];
-  }
+	title: string;
+	skills: Skill[];
+}

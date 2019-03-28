@@ -1,6 +1,6 @@
 export interface SectionScreenCoverage {
-  entrySection?: number;
-  aboutMeSection?: number;
-  projectSection?: number;
-  contactSection?: number;
+	entrySection?: number;
+	aboutMeSection?: number;
+	projectSection?: number;
+	contactSection?: number;
 }

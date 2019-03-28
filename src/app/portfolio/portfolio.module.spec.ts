@@ -1,13 +1,13 @@
 import { PortfolioModule } from './portfolio.module';
 
 describe('PortfolioModule', () => {
-  let portfolioModule: PortfolioModule;
+	let portfolioModule: PortfolioModule;
 
-  beforeEach(() => {
-    portfolioModule = new PortfolioModule();
-  });
+	beforeEach(() => {
+		portfolioModule = new PortfolioModule();
+	});
 
-  it('should create an instance', () => {
-    expect(portfolioModule).toBeTruthy();
-  });
+	it('should create an instance', () => {
+		expect(portfolioModule).toBeTruthy();
+	});
 });

@@ -1,4 +1,4 @@
 export class ProjectFile {
-  title: string;
-  download: string;
+	title: string;
+	download: string;
 }

@@ -1,6 +1,6 @@
 export interface Language {
-  id: string;
-  name: string;
-  description: string;
-  imageUrl: string;
+	id: string;
+	name: string;
+	description: string;
+	imageUrl: string;
 }

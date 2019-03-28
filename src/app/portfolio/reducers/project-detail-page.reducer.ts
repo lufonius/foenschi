@@ -1,105 +1,99 @@
 import { Project } from '../models/project.view-model';
-import {
-  ProjectActionTypes,
-  ProjectsLoadSuccessAction
-} from '../actions/project.actions';
-import { Action } from "@ngrx/store";
+import { ProjectActionTypes, ProjectsLoadSuccessAction } from '../actions/project.actions';
+import { Action } from '@ngrx/store';
 import * as _ from 'lodash';
 import {
-  ProjectDetailPageStateAction, ProjectDetailPageActionTypes,
-  ProjectDetailPageLoadSuccessAction, SetActiveProjectBlockAction
-} from "../actions/project-detail-page.actions";
-import {ProjectDetailPage} from "../models/project-detail-page.view-model";
+	ProjectDetailPageStateAction,
+	ProjectDetailPageActionTypes,
+	ProjectDetailPageLoadSuccessAction,
+	SetActiveProjectBlockAction
+} from '../actions/project-detail-page.actions';
+import { ProjectDetailPage } from '../models/project-detail-page.view-model';
 
 export interface State extends ProjectDetailPage {}
 
 export const initialState: State = {
-  project: {
-    id: 'appexplorer',
-    title: 'AppExplorer',
-    subtitle: 'This is a subtitle',
-    primaryDescription: 'primary description',
-    secondaryDescription: 'secondary description',
-    files: [
-      {
-        download: 'google.ch',
-        title: 'ipa.zip'
-      }
-    ],
-    blocks: [
-      {
-        id: '0',
-        description: 'description',
-        imageUrl: '',
-        title: 'title',
-        order: 0
-      }
-    ]
-  },
-  file: {
-    title: 'Files',
-    download: 'Download'
-  },
-  pageState: 'info',
-  activeBlock: null
+	project: {
+		id: 'appexplorer',
+		title: 'AppExplorer',
+		subtitle: 'This is a subtitle',
+		primaryDescription: 'primary description',
+		secondaryDescription: 'secondary description',
+		files: [
+			{
+				download: 'google.ch',
+				title: 'ipa.zip'
+			}
+		],
+		blocks: [
+			{
+				id: '0',
+				description: 'description',
+				imageUrl: '',
+				title: 'title',
+				order: 0
+			}
+		]
+	},
+	file: {
+		title: 'Files',
+		download: 'Download'
+	},
+	pageState: 'info',
+	activeBlock: null
 };
 
-export function reducer(
-  state = initialState,
-  action: Action
-): State {
-  switch (action.type) {
+export function reducer(state = initialState, action: Action): State {
+	switch (action.type) {
+		case ProjectDetailPageActionTypes.ProjectDetailPageLoadSuccess: {
+			const projectDetail = (<ProjectDetailPageLoadSuccessAction>action).payload.projectDetailPage;
 
-    case ProjectDetailPageActionTypes.ProjectDetailPageLoadSuccess: {
-      const projectDetail = (<ProjectDetailPageLoadSuccessAction>action).payload.projectDetailPage;
+			projectDetail.pageState = state.pageState;
+			projectDetail.activeBlock = projectDetail.project.blocks.length > 0 ? projectDetail.project.blocks[0] : null;
 
-      projectDetail.pageState = state.pageState;
-      projectDetail.activeBlock = (projectDetail.project.blocks.length > 0) ? projectDetail.project.blocks[0] : null;
+			return copy(projectDetail);
+		}
 
+		case ProjectDetailPageActionTypes.SetPageState: {
+			const pageState = (<ProjectDetailPageStateAction>action).payload.state;
 
-      return copy(projectDetail);
-    }
+			let newState = copy(state);
+			newState.pageState = pageState;
 
-    case ProjectDetailPageActionTypes.SetPageState: {
-      const pageState = (<ProjectDetailPageStateAction>action).payload.state;
+			return newState;
+		}
 
-      let newState = copy(state);
-      newState.pageState = pageState;
+		case ProjectDetailPageActionTypes.SetActiveProjectBlock: {
+			const activeProjectBlock = (<SetActiveProjectBlockAction>action).payload.activeBlock;
 
-      return newState;
-    }
+			let newState = copy(state);
+			newState.activeBlock = activeProjectBlock;
 
-    case ProjectDetailPageActionTypes.SetActiveProjectBlock: {
-      const activeProjectBlock = (<SetActiveProjectBlockAction>action).payload.activeBlock;
+			return newState;
+		}
 
-      let newState = copy(state);
-      newState.activeBlock = activeProjectBlock;
-
-      return newState;
-    }
-
-    default: {
-      return state;
-    }
-  }
+		default: {
+			return state;
+		}
+	}
 }
 
 //dangerous!
 const copy = (state: State): State => {
-  return {
-    ...state,
-    project: {
-      ...state.project,
-      blocks: _.cloneDeep(state.project.blocks),
-      files: _.cloneDeep(state.project.files)
-    },
-    file: {
-      ...state.file
-    },
-    activeBlock: {
-      ...state.activeBlock
-    }
-  };
+	return {
+		...state,
+		project: {
+			...state.project,
+			blocks: _.cloneDeep(state.project.blocks),
+			files: _.cloneDeep(state.project.files)
+		},
+		file: {
+			...state.file
+		},
+		activeBlock: {
+			...state.activeBlock
+		}
+	};
 };
 
 export const getProjectDetailPagePageState = (state: State) => state.pageState;
